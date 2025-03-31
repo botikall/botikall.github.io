@@ -1,0 +1,223 @@
+<!-- orders/comments.html -->
+{% extends 'orders/base.html' %}
+
+{% block title %}Коментарі{% endblock %}
+{% load static %}
+{% block content %}
+    <div class="banner-container">
+        <img src="{% static 'orders/images/cafe.jpg' %}" alt="Banner" class="banner">
+        <div class="banner-text">Вітаємо!</div>
+    </div>
+    <section id="backpink" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background: url('{% static "orders/images/nav.png" %}')">
+        <section id="about-us" style="display: flex; align-items: flex-start; gap: 20px; padding: 50px; center/cover no-repeat; color: black; max-width: 1200px; margin: 0 auto;">
+            <div style="flex: 1; display: flex; flex-direction: column;">
+                <h2 style="margin-bottom: 20px;">Про нас</h2>
+                <p>Ласкаво просимо до <strong>[Назва закладу]</strong>! Ми пропонуємо найкращі [тип послуг або товарів], щоб задовольнити всі ваші потреби. Наш заклад знаходиться у самому серці міста, і ми завжди раді новим гостям!</p>
+            </div>
+
+            <div style="flex: 1; display: flex; flex-direction: column;">
+                <h2 style="margin-bottom: 20px;">Наше розташування</h2>
+                <iframe
+                    width="100%"
+                    height="400px"
+                    frameborder="0"
+                    style="border:0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d373.9120192157157!2d34.7987509731569!3d50.916868302336276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1suk!2sua!4v1742314043064!5m2!1suk!2sua">
+                </iframe>
+            </div>
+        </section>
+    </section>
+     <div class="selection">
+        <h2>Get in Touch</h2>
+        <form method="post" class="contact-form">
+            {% csrf_token %}
+            {% if request.user.is_authenticated %}
+                <textarea name="message" placeholder="Message" required>{{ form.message.value|default_if_none:'' }}</textarea>
+                <button type="submit" class="btn-submit">Send It!</button>
+            {% else %}
+                <div class="input-row">
+                    <input type="text" name="name" placeholder="Name" value="{{ form.name.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
+                    <input type="email" name="email" placeholder="Email" value="{{ form.email.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
+                </div>
+                <input type="text" name="phone" placeholder="Phone" value="{{ form.phone.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
+                <textarea name="message" placeholder="Message" required>{{ form.message.value|default_if_none:'' }}</textarea>
+                <button type="submit" class="btn-submit">Send It!</button>
+            {% endif %}
+        </form>
+    </div>
+    <section id="backpink" style="margin-top: 20px;width: 100vw;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background: url('{% static "orders/images/nav.png" %}')">
+        <div class="selection" style="max-width: 900px;">
+            <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="rounded-lg overflow-hidden shadow-none border-none">
+                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(0)">What are macarons made of?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Macarons are made from almond flour, egg whites, and sugar, filled with ganache, buttercream, or jam.</div>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-none border-none">
+                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(1)">Do you offer custom designs?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Yes! We can create custom designs for special occasions.</div>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-none border-none">
+                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(2)">How should I store macarons?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Macarons should be stored in an airtight container in the refrigerator and consumed within a week.</div>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-none border-none">
+                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(3)">Are your desserts gluten-free?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Most of our desserts are gluten-free, but we recommend checking with us for specific products.</div>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-none border-none">
+                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(4)">Can I order online?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Yes! You can place your orders online through our website.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="comments-container" style="max-width: 1314px; margin: 0 auto;">
+        <h2 style="text-align: center;">Коментарі</h2>
+        <div class="comments-scroll" style="max-height: 300px; overflow-y: auto; padding-right: 10px;">
+            <div class="row" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                {% for comment in comments %}
+                <div class="comment-row {% if forloop.counter > 4 %}hidden{% endif %}">
+                    <div class="comment-box" style="width: calc(25% - 10px); min-width: 300px; box-sizing: border-box; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                        <strong>{{ comment.order.user.username }}</strong> - {{ comment.rating }}★<br>
+                        <p>{{ comment.text }}</p>
+                        <small class="products-title">Товари:</small>
+                        <ul class="products-list">
+                            {% for item in comment.order.items.all %}
+                                <li>{{ item.quantity }} x {{ item.product.name }}</li>
+                            {% endfor %}
+                        </ul>
+                        <br>
+                        <small>Сума: {{ comment.order.total_price }} грн</small><br>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <button id="load-more" class="more-btn" style="margin: 20px auto; border: none; font-family: 'Waltograph'; cursor: pointer;">Більше</button>
+            <button id="hide-comments" class="more-btn" style="margin: 20px auto; border: none; font-family: 'Waltograph'; cursor: pointer; display: none;">Приховати</button>
+        </div>
+    </div>
+<style>
+
+.comments-container .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: stretch; /* Вирівнює коментарі по висоті */
+}
+
+.comment-row {
+    flex: 1 1 calc(25% - 10px); /* Гнучке розміщення */
+    min-width: 300px;
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
+.banner-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 21 / 9;
+}
+
+.banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 4vw;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    white-space: nowrap;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.banner-text:hover {
+    transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
+    color: #f6cece;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9);
+}
+
+.selection {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-row input,
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #fff;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+</style>
+<script>
+
+     document.getElementById("load-more").addEventListener("click", function () {
+        document.querySelectorAll(".comment-row.hidden").forEach(row => {
+            row.classList.remove("hidden");
+        });
+        this.style.display = "none";
+        document.getElementById("hide-comments").style.display = "inline-block";
+    });
+
+    document.getElementById("hide-comments").addEventListener("click", function () {
+        document.querySelectorAll(".comment-row").forEach((row, index) => {
+            if (index >= 4) {
+                row.classList.add("hidden");
+            }
+        });
+        this.style.display = "none";
+        document.getElementById("load-more").style.display = "inline-block";
+    });
+
+
+    function toggleFAQ(index) {
+         const answers = document.querySelectorAll(".space-y-4 > div > div");
+         answers[index].classList.toggle("hidden");
+    }
+</script>
+{% endblock %}

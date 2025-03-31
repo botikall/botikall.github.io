@@ -1,0 +1,875 @@
+{% extends 'orders/base.html' %}
+{% load static %}
+
+{% block title %}Головна - Кондитерська{% endblock %}
+
+{% block content %}
+
+
+
+    <div class="slider-container" style="margin-top: 80px;">
+        <div class="slider">
+            <img src="{% static 'orders/images/419958.jpg' %}" class="slide" alt="Продукт 3"> <!-- Клон останнього -->
+            <img src="{% static 'orders/images/1278413.jpg' %}" class="slide" alt="Продукт 1">
+            <img src="{% static 'orders/images/408920.jpg' %}" class="slide" alt="Продукт 2">
+            <img src="{% static 'orders/images/419958.jpg' %}" class="slide" alt="Продукт 3">
+            <img src="{% static 'orders/images/1278413.jpg' %}" class="slide" alt="Продукт 1"> <!-- Клон першого -->
+        </div>
+<!--        <div class="controls">-->
+<!--            <button class="prev" onclick="prevSlide()">&#10094;</button>-->
+<!--            <button class="next" onclick="nextSlide()">&#10095;</button>-->
+<!--        </div>-->
+<!--        <div class="controls-b">-->
+<!--            <button class="control-btn" onclick="goToSlide(1)"></button>-->
+<!--            <button class="control-btn" onclick="goToSlide(2)"></button>-->
+<!--            <button class="control-btn" onclick="goToSlide(3)"></button>-->
+<!--        </div>-->
+    </div>
+
+    <div class="order-button-container">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'product_list' %}" class="btn-submit" style="font-size: 28px; padding: 24px 36px; text-transform: uppercase;">Замовити</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn-submit" style="font-size: 28px; padding: 24px 36px; text-transform: uppercase;">Замовити</a>
+        {% endif %}
+    </div>
+
+    <div class="macaron-container" >
+        <img src="{% static 'orders/images/сoll_mac.png' %}" alt="Макарони" usemap="#macaronmap" class="macaron-img">
+        <div id="macaron-info" class="macaron-info"></div>
+    </div>
+
+    <map name="macaronmap">
+        <area shape="circle" coords="100,150,100" href="#" class="macaron" data-id="1" data-name="Рожевий макарон" data-description="Полуничний смак">
+        <area shape="circle" coords="280,150,80" href="#" class="macaron" data-id="2" data-name="Жовтий макарон" data-description="Лимонний смак">
+        <area shape="circle" coords="435,150,75" href="#" class="macaron" data-id="3" data-name="Зелений макарон" data-description="Фісташковий смак">
+        <area shape="circle" coords="585,150,75" href="#" class="macaron" data-id="4" data-name="Фіолетовий макарон" data-description="Лавандовий смак">
+        <area shape="circle" coords="730,150,70" href="#" class="macaron" data-id="5" data-name="Блакитний макарон" data-description="Ванільний смак">
+        <area shape="circle" coords="875,150,75" href="#" class="macaron" data-id="6" data-name="Коричневий макарон" data-description="Шоколадний смак">
+    </map>
+
+    <div class="container" style="margin-top: -250px;">
+        <h2 style="text-align: center;">Топ продукція</h2>
+
+        <div class="swiper-wrapper-container">
+
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for product in products %}
+                    <div class="swiper-slide">
+                        <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 470px; border: 1px solid #ddd; border-radius: 10px; padding: 15px; text-align: center; background: #fff; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);">
+                            {% if product.image %}
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                                </a>
+                            {% endif %}
+                            <h3 style="margin-top: 10px;">
+                                <a href="{% url 'product_detail' product.id %}" style="text-decoration: none; color: inherit;">{{ product.name }}</a>
+                            </h3>
+                            <p>{{ product.description }}</p>
+                            <p>Продано: {{ product.sales_count }}</p>
+                            <p style="font-weight: bold;">Ціна: {{ product.price }} грн</p>
+
+                            <div style="width: 100%;">
+                                {% if request.user.is_authenticated %}
+                                    <form method="post" action="{% url 'add_to_cart' product.id %}" style="display: flex; flex-direction: column; align-items: center;">
+                                        {% csrf_token %}
+                                        <label for="quantity">Кількість:</label>
+                                        <input type="number" name="quantity" id="quantity" value="1" min="1" style="width: 60px; text-align: center; margin-bottom: 10px;">
+                                        <button type="submit" class="btn-submit">Додати до кошика</button>
+                                    </form>
+                                {% else %}
+                                    <a href="{% url 'login' %}?next={% url 'cart' %}" class="btn-submit">Додати в кошик</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="swiper-button-prev custom-prev"></div>
+            <div class="swiper-button-next custom-next"></div>
+        </div>
+
+        <div class="more-comments" style="margin-top: 0px;">
+            <a href="{% url 'product_list' %}" class="more-btn">Більше продукції</a>
+        </div>
+    </div>
+
+    <div class="join-section">
+        <h2>Приєднайся до нашої солодкої спільноти!</h2>
+        <div class="join-container">
+            {% if request.user.is_authenticated %}
+                <h3 class="btn-submit" style="font-size: 20px; padding: 20px 30px; background-color:#e1f2ea; box-shadow: 0px 4px 8px rgba(118, 188, 171, 0.4);">
+                    Ви вже частина нашої сім'ї
+                </h3>
+                <div class="social-icons" style="margin-top: 8px;">
+                    <a href="https://www.instagram.com/amore_mio1712/" target="_blank">
+                        <img src="{% static 'orders/images/instagram.png' %}" alt="Instagram" style="width: 65px; height: 65px;">
+                    </a>
+                    <a href="https://uk.piliapp.com/instagram/fonts/" target="_blank">
+                        <img src="{% static 'orders/images/facebook.png' %}" alt="Facebook" style="width: 65px; height: 65px;">
+                    </a>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn-submit" style="font-size: 20px; padding: 20px 30px; background-color:#e1f2ea; box-shadow: 0px 4px 8px rgba(118, 188, 171, 0.4);">Приєднатися</a>
+                <div class="social-icons" style="margin-top: 8px;">
+                    <a href="https://www.instagram.com/amore_mio1712/" target="_blank">
+                        <img src="{% static 'orders/images/instagram.png' %}" alt="Instagram" style="width: 65px; height: 65px;">
+                    </a>
+                    <a href="https://uk.piliapp.com/instagram/fonts/" target="_blank">
+                        <img src="{% static 'orders/images/facebook.png' %}" alt="Facebook" style="width: 65px; height: 65px;">
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Лічильники -->
+    <div class="counters">
+        <div class="counter">
+            <h3>{{ total_orders }}+</h3>
+            <p>Прийнятих замовлень</p>
+        </div>
+        <div class="counter">
+            <h3>{{ total_users }}+</h3>
+            <p>Зареєстрованих користувачів</p>
+        </div>
+        <div class="counter">
+            <h3>4</h3>
+            <p>Років досвіду</p>
+        </div>
+    </div>
+
+    <div class="parallax"></div>
+
+    <div class="marquee-wrapper">
+        <div class="marquee-content">
+            <span>🔥 Спеціальні пропозиції цього тижня! 🔥</span>
+            <span>🍰 Найсмачніші макаруни у вашому місті! 🍰</span>
+            <span>🎁 Знижки до 50% на всі святкові набори! 🎁</span>
+            <span>🚀 Доставка по всій країні! 🚀</span>
+        </div>
+        <div class="marquee-content1">
+            <span>🔥 Спеціальні пропозиції цього тижня! 🔥</span>
+            <span>🍰 Найсмачніші макаруни у вашому місті! 🍰</span>
+            <span>🎁 Знижки до 50% на всі святкові набори! 🎁</span>
+            <span>🚀 Доставка по всій країні! 🚀</span>
+        </div>
+    </div>
+
+    <section id="backpink" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background: url('{% static "orders/images/nav.png" %}')">
+        <section id="about-us" style="display: flex; align-items: flex-start; gap: 20px; padding: 50px; center/cover no-repeat; color: black; max-width: 1200px; margin: 0 auto;">
+            <div style="flex: 1; display: flex; flex-direction: column;">
+                <h2 style="margin-bottom: 20px;">Про нас</h2>
+                <p>Ласкаво просимо до <strong>[Назва закладу]</strong>! Ми пропонуємо найкращі [тип послуг або товарів], щоб задовольнити всі ваші потреби. Наш заклад знаходиться у самому серці міста, і ми завжди раді новим гостям!</p>
+            </div>
+
+            <div style="flex: 1; display: flex; flex-direction: column;">
+                <h2 style="margin-bottom: 20px;">Наше розташування</h2>
+                <iframe
+                    width="100%"
+                    height="400px"
+                    frameborder="0"
+                    style="border:0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d373.9120192157157!2d34.7987509731569!3d50.916868302336276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1suk!2sua!4v1742314043064!5m2!1suk!2sua">
+                </iframe>
+            </div>
+        </section>
+    </section>
+
+    <div class="comments-container" style="max-width: 1314px; margin: 0 auto;" >
+        <h2 style="text-align: center;">Коментарі</h2>
+        <div class="d-flex flex-wrap">
+            {% for comment in comments %}
+                <div class="comment-box" style="flex: 1 1 calc(25% - 20px);max-width: calc(25% - 20px);">
+                    <strong>{{ comment.order.user.username }}</strong> - {{ comment.rating }}★<br>
+                    <p>{{ comment.text }}</p>
+                    <small class="products-title">Товари:</small>
+                    <ul class="products-list">
+                        {% for item in comment.order.items.all %}
+                            <li>{{ item.quantity }} x {{ item.product.name }}</li>
+                        {% endfor %}
+                    </ul>
+                    <br>
+                    <small>Сума: {{ comment.order.total_price }} грн</small><br>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="more-comments">
+            <a href="{% url 'comments' %}" class="more-btn">Більше коментарів</a>
+        </div>
+    </div>
+
+    <section id="backpink" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background: url('{% static "orders/images/nav.png" %}')">
+        <div class="selection" style="max-width: 900px;">
+            <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="rounded-lg overflow-hidden shadow-none border-none">
+                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(0)">What are macarons made of?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Macarons are made from almond flour, egg whites, and sugar, filled with ganache, buttercream, or jam.</div>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-none border-none">
+                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(1)">Do you offer custom designs?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Yes! We can create custom designs for special occasions.</div>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-none border-none">
+                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(2)">How should I store macarons?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Macarons should be stored in an airtight container in the refrigerator and consumed within a week.</div>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-none border-none">
+                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(3)">Are your desserts gluten-free?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Most of our desserts are gluten-free, but we recommend checking with us for specific products.</div>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-none border-none">
+                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(4)">Can I order online?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Yes! You can place your orders online through our website.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="selection">
+        <h2>Get in Touch</h2>
+        <form method="post" class="contact-form">
+            {% csrf_token %}
+            {% if request.user.is_authenticated %}
+                <textarea name="message" placeholder="Message" required>{{ form.message.value|default_if_none:'' }}</textarea>
+                <button type="submit" class="btn-submit">Send It!</button>
+            {% else %}
+                <div class="input-row">
+                    <input type="text" name="name" placeholder="Name" value="{{ form.name.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
+                    <input type="email" name="email" placeholder="Email" value="{{ form.email.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
+                </div>
+                <input type="text" name="phone" placeholder="Phone" value="{{ form.phone.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
+                <textarea name="message" placeholder="Message" required>{{ form.message.value|default_if_none:'' }}</textarea>
+                <button type="submit" class="btn-submit">Send It!</button>
+            {% endif %}
+        </form>
+    </div>
+
+    <section class="gallery" style="position: relative; left: -250px;">
+            <img src="{% static 'orders/images/product1.jpg' %}" alt="Macarons on a wooden surface">
+            <img src="{% static 'orders/images/product2.jpg' %}" alt="Plate of pink macarons">
+            <img src="{% static 'orders/images/product3.jpg' %}" alt="Macaron tower">
+            <img src="{% static 'orders/images/product1.jpg' %}" alt="Macarons on a wooden surface">
+            <img src="{% static 'orders/images/product1.jpg' %}" alt="Macarons on a wooden surface">
+        </section>
+        <section class="gallery" style="position: relative; left: +250px;">
+            <img src="{% static 'orders/images/product1.jpg' %}" alt="Macarons on a wooden surface">
+            <img src="{% static 'orders/images/product2.jpg' %}" alt="Plate of pink macarons">
+            <img src="{% static 'orders/images/product3.jpg' %}" alt="Macaron tower">
+            <img src="{% static 'orders/images/product1.jpg' %}" alt="Macarons on a wooden surface">
+            <img src="{% static 'orders/images/product1.jpg' %}" alt="Macarons on a wooden surface">
+        </section>
+
+    <div class="selection" style="max-width: 500px;">
+        <h2>Contact Us</h2>
+        <p>Feel free to reach out to us!</p>
+
+        <div style="margin-top: 20px; text-align: left;">
+            <p><strong>📍 Address:</strong> 123 Main Street, Kyiv, Ukraine</p>
+            <p><strong>📞 Phone:</strong> <a href="tel:+380971234567">+380 97 123 4567</a></p>
+            <p><strong>✉️ Email:</strong> <a href="mailto:info@example.com">info@example.com</a></p>
+            <p><strong>🕒 Working Hours:</strong> Mon-Fri, 9:00 AM - 6:00 PM</p>
+
+            <div style="margin-top: 20px;">
+                <strong>Follow us:</strong>
+                <a href="https://www.facebook.com" target="_blank">Facebook</a> |
+                <a href="https://www.instagram.com" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<style>
+
+/* Обгортка для Swiper */
+.swiper-wrapper-container {
+    position: relative; /* Щоб кнопки позиціонувалися відносно неї */
+    max-width: 1500px;
+    margin: 0 auto;
+}
+ /* Стилі Swiper */
+.swiper-container {
+     overflow: hidden;
+    padding: 20px;
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+
+.swiper-wrapper {
+    display: flex;
+    align-items: stretch; /* Вирівнювання по висоті */
+}
+
+.swiper-slide {
+    background: none !important; /* Забирає білий фон */
+    padding: 0 !important;
+    display: flex;
+    height: auto; /* Автоматична висота */
+    align-items: stretch; /* Вирівнювання висоти всіх карток */
+}
+
+/* Фіксація кнопок на рівні слайдів */
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: #f6cece; /* НОВИЙ КОЛІР */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9;
+}
+
+/* Зменшено відстань до країв */
+.swiper-button-prev {
+    left: 50px;
+}
+
+.swiper-button-next {
+    right: 50px;
+}
+
+/* Додаткове форматування для мобільних */
+@media (max-width: 768px) {
+    .swiper-button-prev {
+        left: 5px;
+    }
+    .swiper-button-next {
+        right: 5px;
+    }
+}
+
+
+
+.selection {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-row input,
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #fff;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+
+
+.marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+    background: #f8f8f8;
+    padding: 10px 0;
+    position: relative;
+    white-space: nowrap;
+    height: 50px; /* Оптимальна висота */
+    display: flex;
+    align-items: center; /* Вирівнюємо текст вертикально */
+}
+
+.marquee-content, .marquee-content1 {
+    display: flex;
+    gap: 50px;
+    min-width: max-content;
+    position: absolute;
+    width: 100%;
+    animation: marquee-animation 20s linear infinite;
+}
+
+.marquee-content1 {
+    opacity: 0;
+    animation: fade-in 1s ease-in forwards, marquee-animation 20s linear infinite;
+    animation-delay: 10s, 10s;
+}
+
+.marquee-content span, .marquee-content1 span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center; /* Вирівнюємо текст і емоджі */
+    height: 100%; /* Робимо висоту однаковою зі стрічкою */
+}
+
+@keyframes marquee-animation {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+    .join-section {
+        background-color: #f6cece; /* Ніжний рожевий */
+        text-align: center;
+        padding: 40px 20px;
+        border-radius: 10px;
+    }
+
+    /* Контейнер для вирівнювання кнопки та іконок */
+    .join-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .join-section h2 {
+        font-size: 28px;
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 20px;
+    }
+
+    #join-button {
+        background-color: #b0e8a4; /* Світло-зелений */
+        color: #000;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #join-button:hover {
+        background-color: #98d48a;
+    }
+
+    .counters {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+
+    .counter {
+        text-align: center;
+    }
+
+    .counter h3 {
+        font-size: 32px;
+        font-weight: bold;
+        color: #f6cece; /* Світло-зелений */
+    }
+
+    .counter p {
+        font-size: 16px;
+        color: #000;
+    }
+
+    /* Створюємо ефект паралаксу */
+    .parallax {
+        background-image: url('{% static "orders/images/parallax.JFIF" %}'); /* Вкажіть шлях до вашого зображення */
+        min-height: 500px; /* Висота фону */
+        background-attachment: fixed; /* Фіксований фон для ефекту */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+<!--    .about-us{-->
+<!--        display: flex;-->
+<!--        align-items: flex-start;-->
+<!--        gap: 20px;-->
+<!--        padding: 50px;-->
+<!--        background: url('{% static "orders/images/background_green.png" %}');-->
+<!--        center/cover no-repeat;-->
+<!--        color: white;-->
+<!--        margin: 0 300px;-->
+<!--    }-->
+
+.d-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+@media (max-width: 992px) {
+    .comment-box {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 600px) {
+    .comment-box {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+    .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+
+    .macaron-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 70vh;
+        position: relative;
+        margin-bottom: -200px;
+        margin-top: -160px;
+        z-index: 1;
+    }
+
+    .macaron-img {
+        max-width: 80%;
+        height: auto;
+        display: block;
+    }
+
+    .macaron-info {
+        position: fixed; /* Фіксуємо, щоб координати були відносно всього екрану */
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        display: none;
+        max-width: 200px;
+        word-wrap: break-word;
+        z-index: 10;
+    }
+
+    .order-button-container {
+        text-align: center;
+        margin-top: 50px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .slider-container {
+        width: 100vw;
+        height: calc(100vw * 6 / 21);
+        overflow: hidden
+        position: relative;
+        border: none;
+    }
+
+    .slider {
+        display: flex;
+        width: 500%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+        transform: translateX(-100vw);
+    }
+
+    .slide {
+        width: 100vw;
+        height: calc(100vw * 6 / 21);
+        object-fit: cover;
+
+    .order-button {
+        text-decoration: none;
+        background-color: #f6cece;
+        color: #000; /* Темно-рожевий колір тексту */
+        font-size: 28px; /* Збільшено у 2 рази */
+        padding: 24px 36px; /* Збільшено у 2 рази */
+        border-radius: 50px; /* Більш округлі краї */
+        cursor: pointer;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        box-shadow: 0px 6px 12px rgba(228, 124, 124, 0.4); /* Збільшена тінь */
+        letter-spacing: 2px; /* Додає стильності */
+        display: inline-block;
+    }
+
+    .order-button:hover {
+        background-color: #f6cece;
+        border-color: #FAFBFD;
+        color: #FAFBFD;
+        transform: scale(1.1); /* Сильніше збільшення при наведенні */
+        box-shadow: 0px 10px 20px rgba(228, 124, 124, 0.6);
+    }
+
+    .header-image {
+        width: 100vw;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .header-img {
+        width: 50%;
+        max-height: 400px;
+        object-fit: cover;
+    }
+
+
+<!--/* Кнопки навігації */-->
+<!--.controls {-->
+<!--    position: absolute !important;-->
+<!--    top: 50%;-->
+<!--    width: 100%;-->
+<!--    display: flex;-->
+<!--    justify-content: space-between;-->
+<!--    transform: translateY(-50%);-->
+<!--    z-index: 100; /* Вище за все */-->
+<!--    pointer-events: all; /* Дозволяє натискати */-->
+<!--}-->
+
+<!--.controls-b {-->
+<!--    position: absolute;-->
+<!--    bottom: 20px;-->
+<!--    left: 50%;-->
+<!--    transform: translateX(-50%);-->
+<!--    display: flex;-->
+<!--    gap: 10px;-->
+<!--    align-items: center;-->
+<!--    z-index: 100; /* Вище за все */-->
+<!--}-->
+
+<!--/* Видимість кнопок */-->
+<!--.prev, .next {-->
+<!--    background-color: rgba(255, 192, 203, 0.9); /* Щоб не були прозорими */-->
+<!--    border: none;-->
+<!--    padding: 15px;-->
+<!--    cursor: pointer;-->
+<!--    font-size: 24px;-->
+<!--    border-radius: 50%;-->
+<!--    color: black;-->
+<!--    transition: background 0.3s, transform 0.2s;-->
+<!--    display: flex; /* Щоб кнопки не були пустими */-->
+<!--    align-items: center;-->
+<!--    justify-content: center;-->
+<!--    width: 40px;-->
+<!--    height: 40px;-->
+<!--}-->
+
+<!--.prev:hover, .next:hover {-->
+<!--    background-color: pink;-->
+<!--    transform: scale(1.1);-->
+<!--}-->
+
+<!--.control-btn {-->
+<!--    width: 15px;-->
+<!--    height: 15px;-->
+<!--    background-color: rgba(255, 192, 203, 0.7);-->
+<!--    border: none;-->
+<!--    border-radius: 50%;-->
+<!--    cursor: pointer;-->
+<!--    transition: background 0.3s, transform 0.3s;-->
+<!--    display: block;-->
+<!--}-->
+
+<!--.control-btn.active {-->
+<!--    background-color: pink;-->
+<!--    transform: scale(1.3);-->
+<!--}-->
+</style>
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+<script>
+     var swiper = new Swiper(".swiper-container", {
+        slidesPerView: 4, // Відображаємо 4 продукти одночасно
+        spaceBetween: 20, // Відстань між слайдами
+        loop: true, // Зациклене відтворення
+        centeredSlides: false,
+        navigation: {
+            nextEl: ".custom-next",
+            prevEl: ".custom-prev",
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4, // Для великих екранів
+            },
+            768: {
+                slidesPerView: 2, // Для планшетів
+            },
+            480: {
+                slidesPerView: 1, // Для мобільних
+            }
+        }
+    });
+
+    function toggleFAQ(index) {
+         const answers = document.querySelectorAll(".space-y-4 > div > div");
+         answers[index].classList.toggle("hidden");
+    }
+
+    let index = 1;
+    const slides = document.querySelectorAll('.slide');
+    const slider = document.querySelector('.slider');
+    const controlBtns = document.querySelectorAll('.control-btn');
+    const slideWidth = 100;
+    let autoSlideInterval;
+
+    function updateActiveButton() {
+        controlBtns.forEach((btn, i) => {
+            btn.classList.toggle('active', i + 1 === index);
+        });
+    }
+
+
+    function goToSlide(n, instant = false) {
+        index = n;
+        slider.style.transition = instant ? 'none' : 'transform 0.5s ease-in-out';
+        slider.style.transform = `translateX(-${index * slideWidth}vw)`;
+        updateActiveButton();
+    }
+
+    function nextSlide() {
+        if (index >= slides.length - 1) {
+            slider.style.transition = 'none';
+            index = 1;
+            slider.style.transform = `translateX(-${index * slideWidth}vw)`;
+            setTimeout(() => {
+                nextSlide();
+            }, 10);
+            return;
+        }
+        goToSlide(index + 1);
+    }
+
+    function prevSlide() {
+        if (index <= 0) {
+            slider.style.transition = 'none';
+            index = slides.length - 2;
+            slider.style.transform = `translateX(-${index * slideWidth}vw)`;
+            setTimeout(() => {
+                prevSlide();
+            }, 10);
+            return;
+        }
+        goToSlide(index - 1);
+    }
+
+    function autoSlide() {
+        nextSlide();
+        autoSlideInterval = setTimeout(autoSlide, 5000);
+    }
+
+    slider.addEventListener('transitionend', () => {
+        if (index >= slides.length - 1) {
+            slider.style.transition = 'none';
+            index = 1;
+            slider.style.transform = `translateX(-${index * slideWidth}vw)`;
+        }
+        if (index <= 0) {
+            slider.style.transition = 'none';
+            index = slides.length - 2;
+            slider.style.transform = `translateX(-${index * slideWidth}vw)`;
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("JavaScript завантажено!");
+        console.log("Кнопка .prev:", document.querySelector('.prev'));
+        console.log("Кнопка .next:", document.querySelector('.next'));
+    });
+
+    updateActiveButton();
+    setTimeout(autoSlide, 3000);
+
+    function getCSRFToken() {
+        return document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const macaronAreas = document.querySelectorAll(".macaron");
+        const macaronInfo = document.getElementById("macaron-info");
+
+        macaronAreas.forEach(area => {
+            area.addEventListener("mouseenter", function (event) {
+                macaronInfo.innerHTML = `<strong>${this.dataset.name}</strong><br>${this.dataset.description}`;
+                macaronInfo.style.display = "block";
+
+                // Отримуємо розміри екрана
+                const screenWidth = window.innerWidth;
+                const screenHeight = window.innerHeight;
+
+                // Отримуємо розміри підказки
+                const tooltipWidth = macaronInfo.offsetWidth;
+                const tooltipHeight = macaronInfo.offsetHeight;
+
+                // Визначаємо позицію миші
+                let left = event.pageX + 20; // Трохи праворуч від миші
+                let top = event.pageY - 40; // Трохи вище курсора
+
+                // Перевіряємо, чи не виходить підказка за межі екрана
+                if (left + tooltipWidth > screenWidth) {
+                    left = event.pageX - tooltipWidth - 20; // Зміщуємо вліво
+                }
+                if (top + tooltipHeight > screenHeight) {
+                    top = event.pageY - tooltipHeight - 20; // Зміщуємо вгору
+                }
+
+                macaronInfo.style.left = `${left}px`;
+                macaronInfo.style.top = `${top}px`;
+            });
+
+            area.addEventListener("mouseleave", function () {
+                macaronInfo.style.display = "none";
+            });
+
+            area.addEventListener("click", function (event) {
+                event.preventDefault();
+
+
+                const productId = this.dataset.id;
+                window.location.href = `/cart/add/${productId}/?redirect=true`;
+            });
+        });
+    });
+
+</script>
+{% endblock %}

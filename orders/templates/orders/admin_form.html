@@ -1,0 +1,127 @@
+{% extends 'orders/base.html' %}
+
+{% block title %}Admin Form{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 80px;">
+        <h2>All Contact Messages</h2>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Message</th>
+                <th>Date</th>
+            </tr>
+            {% for message in messages %}
+            <tr>
+                <td>{{ message.name }}</td>
+                <td>{{ message.email }}</td>
+                <td>{{ message.phone }}</td>
+                <td>{{ message.message }}</td>
+                <td>{{ message.created_at }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No messages yet.</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h3>Список всіх замовлень</h3>
+        {% if orders %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID замовлення</th>
+                    <th>Користувач</th>
+                    <th>Дата</th>
+                    <th>Загальна сума</th>
+                    <th>Доставка</th>
+                    <th>Статус</th>
+                    <th>Деталі</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.user.username }}</td>
+                    <td>{{ order.created_at }}</td>
+                    <td>{{ order.total_price }} грн</td>
+                    <td>
+                        {{ order.delivery_type|title }}
+                        {% if order.delivery_type == 'courier' %}
+                            <br>Адреса:
+                            {% if order.delivery_address %}
+                                {{ order.delivery_address }}
+                            {% else %}
+                                <span id="delivery-address-{{ order.id }}">Визначається...</span>
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", function () {
+                                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat={{ order.latitude }}&lon={{ order.longitude }}`)
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                document.getElementById("delivery-address-{{ order.id }}").innerText = data.display_name;
+                                            })
+                                            .catch(error => {
+                                                console.error("Помилка отримання адреси:", error);
+                                            });
+                                    });
+                                </script>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td id="status-{{ order.id }}">{{ order.get_status_display }}</td>
+                    <td>
+                        <ul>
+                            {% for item in order.items.all %}
+                            <li>{{ item.product.name }} - {{ item.quantity }} шт. за {{ item.price }} грн</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td id="actions-{{ order.id }}">
+                        {% if order.status == 'new' %}
+                            <button onclick="updateOrderStatus({{ order.id }}, 'processing')">Прийнято</button>
+                            <button onclick="updateOrderStatus({{ order.id }}, 'canceled')">Скасувати</button>
+                        {% elif order.status == 'processing' %}
+                            <button onclick="updateOrderStatus({{ order.id }}, 'completed')">Виконано</button>
+                            <button onclick="updateOrderStatus({{ order.id }}, 'canceled')">Скасувати</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Немає замовлень.</p>
+        {% endif %}
+    </div>
+
+<script>
+function updateOrderStatus(orderId, newStatus) {
+    fetch(`/update-order-status/${orderId}/${newStatus}/`, {
+        method: 'POST',
+        headers: { 'X-CSRFToken': '{{ csrf_token }}' }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById(`status-${orderId}`).innerText = data.new_status;
+            let actionsCell = document.getElementById(`actions-${orderId}`);
+            if (newStatus === "processing") {
+                actionsCell.innerHTML = `
+                    <button onclick="updateOrderStatus(${orderId}, 'completed')">Виконано</button>
+                    <button onclick="updateOrderStatus(${orderId}, 'canceled')">Скасувати</button>
+                `;
+            } else if (newStatus === "completed" || newStatus === "canceled") {
+                actionsCell.innerHTML = ""; // Видаляємо всі кнопки
+            }
+        } else {
+            alert('Помилка зміни статусу');
+        }
+    })
+    .catch(error => console.error('Помилка:', error));
+}
+</script>
+{% endblock %}

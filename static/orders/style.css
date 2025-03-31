@@ -1,0 +1,478 @@
+/* Загальні стилі */
+@font-face {
+    font-family: 'Waltograph';
+    src: url('{% static "orders/fonts/Adventure.ttf" %}') format('truetype');
+}
+
+footer {
+    background-color: #ffebee;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100vw;
+    text-align: center;
+}
+
+/*Таблиці*/
+.cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #f5e1e1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .cart-table th, .cart-table td {
+            border: 1px solid #f6cece;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .cart-table th {
+            background-color: #f6cece;
+            color: black;
+        }
+
+        .cart-table input[type='number'] {
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #f6cece;
+            border-radius: 5px;
+        }
+
+/*Продукція*/
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 470px;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Коментарі */
+.comments-container {
+    margin-top: 20px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.comment-box {
+    justify-content: space-between;
+    flex-grow: 1;
+    min-height: 200px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comment-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.products-title {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+.products-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    text-align: left;
+    display: inline-block;
+}
+
+.more-comments {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.more-btn {
+    display: inline-block;
+    padding: 14px 24px;
+    background: #94c6c1;
+    color: #000; /* Темно-рожевий колір тексту */
+    text-decoration: none;
+    border-radius: 50px; /* Округлі краї */
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(90, 155, 150, 0.4); /* Тінь для об’єму */
+    letter-spacing: 1.5px;
+}
+
+.more-btn:hover {
+    background: #94c6c1;
+    border-color: #FAFBFD;
+    color: #FAFBFD;
+    transform: scale(1.05); /* Сильніше збільшення при наведенні */
+    box-shadow: 0px 8px 16px rgba(90, 155, 150, 0.6);
+}
+
+/* Базові стилі */
+html, body {
+    font-family: 'Waltograph', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    background-image: url('{% static "orders/images/background_green.png" %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+}
+
+.swiper {
+    width: 100%;
+    height: 100vh;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider-container {
+    border: 2px solid red; /* Тимчасова рамка для перевірки */
+}
+
+/* Повноекранний слайдер */
+.slider-container {
+    width: 100vw; /* Повна ширина екрану */
+    height: 100vh; /* Повна висота екрану */
+    overflow: hidden; /* Запобігаємо виходу елементів */
+}
+
+/* Налаштування слайдера */
+.mySwiper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Кожен слайд */
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Зображення у слайдері */
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Робимо зображення повноекранним */
+}
+
+/* Кнопки перемикання */
+.swiper-button-next, .swiper-button-prev {
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Стилі для пагінації */
+.swiper-pagination-bullet {
+    background: white;
+}
+
+
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+}
+
+h1 {
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 32px !important;
+    color: #333 !important;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.buttons .btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #f6cece;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    width: 180px;
+    text-align: center;
+    box-shadow: 0px 6px 12px rgba(228, 124, 124, 0.4); /* Збільшена тінь */
+    letter-spacing: 2px;
+}
+
+.buttons .btn:hover {
+     background-color: #f6cece;
+     border-color: #FAFBFD;
+     color: #FAFBFD;
+     transform: scale(1.05); /* Сильніше збільшення при наведенні */
+     box-shadow: 0px 10px 20px rgba(228, 124, 124, 0.6);
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.product h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.cart-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.cart-table th, .cart-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.cart-table th {
+    background-color: #f2f2f2;
+}
+
+.cart-table td input {
+    width: 50px;
+    text-align: center;
+}
+
+.btn-submit {
+    font-family: 'Waltograph', Arial, sans-serif;
+    text-decoration: none;
+    background-color: #f6cece;
+    color: #000;
+    font-size: 16px;
+    padding: 18px 28px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0px 6px 12px rgba(228, 124, 124, 0.4); /* Збільшена тінь */
+    letter-spacing: 2px; /* Додає стильності */
+    display: inline-block;
+    border: none; /* Видаляє чорну обводку */
+    outline: none; /* Видаляє контур при фокусі */
+}
+
+.btn-submit:hover {
+     background-color: #f6cece;
+     border-color: #FAFBFD;
+     color: #FAFBFD;
+     transform: scale(1.05); /* Сильніше збільшення при наведенні */
+     box-shadow: 0px 10px 20px rgba(228, 124, 124, 0.6);
+}
+
+/* Стилі для форми реєстрації */
+.registration-form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+    text-align: left;
+}
+
+.registration-form .form-group {
+    margin-bottom: 20px; /* Додамо трохи більше простору між полями */
+}
+
+.registration-form label {
+    display: block; /* Вирівнюємо текст по вертикалі */
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.registration-form input[type="text"],
+.registration-form input[type="password"] {
+    width: calc(100% - 20px); /* Поля займають всю ширину форми */
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: block; /* Поля будуть на окремих лініях */
+    margin-bottom: 5px; /* Додамо трохи простору між полем і допоміжним текстом */
+}
+
+.registration-form .form-text {
+    color: #6c757d;
+    font-size: 12px;
+    margin-top: 0; /* Видаляємо верхній відступ */
+    margin-bottom: 10px; /* Відступ між допоміжним текстом і наступним полем */
+    display: block; /* Вирівнюємо текст по вертикалі під полем */
+}
+
+.registration-form .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.registration-form .btn-primary:hover {
+    background-color: #45a049;
+}
+
+.registration-form .btn-secondary {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.registration-form .btn-secondary:hover {
+    background-color: #218838;
+}
+
+/* Styles for the editable fields and Save button */
+#user-details-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#save-button.disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+#save-button.enabled {
+    background-color: #f6cece;
+    cursor: pointer;
+}
+
+#password-form {
+    margin-top: 20px;
+    display: none;
+}
+
+/* Toggle the password form visibility */
+function togglePasswordForm() {
+    const passwordForm = document.getElementById("password-form");
+    passwordForm.style.display = passwordForm.style.display === "none" ? "block" : "none";
+}
+
+/* Enable the Save button when any field is modified */
+function enableSaveButton() {
+    const saveButton = document.getElementById("save-button");
+    saveButton.classList.remove("disabled");
+    saveButton.classList.add("enabled");
+    saveButton.disabled = false;
+}
+ /* Стилі для модального вікна */
+.modal {
+    display: none; /* Спочатку приховане */
+    position: fixed;
+    z-index: 9999; /* Показувати поверх усього контенту */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Напівпрозоре тло */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 300px;
+}
+
+.close-modal {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    background-color: #0056b3;
+}

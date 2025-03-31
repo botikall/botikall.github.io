@@ -1,0 +1,272 @@
+<!-- order_form.html (кошик) -->
+{% extends 'orders/base.html' %}
+
+{% block title %}Оформлення замовлення{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 80px;">
+        <h1>Оформлення замовлення</h1>
+
+        <table class="cart-table">
+            <tr>
+                <th>Товар</th>
+                <th>Кількість</th>
+                <th>Ціна за одиницю</th>
+                <th>Сума</th>
+                <th>Дії</th>
+            </tr>
+            {% for item in cart.items.all %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>
+                    <form method="POST" action="{% url 'update_cart_item' item.id %}">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" min="1" value="{{ item.quantity }}">
+                        <button type="submit" class="btn-submit">Оновити</button>
+                    </form>
+                </td>
+                <td>{{ item.product.price }} грн</td>
+                <td>{{ item.get_total_price }} грн</td>
+                <td>
+                    <form method="POST" action="{% url 'remove_from_cart' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-submit">Видалити</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Загальна сума: {{ total_price }} грн</h2>
+        <form method="POST" action="{% url 'checkout' %}">
+            {% csrf_token %}
+            <label for="delivery_type" style="font-size: 18px;">Виберіть спосіб доставки:</label>
+            <select id="delivery_type" name="delivery_type" onchange="toggleAddress()">
+                <option value="pickup">Самовивіз</option>
+                <option value="courier">Доставка кур'єром</option>
+            </select>
+
+            <div id="address_container" style="display: none;">
+                <label for="delivery_address">Введіть адресу доставки:</label>
+                <input type="text" id="delivery_address" name="delivery_address">
+                <button type="button" onclick="searchAddress()">Знайти</button>
+
+                <div id="map" style="height: 400px; width: 100%;"></div>
+                <input type="hidden" id="latitude" name="latitude">
+                <input type="hidden" id="longitude" name="longitude">
+            </div>
+
+            <button type="submit" class="btn-submit" style="margin-top: 20px;">Оформити замовлення</button>
+        </form>
+    </div>
+
+<div class="container" style="margin-top: 20;">
+        <h2 style="text-align: center;">Топ продукція</h2>
+
+        <div class="swiper-wrapper-container">
+
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for product in products %}
+                    <div class="swiper-slide">
+                        <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 470px; border: 1px solid #ddd; border-radius: 10px; padding: 15px; text-align: center; background: #fff; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);">
+                            {% if product.image %}
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                                </a>
+                            {% endif %}
+                            <h3 style="margin-top: 10px;">
+                                <a href="{% url 'product_detail' product.id %}" style="text-decoration: none; color: inherit;">{{ product.name }}</a>
+                            </h3>
+                            <p>{{ product.description }}</p>
+                            <p>Продано: {{ product.sales_count }}</p>
+                            <p style="font-weight: bold;">Ціна: {{ product.price }} грн</p>
+
+                            <div style="width: 100%;">
+                                {% if request.user.is_authenticated %}
+                                    <form method="post" action="{% url 'add_to_cart' product.id %}" style="display: flex; flex-direction: column; align-items: center;">
+                                        {% csrf_token %}
+                                        <label for="quantity">Кількість:</label>
+                                        <input type="number" name="quantity" id="quantity" value="1" min="1" style="width: 60px; text-align: center; margin-bottom: 10px;">
+                                        <button type="submit" class="btn-submit">Додати до кошика</button>
+                                    </form>
+                                {% else %}
+                                    <a href="{% url 'login' %}?next={% url 'cart' %}" class="btn-submit">Додати в кошик</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="swiper-button-prev custom-prev"></div>
+            <div class="swiper-button-next custom-next"></div>
+        </div>
+
+        <div class="more-comments" style="margin-top: 0px;">
+            <a href="{% url 'product_list' %}" class="more-btn">Більше продукції</a>
+        </div>
+    </div>
+
+<style>
+
+   /* Обгортка для Swiper */
+.swiper-wrapper-container {
+    position: relative; /* Щоб кнопки позиціонувалися відносно неї */
+    max-width: 1500px;
+    margin: 0 auto;
+}
+ /* Стилі Swiper */
+.swiper-container {
+    overflow: hidden;
+    padding: 20px;
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+
+.swiper-wrapper {
+    display: flex;
+    align-items: stretch; /* Вирівнювання по висоті */
+}
+
+.swiper-slide {
+    background: none !important; /* Забирає білий фон */
+    padding: 0 !important;
+    display: flex;
+    height: auto; /* Автоматична висота */
+    align-items: stretch; /* Вирівнювання висоти всіх карток */
+}
+
+/* Фіксація кнопок на рівні слайдів */
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: #f6cece; /* НОВИЙ КОЛІР */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9;
+}
+
+/* Зменшено відстань до країв */
+.swiper-button-prev {
+    left: -60px;
+}
+
+.swiper-button-next {
+    right: -60px;
+}
+
+/* Додаткове форматування для мобільних */
+@media (max-width: 768px) {
+    .swiper-button-prev {
+        left: 5px;
+    }
+    .swiper-button-next {
+        right: 5px;
+    }
+}
+
+    </style>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+         var swiper = new Swiper(".swiper-container", {
+            slidesPerView: 4, // Відображаємо 4 продукти одночасно
+            spaceBetween: 20, // Відстань між слайдами
+            loop: true, // Зациклене відтворення
+            centeredSlides: false,
+            navigation: {
+                nextEl: ".custom-next",
+                prevEl: ".custom-prev",
+            },
+            breakpoints: {
+                1024: {
+                    slidesPerView: 4, // Для великих екранів
+                },
+                768: {
+                    slidesPerView: 2, // Для планшетів
+                },
+                480: {
+                    slidesPerView: 1, // Для мобільних
+                }
+            }
+        });
+
+        function toggleAddress() {
+            const deliveryType = document.getElementById("delivery_type").value;
+            const addressContainer = document.getElementById("address_container");
+            if (deliveryType === "courier") {
+                addressContainer.style.display = "block";
+                initMap();
+            } else {
+                addressContainer.style.display = "none";
+            }
+        }
+
+        var map, marker;
+        function initMap() {
+            map = L.map('map').setView([50.4501, 30.5234], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            map.on('click', function(e) {
+                if (marker) {
+                    map.removeLayer(marker);
+                }
+                marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+                document.getElementById("latitude").value = e.latlng.lat;
+                document.getElementById("longitude").value = e.latlng.lng;
+                reverseGeocode(e.latlng.lat, e.latlng.lng);
+            });
+        }
+
+        function searchAddress() {
+            var address = document.getElementById("delivery_address").value;
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${address}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        var lat = data[0].lat;
+                        var lon = data[0].lon;
+                        map.setView([lat, lon], 15);
+                        if (marker) {
+                            map.removeLayer(marker);
+                        }
+                        marker = L.marker([lat, lon]).addTo(map);
+                        document.getElementById("latitude").value = lat;
+                        document.getElementById("longitude").value = lon;
+                    } else {
+                        alert("Адресу не знайдено");
+                    }
+                })
+                .catch(error => console.error('Помилка при пошуку адреси:', error));
+        }
+
+        function reverseGeocode(lat, lon) {
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.display_name) {
+                        document.getElementById("delivery_address").value = data.display_name;
+                    }
+                })
+                .catch(error => console.error('Помилка отримання адреси:', error));
+        }
+    </script>
+
+
+{% endblock %}

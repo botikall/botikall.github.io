@@ -1,0 +1,26 @@
+<!-- orders/payment.html -->
+{% extends 'orders/base.html' %}
+
+{% block title %}Оплата{% endblock %}
+
+{% block content %}
+  <form id="payment-form">
+    <button id="apple-pay-button">Оплатити через Apple Pay</button>
+  </form>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+      var stripe = Stripe("{{ stripe_public_key }}");
+
+      document.getElementById("apple-pay-button").addEventListener("click", function () {
+          stripe.confirmApplePayPayment("{{ client_secret }}")
+              .then(function (result) {
+                  if (result.error) {
+                      alert(result.error.message);
+                  } else {
+                      window.location.href = "{% url 'order_success' %}";
+                  }
+              });
+      });
+  </script>
+{% endblock %}

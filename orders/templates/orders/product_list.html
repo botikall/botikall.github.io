@@ -1,0 +1,40 @@
+<!-- product_list.html -->
+{% extends 'orders/base.html' %}
+
+{% block title %}Перегляд продукції{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 80px;">
+
+        <h2 style="text-align: center; margin-top: 20px;">Наша продукція</h2>
+
+        <div class="product-grid" style="display: grid; grid-template-columns:  repeat(4, 1fr); gap: 20px; max-width: 1280px; margin: 0 auto; padding: 20px;">
+            {% for product in products %}
+                <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 470px; border: 1px solid #ddd; border-radius: 10px; padding: 15px; text-align: center; background: #fff; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                    {% endif %}
+
+                    <h3 style="margin-top: 10px; flex-grow: 1;">{{ product.name }}</h3>
+                    <p style="flex-grow: 1;">{{ product.description }}</p>
+
+                    <div style="width: 100%;">
+                        <p style="font-weight: bold; margin-bottom: 10px;">Ціна: {{ product.price }} грн</p>
+                        {% if request.user.is_authenticated %}
+                            <form method="post" action="{% url 'add_to_cart' product.id %}" style="display: flex; flex-direction: column; align-items: center;">
+                                {% csrf_token %}
+                                <label for="quantity">Кількість:</label>
+                                <input type="number" name="quantity" id="quantity" value="1" min="1" style="width: 60px; text-align: center; margin-bottom: 10px;">
+                                <button type="submit" style="background-color: #f6cece; color: white; border: 2px solid white; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Додати до кошика</button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'login' %}?next={% url 'cart' %}" style="display: inline-block; margin-top: 10px; padding: 5px 10px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Додати в кошик</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,19 @@
+{% extends 'orders/base.html' %}
+
+{% block title %}Коментарі{% endblock %}
+
+{% block content %}
+    h1>Leave a Comment</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <h2>All Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li><strong>{{ comment.user.username }}</strong> - {{ comment.rating }}★<br>{{ comment.text }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

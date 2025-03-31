@@ -1,0 +1,53 @@
+<!-- orders/edit_profile.html -->
+{% extends 'orders/base.html' %}
+
+{% block title %}Редагування профілю{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 80px;">
+    <h2>Редагувати профіль</h2>
+
+    <!-- Форма для редагування профілю -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-submit" id="save-button" disabled>Зберегти</button>
+    </form>
+
+    <!-- Кнопка для показу форми зміни пароля -->
+    <button class="btn" id="show-password-form">Змінити пароль</button>
+
+    <!-- Форма для зміни пароля, спочатку прихована -->
+    <div id="password-form">
+        <h3>Зміна пароля</h3>
+        <form method="post" action="{% url 'change_password' %}">
+            {% csrf_token %}
+            {{ password_form.as_p }}
+            <button type="submit" class="btn-submit">Змінити пароль</button>
+        </form>
+    </div>
+    </div>
+
+<script>
+    const formElements = document.querySelectorAll('input');
+    const saveButton = document.getElementById('save-button');
+
+    formElements.forEach(element => {
+        element.addEventListener('input', function() {
+            saveButton.disabled = false;
+            saveButton.style.backgroundColor = '#4CAF50'; // Зелений колір
+        });
+    });
+
+    const passwordForm = document.getElementById('password-form');
+    const showPasswordFormButton = document.getElementById('show-password-form');
+
+    showPasswordFormButton.addEventListener('click', function() {
+        if (passwordForm.style.display === 'none') {
+            passwordForm.style.display = 'block';  // Показуємо форму
+        } else {
+            passwordForm.style.display = 'none';  // Приховуємо форму, якщо вона вже відкрита
+        }
+    });
+</script>
+{% endblock %}

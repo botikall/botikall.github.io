@@ -1,0 +1,30 @@
+{% extends "profile.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Мої замовлення</h2>
+
+    {% if orders %}
+        {% for order in orders %}
+            <div class="order">
+                <h3>Замовлення №{{ order.id }}</h3>
+                <p>Дата: {{ order.created_at }}</p>
+                <p>Сума: ${{ order.total_price }}</p>
+                <p>Статус: {{ order.get_status_display }}</p>
+
+                <h4>Товари:</h4>
+                <ul>
+                    {% for item in order.orderitem_set.all %}
+                        <li>
+                            {{ item.product.name }} - {{ item.quantity }} шт. - ${{ item.price }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>У вас ще немає замовлень.</p>
+    {% endif %}
+</div>
+{% endblock %}

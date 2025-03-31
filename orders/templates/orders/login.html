@@ -1,0 +1,20 @@
+<!-- orders/login.html -->
+{% extends 'orders/base.html' %}
+
+{% block title %}Вхід{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 80px;">
+         <!-- Форма входу -->
+        <div class="auth-form">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Увійти</button>
+            </form>
+
+            <!-- Додаємо напис про реєстрацію -->
+            <p>Якщо у вас немає аккаунту, <a href="{% url 'register' %}">створіть його</a></p>
+        </div>
+    </div>
+{% endblock %}

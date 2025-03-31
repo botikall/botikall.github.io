@@ -1,0 +1,364 @@
+{% extends 'orders/base.html' %}
+
+{% block content %}
+<div class="product-container" style="margin-top: 130px; display: flex; align-items: flex-start; gap: 20px; width: 100%;">
+    <div class="product-image" style="flex: 1; width: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
+        {% endif %}
+    </div>
+
+    <div class="product-info" style="flex: 1; width: 50%; display: flex; flex-direction: column; justify-content: space-between;">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <div class="product-details" style="display: flex; justify-content: space-between; font-size: 14px; color: #666;">
+            <span>Артикул: {{ product.article }}</span>
+            <span>{{ product.weight }} г</span>
+        </div>
+
+        <p class="product-price" style="font-size: 22px; font-weight: bold; color: black;">{{ product.price }} грн</p>
+
+        <div class="product-buttons">
+            {% if request.user.is_authenticated %}
+                <form method="post" action="{% url 'add_to_cart' product.id %}" style="display: flex; flex-direction: column; align-items: flex-start;">
+                    {% csrf_token %}
+                    <label for="quantity">Кількість:</label>
+                    <input type="number" name="quantity" id="quantity" value="1" min="1" style="width: 60px; text-align: center; margin-bottom: 10px;">
+                    <button type="submit" class="btn-submit">Додати до кошика</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}?next={% url 'cart' %}" class="btn-submit">Додати в кошик</a>
+            {% endif %}
+        </div>
+
+        <div class="tabs" style="display: flex; border-bottom: 2px solid #eee; margin-top: 20px;">
+            <div class="tab active" onclick="openTab(event, 'description')" style="padding: 10px 15px; cursor: pointer; font-weight: bold; color: #888;">ОПИС</div>
+            <div class="tab" onclick="openTab(event, 'composition')" style="padding: 10px 15px; cursor: pointer; font-weight: bold; color: #888;">СКЛАД</div>
+            <div class="tab" onclick="openTab(event, 'reviews')" style="padding: 10px 15px; cursor: pointer; font-weight: bold; color: #888;">ВІДГУКИ</div>
+        </div>
+
+        <div id="description" class="tab-content active" style="padding: 15px; display: block;">
+            <p>{{ product.description }}</p>
+        </div>
+        <div id="composition" class="tab-content" style="padding: 15px; display: none;">
+            <p>{{ product.composition }}</p>
+        </div>
+        <div id="reviews" class="tab-content" style="padding: 15px; display: none;">
+            <p>Відгуки користувачів будуть тут.</p>
+            {% if user.is_authenticated %}
+                {% if has_purchased %}
+                    <div id="review-form-{{ product.id }}" class="review-form">
+                        <form method="post" action="{% url 'add_comment' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{ product.id }}">
+
+                            <label for="rating">Оцінка:</label>
+                            <div class="star-rating" data-product-id="{{ product.id }}">
+                                <span class="star" data-value="5">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="1">★</span>
+                            </div>
+                            <input type="hidden" name="rating" id="rating-input-{{ product.id }}" required>
+
+                            <label for="text">Коментар:</label>
+                            <textarea name="text" required></textarea>
+
+                            <button type="submit">Надіслати</button>
+                        </form>
+                    </div>
+                {% else %}
+                    <p>Ви можете залишити відгук лише після покупки цього товару.</p>
+                {% endif %}
+            {% else %}
+                <p>Будь ласка, <a href="{% url 'login' %}">увійдіть</a>, щоб залишити відгук.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+        <h2 style="text-align: center;">Топ продукція</h2>
+
+        <div class="swiper-wrapper-container">
+
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for product in products %}
+                    <div class="swiper-slide">
+                        <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 470px; border: 1px solid #ddd; border-radius: 10px; padding: 15px; text-align: center; background: #fff; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);">
+                            {% if product.image %}
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                                </a>
+                            {% endif %}
+                            <h3 style="margin-top: 10px;">
+                                <a href="{% url 'product_detail' product.id %}" style="text-decoration: none; color: inherit;">{{ product.name }}</a>
+                            </h3>
+                            <p>{{ product.description }}</p>
+                            <p style="font-weight: bold;">Ціна: {{ product.price }} грн</p>
+
+                            <div style="width: 100%;">
+                                {% if request.user.is_authenticated %}
+                                    <form method="post" action="{% url 'add_to_cart' product.id %}" style="display: flex; flex-direction: column; align-items: center;">
+                                        {% csrf_token %}
+                                        <label for="quantity">Кількість:</label>
+                                        <input type="number" name="quantity" id="quantity" value="1" min="1" style="width: 60px; text-align: center; margin-bottom: 10px;">
+                                        <button type="submit" class="btn-submit">Додати до кошика</button>
+                                    </form>
+                                {% else %}
+                                    <a href="{% url 'login' %}?next={% url 'cart' %}" class="btn-submit">Додати в кошик</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="swiper-button-prev custom-prev"></div>
+            <div class="swiper-button-next custom-next"></div>
+        </div>
+
+        <div class="more-comments" style="margin-top: 0px;">
+            <a href="{% url 'product_list' %}" class="more-btn">Більше продукції</a>
+        </div>
+    </div>
+<style>
+
+/* Стилі для зірочок */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse; /* Реверсний порядок для коректного hover */
+    justify-content: center;
+    gap: 5px;
+}
+
+.star {
+    font-size: 20px;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    user-select: none;
+}
+
+
+
+
+/* При наведенні змінюємо колір поточної зірки та всіх ліворуч */
+.star:hover,
+.star:hover ~ .star {
+    color: pink;
+    transform: scale(1.1);
+}
+
+/* Для активних (вибраних) зірок */
+.star.selected,
+.star.selected ~ .star {
+    color: pink;
+}
+
+
+    /* Стилі для сторінки продукту */
+.product-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.product-image img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.product-price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #f6cece;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #eee;
+    margin-top: 20px;
+}
+
+.tab {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #888;
+}
+
+.tab.active {
+    color: #f6cece;
+    border-bottom: 3px solid #f6cece;
+}
+
+.tab-content {
+    padding: 15px;
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+    /* Обгортка для Swiper */
+.swiper-wrapper-container {
+    position: relative; /* Щоб кнопки позиціонувалися відносно неї */
+    max-width: 1500px;
+    margin: 0 auto;
+}
+ /* Стилі Swiper */
+.swiper-container {
+    overflow: hidden;
+    padding: 20px;
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+
+.swiper-wrapper {
+    display: flex;
+    align-items: stretch; /* Вирівнювання по висоті */
+}
+
+.swiper-slide {
+    background: none !important; /* Забирає білий фон */
+    padding: 0 !important;
+    display: flex;
+    height: auto; /* Автоматична висота */
+    align-items: stretch; /* Вирівнювання висоти всіх карток */
+}
+
+/* Фіксація кнопок на рівні слайдів */
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: #f6cece; /* НОВИЙ КОЛІР */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9;
+}
+
+/* Зменшено відстань до країв */
+.swiper-button-prev {
+    left: -60px;
+}
+
+.swiper-button-next {
+    right: -60px;
+}
+
+/* Додаткове форматування для мобільних */
+@media (max-width: 768px) {
+    .swiper-button-prev {
+        left: 5px;
+    }
+    .swiper-button-next {
+        right: 5px;
+    }
+}
+</style>
+<script>
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".star-rating").forEach(ratingContainer => {
+        let stars = Array.from(ratingContainer.querySelectorAll(".star")).reverse(); // Реверсуємо порядок зірок
+
+        stars.forEach(star => {
+            star.addEventListener("click", function () {
+                let productId = this.parentElement.getAttribute("data-product-id"); // Змінено на productId
+                let ratingInput = document.getElementById(`rating-input-${productId}`);
+                let selectedValue = parseInt(this.getAttribute("data-value"));
+
+                // Встановлюємо значення рейтингу в приховане поле
+                ratingInput.value = selectedValue;
+
+                // Очищаємо підсвічення всіх зірок
+                stars.forEach(s => s.classList.remove("selected"));
+
+                // Додаємо клас "selected" для вибраної зірки і всіх перед нею
+                stars.forEach(s => {
+                    if (parseInt(s.getAttribute("data-value")) >= selectedValue) {
+                        s.classList.add("selected");
+                    }
+                });
+            });
+        });
+    });
+});
+
+     function openTab(event, tabName) {
+        // Отримуємо всі елементи вкладок і приховуємо їх
+        let tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(tab => tab.style.display = 'none');
+
+        // Отримуємо всі кнопки вкладок і знімаємо клас 'active'
+        let tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => tab.classList.remove('active'));
+
+        // Показуємо потрібний контент і додаємо 'active' до обраної вкладки
+        document.getElementById(tabName).style.display = 'block';
+        event.currentTarget.classList.add('active');
+    }
+
+    // За замовчуванням активуємо першу вкладку при завантаженні
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.tab').click();
+    });
+
+     var swiper = new Swiper(".swiper-container", {
+        slidesPerView: 4, // Відображаємо 4 продукти одночасно
+        spaceBetween: 20, // Відстань між слайдами
+        loop: true, // Зациклене відтворення
+        centeredSlides: false,
+        navigation: {
+            nextEl: ".custom-next",
+            prevEl: ".custom-prev",
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4, // Для великих екранів
+            },
+            768: {
+                slidesPerView: 2, // Для планшетів
+            },
+            480: {
+                slidesPerView: 1, // Для мобільних
+            }
+        }
+    });
+</script>
+{% endblock %}

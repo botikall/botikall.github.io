@@ -1,0 +1,558 @@
+<!-- orders/profile.html -->
+{% extends 'orders/base.html' %}
+
+{% block title %}Кабінет{% endblock %}
+{% load static %}
+{% block content %}
+   <div class="container" style="margin-top: 80px; text-align: center;">
+        <h2>Кабінет користувача</h2>
+        <div class="dashboard">
+            <!-- Блок профілю (30%) -->
+            <div class="profile-container">
+                <div class="profile-header">
+                    <h3 class="profile-text">Ваш профіль:</h3>
+                    <div class="user-info" style="gap: 25px">
+                        <span class="username">{{ user.username }}</span>
+                        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" style="background: none; border: none; padding: 0;">
+                                <img src="{% static 'orders/images/exit.png' %}" alt="Вийти" class="logout-icon">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Поля для редагування профілю -->
+                <form method="post" id="user-details-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="form-buttons">
+                        <button type="submit" id="save-button" class="btn-submit disabled" disabled>Зберегти</button>
+                        <a href="{% url 'change_password' %}" class="btn-submit">Змінити пароль</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Блок замовлень (60%) -->
+            <div class="orders-container">
+                <h3>Історія ваших замовлень</h3>
+                {% if orders %}
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Загальна сума</th>
+                            <th>Деталі</th>
+                            <th>Доставка</th>
+                            <th>Статус</th>
+                            <th>Оцінка</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr class="order-row {% if forloop.counter > 4 %}hidden{% endif %}">
+                            <td>{{ order.created_at }}</td>
+                            <td>{{ order.total_price }} грн</td>
+                            <td>
+                                <ul>
+                                    {% for item in order.items.all %}
+                                    <li>{{ item.product.name }} - {{ item.quantity }} шт. за {{ item.price }} грн</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td>{{ order.delivery_type|title }}
+                                {% if order.delivery_type == 'courier' %}
+                                    <br>Адреса: {{ order.delivery_address|default:"Визначається..." }}
+                                {% endif %}
+                            </td>
+                            <td id="status-{{ order.id }}">{{ order.get_status_display }}</td>
+                            <td>
+                                {% if order.status == 'completed' %}
+                                    {% if order.comment %}
+                                        <span>Послуги вже оцінено</span>
+                                    {% else %}
+                                        <button class="btn-submit" onclick="toggleReviewForm({{ order.id }})">Оцінити послуги</button>
+                                        <div id="review-form-{{ order.id }}" class="review-form hidden">
+                                            <form method="post" action="{% url 'add_comment' %}">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="order_id" value="{{ order.id }}">
+                                                <label for="rating">Оцінка:</label>
+                                                <div class="star-rating" data-order-id="{{ order.id }}">
+                                                    <span class="star" data-value="5">★</span>
+                                                    <span class="star" data-value="4">★</span>
+                                                    <span class="star" data-value="3">★</span>
+                                                    <span class="star" data-value="2">★</span>
+                                                    <span class="star" data-value="1">★</span>
+                                                </div>
+                                                <input type="hidden" name="rating" id="rating-input-{{ order.id }}" required>
+                                                <label for="text">Коментар:</label>
+                                                <textarea name="text" required></textarea>
+                                                <button type="submit">Надіслати</button>
+                                            </form>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if order.status != 'canceled' and order.status != 'completed' %}
+                                    <button class="cancel-btn" onclick="cancelOrder({{ order.id }})">Відмовити замовлення</button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button id="load-more" class="more-btn" style="border: none; font-family: 'Waltograph'; cursor: pointer; display: inline-block;">Більше</button>
+                <button id="hide-orders" class="more-btn" style="border: none; font-family: 'Waltograph'; cursor: pointer; display: none;">Приховати</button>
+                {% else %}
+                <p>У вас ще немає замовлень.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 style="text-align: center;">Топ продукція</h2>
+
+        <div class="swiper-wrapper-container">
+
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for product in products %}
+                    <div class="swiper-slide">
+                        <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 470px; border: 1px solid #ddd; border-radius: 10px; padding: 15px; text-align: center; background: #fff; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);">
+                            {% if product.image %}
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                                </a>
+                            {% endif %}
+                            <h3 style="margin-top: 10px;">
+                                <a href="{% url 'product_detail' product.id %}" style="text-decoration: none; color: inherit;">{{ product.name }}</a>
+                            </h3>
+                            <p>{{ product.description }}</p>
+                            <p style="font-weight: bold;">Ціна: {{ product.price }} грн</p>
+
+                            <div style="width: 100%;">
+                                {% if request.user.is_authenticated %}
+                                    <form method="post" action="{% url 'add_to_cart' product.id %}" style="display: flex; flex-direction: column; align-items: center;">
+                                        {% csrf_token %}
+                                        <label for="quantity">Кількість:</label>
+                                        <input type="number" name="quantity" id="quantity" value="1" min="1" style="width: 60px; text-align: center; margin-bottom: 10px;">
+                                        <button type="submit" class="btn-submit">Додати до кошика</button>
+                                    </form>
+                                {% else %}
+                                    <a href="{% url 'login' %}?next={% url 'cart' %}" class="btn-submit">Додати в кошик</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="swiper-button-prev custom-prev"></div>
+            <div class="swiper-button-next custom-next"></div>
+        </div>
+
+        <div class="more-comments" style="margin-top: 0px;">
+            <a href="{% url 'product_list' %}" class="more-btn">Більше продукції</a>
+        </div>
+    </div>
+<style>
+    /* Обгортка для Swiper */
+.swiper-wrapper-container {
+    position: relative; /* Щоб кнопки позиціонувалися відносно неї */
+    max-width: 1500px;
+    margin: 0 auto;
+}
+ /* Стилі Swiper */
+.swiper-container {
+    overflow: hidden;
+    padding: 20px;
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+
+.swiper-wrapper {
+    display: flex;
+    align-items: stretch; /* Вирівнювання по висоті */
+}
+
+.swiper-slide {
+    background: none !important; /* Забирає білий фон */
+    padding: 0 !important;
+    display: flex;
+    height: auto; /* Автоматична висота */
+    align-items: stretch; /* Вирівнювання висоти всіх карток */
+}
+
+/* Фіксація кнопок на рівні слайдів */
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: #f6cece; /* НОВИЙ КОЛІР */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9;
+}
+
+/* Зменшено відстань до країв */
+.swiper-button-prev {
+    left: -60px;
+}
+
+.swiper-button-next {
+    right: -60px;
+}
+
+/* Додаткове форматування для мобільних */
+@media (max-width: 768px) {
+    .swiper-button-prev {
+        left: 5px;
+    }
+    .swiper-button-next {
+        right: 5px;
+    }
+}
+
+/* Стилі для зірочок */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse; /* Реверсний порядок для коректного hover */
+    justify-content: center;
+    gap: 5px;
+}
+
+.star {
+    font-size: 20px;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    user-select: none;
+}
+
+
+
+
+/* При наведенні змінюємо колір поточної зірки та всіх ліворуч */
+.star:hover,
+.star:hover ~ .star {
+    color: pink;
+    transform: scale(1.1);
+}
+
+/* Для активних (вибраних) зірок */
+.star.selected,
+.star.selected ~ .star {
+    color: pink;
+}
+
+.profile-container {
+    width: 35%;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.profile-text {
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.username {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Стилі форми */
+#user-details-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Вирівнюємо поля форми */
+#user-details-form label {
+    font-weight: bold;
+    font-style: italic;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#user-details-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.logout-icon {
+    width: 25px;
+    height: 25px;
+    transition: transform 0.2s;
+}
+
+.logout-icon:hover {
+    transform: scale(1.1);
+}
+
+.dashboard {
+    gap: 20px;
+    max-width: 1280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Вирівнюємо блоки по висоті */
+    margin-top: 20px;
+}
+
+.orders-container {
+    width: 60%;
+    max-height: 700px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Додає правильне позиціонування */
+}
+
+/* Контейнер для оцінки */
+.review-form {
+    max-height: none; /* Прибираємо обмеження */
+    overflow: visible; /* Дозволяємо розгортання */
+    display: none; /* Ховаємо, поки не відкриють */
+    flex-direction: column;
+    gap: 10px;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 10;
+    width: auto;
+    max-width: 250px; /* Обмеження ширини, щоб не виходило за межі */
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Забезпечує, щоб контейнер відгуків був у межах блоку */
+td {
+    position: relative;
+}
+
+/* Зробити таблицю більш читабельною та адаптивною */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* Дозволяє стовпцям підлаштовуватися */
+}
+
+.cart-table thead {
+    position: sticky;
+    top: 0;
+    background: #f6cece;
+    z-index: 8;
+}
+
+.cart-table th, .cart-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    white-space: normal; /* Дозволяє переноси тексту */
+}
+
+.cart-table tbody tr {
+    display: none; /* Ховаємо всі рядки спочатку */
+}
+
+.cart-table tbody tr:nth-child(-n+4) {
+    display: table-row; /* Відображаємо тільки перші 4 рядки */
+}
+
+/* Поліпшення вигляду при наведенні */
+.cart-table tbody tr:hover {
+    background: #f5f5f5;
+}
+
+</style>
+<script>
+    var swiper = new Swiper(".swiper-container", {
+        slidesPerView: 4, // Відображаємо 4 продукти одночасно
+        spaceBetween: 20, // Відстань між слайдами
+        loop: true, // Зациклене відтворення
+        centeredSlides: false,
+        navigation: {
+            nextEl: ".custom-next",
+            prevEl: ".custom-prev",
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4, // Для великих екранів
+            },
+            768: {
+                slidesPerView: 2, // Для планшетів
+            },
+            480: {
+                slidesPerView: 1, // Для мобільних
+            }
+        }
+    });
+
+
+
+   document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("form").forEach(form => {
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Зупиняємо стандартне відправлення форми
+
+                let formData = new FormData(this);
+
+                fetch("{% url 'add_comment' %}", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload(); // Оновлюємо сторінку
+                    }
+                })
+                .catch(error => console.error("Помилка:", error));
+            });
+        });
+    });
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".star-rating").forEach(ratingContainer => {
+        let stars = Array.from(ratingContainer.querySelectorAll(".star")).reverse(); // Реверсуємо порядок зірок
+
+        stars.forEach(star => {
+            star.addEventListener("click", function () {
+                let orderId = this.parentElement.getAttribute("data-order-id");
+                let ratingInput = document.getElementById(`rating-input-${orderId}`);
+                let selectedValue = parseInt(this.getAttribute("data-value"));
+
+                // Встановлюємо значення рейтингу в приховане поле
+                ratingInput.value = selectedValue;
+
+                // Очищаємо підсвічення всіх зірок
+                stars.forEach(s => s.classList.remove("selected"));
+
+                // Додаємо клас "selected" для вибраної зірки і всіх перед нею
+                stars.forEach(s => {
+                    if (parseInt(s.getAttribute("data-value")) >= selectedValue) {
+                        s.classList.add("selected");
+                    }
+                });
+            });
+        });
+    });
+});
+
+
+     document.getElementById("load-more").addEventListener("click", function () {
+        document.querySelectorAll(".order-row").forEach(row => row.style.display = "table-row");
+        this.style.display = "none";
+        document.getElementById("hide-orders").style.display = "inline-block";
+    });
+
+    document.getElementById("hide-orders").addEventListener("click", function () {
+        document.querySelectorAll(".order-row").forEach((row, index) => {
+            if (index >= 4) {
+                row.style.display = "none";
+            }
+        });
+        this.style.display = "none";
+        document.getElementById("load-more").style.display = "inline-block";
+    });
+
+    function toggleReviewForm(orderId) {
+        var form = document.getElementById("review-form-" + orderId);
+        form.style.display = form.style.display === "none" ? "block" : "none";
+    }
+
+    function enableSaveButton() {
+        var saveButton = document.getElementById("save-button");
+        saveButton.classList.remove("disabled");
+        saveButton.classList.add("enabled");
+        saveButton.disabled = false;
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var formFields = document.querySelectorAll("#user-details-form input");
+        formFields.forEach(function (field) {
+            field.addEventListener("input", enableSaveButton);
+        });
+    });
+
+    function cancelOrder(orderId) {
+        fetch(`/orders/cancel/${orderId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById("status-" + orderId).innerText = "Скасований";
+                document.getElementById("cancel-btn-" + orderId).style.display = "none";
+            } else {
+                alert("Помилка: " + data.error);
+            }
+        })
+        .catch(error => console.error('Помилка:', error));
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Кондитерська{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'orders/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'Waltograph';
+            src: url('{% static "orders/fonts/Adventure.ttf" %}') format('truetype');
+        }
+        body {
+            background-image: url('{% static "orders/images/background_green.png" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #notifications-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            z-index: 1000;
+        }
+
+        .notification-toast {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .notification-toast:hover {
+            background-color: #444;
+        }
+
+        .notification-toast p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .notification-toast small {
+            display: block;
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'orders/navigation.html' %}
+    <div id="notifications-container"></div>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    <footer>
+        <p>&copy; 2025 AmoreMio Confectionery</p>
+    </footer>
+    <script>
+
+       function fetchNotifications() {
+            fetch('/get-notifications/')
+                .then(response => response.json())
+                .then(data => {
+                    let notificationContainer = document.getElementById('notifications-container');
+                    notificationContainer.innerHTML = '';
+
+                    if (data.notifications && data.notifications.length > 0) {
+                        data.notifications.forEach(notification => {
+                            let notifElement = document.createElement('div');
+                            notifElement.classList.add('notification-toast');
+                            notifElement.innerHTML = `
+                                <p>${notification.message}</p>
+                                <small>${notification.created_at}</small>
+                            `;
+
+                            // Додаємо клікабельність (переходить у профіль)
+                            notifElement.onclick = () => {
+                                window.location.href = "/profile/";
+                            };
+
+                            // Відправляємо AJAX-запит для позначення is_read=True при наведенні
+                            notifElement.onmouseenter = () => {
+                                fetch(`/mark-notification-read/${notification.id}/`, { method: 'POST', headers: { 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value } });
+                            };
+
+                            // Якщо курсор прибрали - сповіщення зникає
+                            notifElement.onmouseleave = () => {
+                                notifElement.style.opacity = '0';
+                                notifElement.style.transform = 'translateY(-10px)';
+                                setTimeout(() => notifElement.remove(), 300);
+                            };
+
+                            notificationContainer.appendChild(notifElement);
+                        });
+                        notificationContainer.style.display = 'block';
+                    } else {
+                        notificationContainer.style.display = 'none';
+                    }
+                })
+                .catch(error => console.error('Помилка отримання сповіщень:', error));
+        }
+
+        // Отримувати сповіщення кожні 10 секунд
+        setInterval(fetchNotifications, 10000);
+        document.addEventListener('DOMContentLoaded', fetchNotifications);
+
+        tailwind.config = {
+            corePlugins: {
+                preflight: false  // Вимикає скидання стандартних стилів
+            }
+        }
+    </script>
+
+
+</body>
+</html>

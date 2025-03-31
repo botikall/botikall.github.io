@@ -1,0 +1,40 @@
+<!-- orders/cart.html -->
+{% extends 'orders/base.html' %}
+
+{% block title %}Редагування профілю{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 80px;">
+        <h2>Ваш кошик</h2>
+        {% if cart.items %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Продукт</th>
+                        <th>Кількість</th>
+                        <th>Ціна</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart.items.all %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.total_price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        <h2>Загальна сума: {{ total_price }} грн</h2>
+
+        <a href="{% url 'order_form' %}" class="btn">До оформлення замовлення</a>
+
+        <a href="{% url 'product_list' %}" class="btn">Назад</a>
+
+        {% else %}
+            <p>Ваш кошик порожній.</p>
+        {% endif %}
+    </div>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+{% endblock %}
