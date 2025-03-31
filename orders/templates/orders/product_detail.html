@@ -47,7 +47,8 @@
             {% if user.is_authenticated %}
                 {% if has_purchased %}
                     <div id="review-form-{{ product.id }}" class="review-form">
-                        <form method="post" action="{% url 'add_comment' %}">
+                        <form method="post" onsubmit="submitReview(event, {{ order.id }})">
+
                             {% csrf_token %}
                             <input type="hidden" name="product_id" value="{{ product.id }}">
 
@@ -291,7 +292,30 @@
 }
 </style>
 <script>
+    function submitReview(event, orderId) {
+    event.preventDefault();  // Запобігає перезавантаженню сторінки одразу
 
+    let form = event.target;
+    let formData = new FormData(form);
+    let csrfToken = form.querySelector("[name=csrfmiddlewaretoken]").value;
+
+    fetch("{% url 'add_comment_for_product' %}", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "X-CSRFToken": csrfToken
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();  // 🔄 Оновлюємо сторінку після успішного збереження
+        } else {
+            alert("Помилка: " + data.error);
+        }
+    })
+    .catch(error => console.error("Помилка:", error));
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".star-rating").forEach(ratingContainer => {

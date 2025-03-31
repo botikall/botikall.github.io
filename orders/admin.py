@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Cart, CartItem, Order, OrderItem, Comment, Notification
+from .models import Product, Cart, CartItem, Order, OrderItem, Comment, Notification,CommentForProduct
 from .models import CustomUser,Type
 
 admin.site.register(Product)
@@ -10,6 +10,7 @@ admin.site.register(OrderItem)
 admin.site.register(Comment)
 admin.site.register(Notification)
 admin.site.register(Type)
+admin.site.register(CommentForProduct)
 
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):

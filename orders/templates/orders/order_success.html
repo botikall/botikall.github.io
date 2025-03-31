@@ -1,12 +1,30 @@
-<!-- orders/templates/orders/order_success.html -->
 {% extends 'orders/base.html' %}
 
 {% block title %}Замовлення успішне{% endblock %}
 
 {% block content %}
-    <div class="container" style="margin-top: 80px;">
-        <h1>Дякуємо, {{ name }}!</h1>
-        <p>Ваше замовлення на {{ quantity }} шт. {{ product }} було прийняте!</p>
-        <p><a href="{% url 'index' %}">Повернутися на головну</a></p>
+    <style>
+        .success-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .success-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+    </style>
+
+    <div class="success-container">
+        <div class="success-box">
+            <h1>Дякуємо, {{ user.username }}!</h1>
+            <p>Ваше замовлення було прийняте!</p>
+            <a href="{% url 'index' %}" class="btn-submit">Повернутися на головну</a>
+        </div>
     </div>
 {% endblock %}

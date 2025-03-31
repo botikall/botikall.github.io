@@ -74,7 +74,7 @@
                                     {% else %}
                                         <button class="btn-submit" onclick="toggleReviewForm({{ order.id }})">Оцінити послуги</button>
                                         <div id="review-form-{{ order.id }}" class="review-form hidden">
-                                            <form method="post" action="{% url 'add_comment' %}">
+                                            <form method="post" onsubmit="submitReview(event, {{ order.id }})">
                                                 {% csrf_token %}
                                                 <input type="hidden" name="order_id" value="{{ order.id }}">
                                                 <label for="rating">Оцінка:</label>
@@ -87,8 +87,8 @@
                                                 </div>
                                                 <input type="hidden" name="rating" id="rating-input-{{ order.id }}" required>
                                                 <label for="text">Коментар:</label>
-                                                <textarea name="text" required></textarea>
-                                                <button type="submit">Надіслати</button>
+                                                <textarea name="text" id="comment-text-{{ order.id }}" required></textarea>
+                                                <button type="submit" class="btn-submit">Надіслати</button>
                                             </form>
                                         </div>
                                     {% endif %}
@@ -96,7 +96,7 @@
                             </td>
                             <td>
                                 {% if order.status != 'canceled' and order.status != 'completed' %}
-                                    <button class="cancel-btn" onclick="cancelOrder({{ order.id }})">Відмовити замовлення</button>
+                                    <button class="btn-submit" onclick="cancelOrder({{ order.id }})">Відмовити замовлення</button>
                                 {% endif %}
                             </td>
                         </tr>
@@ -423,6 +423,32 @@ td {
 
 </style>
 <script>
+
+    function submitReview(event, orderId) {
+    event.preventDefault();  // Запобігає перезавантаженню сторінки одразу
+
+    let form = event.target;
+    let formData = new FormData(form);
+    let csrfToken = form.querySelector("[name=csrfmiddlewaretoken]").value;
+
+    fetch("{% url 'add_comment' %}", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "X-CSRFToken": csrfToken
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();  // 🔄 Оновлюємо сторінку після успішного збереження
+        } else {
+            alert("Помилка: " + data.error);
+        }
+    })
+    .catch(error => console.error("Помилка:", error));
+}
+
     var swiper = new Swiper(".swiper-container", {
         slidesPerView: 4, // Відображаємо 4 продукти одночасно
         spaceBetween: 20, // Відстань між слайдами
@@ -447,30 +473,6 @@ td {
 
 
 
-   document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll("form").forEach(form => {
-            form.addEventListener("submit", function (event) {
-                event.preventDefault(); // Зупиняємо стандартне відправлення форми
-
-                let formData = new FormData(this);
-
-                fetch("{% url 'add_comment' %}", {
-                    method: "POST",
-                    body: formData,
-                    headers: {
-                        "X-Requested-With": "XMLHttpRequest",
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        location.reload(); // Оновлюємо сторінку
-                    }
-                })
-                .catch(error => console.error("Помилка:", error));
-            });
-        });
-    });
 
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".star-rating").forEach(ratingContainer => {

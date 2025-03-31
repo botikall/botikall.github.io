@@ -1,19 +1,44 @@
-<!-- orders/login.html -->
 {% extends 'orders/base.html' %}
 
 {% block title %}Вхід{% endblock %}
 
 {% block content %}
-    <div class="container" style="margin-top: 80px;">
-         <!-- Форма входу -->
+    <style>
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .auth-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .auth-form p {
+            margin-top: 15px;
+        }
+        .auth-form a {
+            color: #f6cece;
+            text-decoration: none;
+        }
+        .auth-form a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <div class="auth-container">
         <div class="auth-form">
+            <h2>Вхід</h2>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Увійти</button>
+                <button type="submit" class="btn-submit">Увійти</button>
             </form>
-
-            <!-- Додаємо напис про реєстрацію -->
             <p>Якщо у вас немає аккаунту, <a href="{% url 'register' %}">створіть його</a></p>
         </div>
     </div>

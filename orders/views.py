@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm, EditProfileForm
-from .models import Product, Cart, CartItem, Order, OrderItem,CustomUser
+from .models import Product, Cart, CartItem, Order, OrderItem,CustomUser,CommentForProduct
 from django.contrib.auth.forms import PasswordChangeForm
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -408,26 +408,16 @@ def order_success(request):
 @login_required
 def add_comment_for_product(request):
     if request.method == "POST":
+        user = request.user
         product_id = request.POST.get("product_id")
-        product = get_object_or_404(Product, id=product_id)
+        rating = request.POST.get("rating")
+        text = request.POST.get("text")
 
-        has_purchased = OrderItem.objects.filter(order__user=request.user, product=product, status='completed').exists()
+        product = Product.objects.get(id=product_id)
+        CommentForProduct.objects.create(
+            product=product, rating=rating, text=text
+        )
 
-        if not has_purchased:
-            return JsonResponse(
-                {"success": False, "error": "Ви не можете залишити коментар, оскільки не купували цей товар."})
+        return JsonResponse({"success": True})
 
-        if CommentForProduct.objects.filter(user=request.user, product=product).exists():
-            return JsonResponse({"success": False, "error": "Ви вже залишали коментар для цього товару."})
-
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.user = request.user
-            comment.product = product
-            comment.save()
-            return JsonResponse({"success": True})
-
-        return JsonResponse({"success": False, "error": f"Помилка валідації: {form.errors}"})
-
-    return JsonResponse({"success": False, "error": "Невірний метод запиту"})
+    return JsonResponse({"success": False, "error": "Invalid request"}, status=400)

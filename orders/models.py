@@ -189,4 +189,4 @@ class CommentForProduct(models.Model):
     created_at = models.DateTimeField(default=now, verbose_name="Дата додавання")
 
     def __str__(self):
-        return f'Comment by {self.order.user.username} - {self.rating}★'
+        return f'Comment for {self.product.name} - {self.rating}★'

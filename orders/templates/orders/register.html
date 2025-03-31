@@ -1,56 +1,117 @@
-<!-- orders/register.html -->
 {% extends 'orders/base.html' %}
 
 {% block title %}Реєстрація{% endblock %}
 
 {% block content %}
-    <div class="container" style="margin-top: 80px;">
-        <h2>Реєстрація</h2>
-        <form method="post">
-            {% csrf_token %}
+    <style>
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .auth-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
 
-            <div class="form-group">
-                <label for="username">Ім'я користувача:</label>
-                {{ form.username }}
-                <small class="form-text text-muted">Не більше 150 символів. Лише літери, цифри та @/./+/-/_.</small>
-            </div>
+        .auth-form p {
+            margin-top: 15px;
+        }
+        .auth-form a {
+            color: #f6cece;
+            text-decoration: none;
+        }
+        .auth-form a:hover {
+            text-decoration: underline;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group small {
+            display: block;
+            color: gray;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
 
-            <div class="form-group">
-                <label for="email">Email:</label>
-                {{ form.email }}
-                <small class="form-text text-muted">Введіть вашу електронну пошту.</small>
-            </div>
+    <div class="auth-container">
+        <div class="auth-form">
+            <h2>Реєстрація</h2>
+            <form method="post">
+                {% csrf_token %}
 
-            <div class="form-group">
-                <label for="password1">Пароль:</label>
-                {{ form.password1 }}
-                <small class="form-text text-muted">Пароль має містити щонайменше 8 символів і не бути надто простим.</small>
-            </div>
+                {% if form.errors %}
+                    <div class="error-message">
+                        <p>Будь ласка, виправте помилки у формі:</p>
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ field.label }}: {{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
 
-            <div class="form-group">
-                <label for="password2">Підтвердження пароля:</label>
-                {{ form.password2 }}
-                <small class="form-text text-muted">Введіть той самий пароль ще раз для підтвердження.</small>
-            </div>
+                <div class="form-group">
+                    <label for="username">Ім'я користувача:</label>
+                    {{ form.username }}
+                    <small>Не більше 150 символів. Лише літери, цифри та @/./+/-/_.</small>
+                </div>
 
-            <div class="form-group">
-                <label for="first_name">Ваше ім'я:</label>
-                {{ form.first_name }}
-            </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    {{ form.email }}
+                    <small>Введіть вашу електронну пошту.</small>
+                </div>
 
-            <div class="form-group">
-                <label for="last_name">Ваше прізвище:</label>
-                {{ form.last_name }}
-            </div>
+                <div class="form-group">
+                    <label for="password1">Пароль:</label>
+                    {{ form.password1 }}
+                    <small>Пароль має містити щонайменше 8 символів і не бути надто простим.</small>
+                </div>
 
-            <div class="form-group">
-                <label for="phone_number">Номер телефону:</label>
-                {{ form.phone_number }}
-                <small class="form-text text-muted">Введіть свій номер телефону у форматі +380123456789.</small>
-            </div>
+                <div class="form-group">
+                    <label for="password2">Підтвердження пароля:</label>
+                    {{ form.password2 }}
+                    <small>Введіть той самий пароль ще раз для підтвердження.</small>
+                </div>
 
-            <button type="submit" class="btn btn-primary">Зареєструватися</button>
-            <a href="{% url 'index' %}" class="btn btn-secondary">До головної</a>
-        </form>
+                <div class="form-group">
+                    <label for="first_name">Ваше ім'я:</label>
+                    {{ form.first_name }}
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Ваше прізвище:</label>
+                    {{ form.last_name }}
+                </div>
+
+                <div class="form-group">
+                    <label for="phone_number">Номер телефону:</label>
+                    {{ form.phone_number }}
+                    <small>Введіть свій номер телефону у форматі +380123456789.</small>
+                </div>
+
+                <button type="submit" class="btn-submit">Зареєструватися</button>
+                <a href="{% url 'index' %}" class="btn btn-secondary" style="display: block; margin-top: 10px;">До головної</a>
+            </form>
+        </div>
     </div>
 {% endblock %}
+
