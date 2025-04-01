@@ -8,20 +8,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 90.3vh;
             position: relative;
             overflow: hidden;
         }
         .floating-image {
             top: 50%;
             left: 50%;
-            width: 1500px;
+            width: 2200px;
             height: auto;
             transform: translate(-50%, -50%);
             pointer-events: none;
             transition: transform 0.1s ease-out;
             opacity: 0.6;
             position: fixed;
+            z-index: 0;
         }
         .auth-form {
             background: white;
@@ -32,7 +33,7 @@
             max-width: 400px;
             text-align: center;
             position: relative;
-            z-index: 10;
+            z-index: 9;
         }
         .auth-form p {
             margin-top: 15px;
@@ -47,7 +48,7 @@
     </style>
 
     <div class="auth-container">
-        <img src="{% static 'orders/images/bkl.png' %}" class="floating-image" alt="Floating Image">
+        <img src="{% static 'orders/images/log.jpg' %}" class="floating-image" alt="Floating Image">
         <div class="auth-form">
             <h2>Вхід</h2>
             <form method="post">

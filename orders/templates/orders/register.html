@@ -1,5 +1,5 @@
 {% extends 'orders/base.html' %}
-
+{% load static %}
 {% block title %}Реєстрація{% endblock %}
 
 {% block content %}
@@ -8,18 +8,34 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 90.3vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .floating-image {
+            top: 50%;
+            left: 50%;
+            width: 2200px;
+            height: auto;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            transition: transform 0.1s ease-out;
+            opacity: 0.6;
+            position: fixed;
+            z-index: 0;
         }
         .auth-form {
-            background-color: white;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 400px;
             text-align: center;
+            position: relative;
+            z-index: 9;
         }
-
         .auth-form p {
             margin-top: 15px;
         }
@@ -47,9 +63,21 @@
             font-size: 14px;
             margin-top: 5px;
         }
+        .btn-submit {
+            background: #f6cece;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background: #f3a5a5;
+        }
     </style>
 
     <div class="auth-container">
+        <img src="{% static 'orders/images/log.jpg' %}" class="floating-image" alt="Floating Image">
         <div class="auth-form">
             <h2>Реєстрація</h2>
             <form method="post">
@@ -113,5 +141,13 @@
             </form>
         </div>
     </div>
-{% endblock %}
 
+    <script>
+        document.addEventListener('mousemove', function(event) {
+            const floatingImage = document.querySelector('.floating-image');
+            const moveX = (event.clientX - window.innerWidth / 2) * 0.02;
+            const moveY = (event.clientY - window.innerHeight / 2) * 0.02;
+            floatingImage.style.transform = `translate(-50%, -50%) translate(${moveX}px, ${moveY}px)`;
+        });
+    </script>
+{% endblock %}
