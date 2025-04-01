@@ -78,7 +78,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'orders',
     'rest_framework_simplejwt',
-    "tailwind",
 ]
 
 REST_FRAMEWORK = {

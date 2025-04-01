@@ -475,27 +475,39 @@ td {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".star-rating").forEach(ratingContainer => {
-        let stars = Array.from(ratingContainer.querySelectorAll(".star")).reverse(); // Реверсуємо порядок зірок
+    document.querySelectorAll(".star-rating").forEach(rating => {
+        const stars = rating.querySelectorAll(".star");
+        const ratingInput = document.getElementById(`rating-input-${rating.dataset.productId}`);
 
         stars.forEach(star => {
             star.addEventListener("click", function () {
-                let orderId = this.parentElement.getAttribute("data-order-id");
-                let ratingInput = document.getElementById(`rating-input-${orderId}`);
-                let selectedValue = parseInt(this.getAttribute("data-value"));
+                const value = parseInt(this.dataset.value);
 
-                // Встановлюємо значення рейтингу в приховане поле
-                ratingInput.value = selectedValue;
-
-                // Очищаємо підсвічення всіх зірок
+                // Очищуємо попередній вибір
                 stars.forEach(s => s.classList.remove("selected"));
 
-                // Додаємо клас "selected" для вибраної зірки і всіх перед нею
+                // Додаємо клас "selected" для всіх зірок до вибраної включно
                 stars.forEach(s => {
-                    if (parseInt(s.getAttribute("data-value")) >= selectedValue) {
+                    if (parseInt(s.dataset.value) <= value) {
                         s.classList.add("selected");
                     }
                 });
+
+                // Записуємо значення в приховане поле
+                ratingInput.value = value;
+            });
+        });
+
+        // Очищення підсвічених зірок при зміні оцінки
+        rating.addEventListener("mouseleave", function () {
+            const currentValue = parseInt(ratingInput.value) || 0;
+            stars.forEach(star => star.classList.remove("selected"));
+
+            // Підсвічуємо збережену оцінку
+            stars.forEach(star => {
+                if (parseInt(star.dataset.value) <= currentValue) {
+                    star.classList.add("selected");
+                }
             });
         });
     });

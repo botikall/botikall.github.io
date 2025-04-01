@@ -34,6 +34,7 @@
             <div class="tab active" onclick="openTab(event, 'description')" style="padding: 10px 15px; cursor: pointer; font-weight: bold; color: #888;">ОПИС</div>
             <div class="tab" onclick="openTab(event, 'composition')" style="padding: 10px 15px; cursor: pointer; font-weight: bold; color: #888;">СКЛАД</div>
             <div class="tab" onclick="openTab(event, 'reviews')" style="padding: 10px 15px; cursor: pointer; font-weight: bold; color: #888;">ВІДГУКИ</div>
+            <div class="tab" onclick="openTab(event, 'send_reviews')" style="padding: 10px 15px; cursor: pointer; font-weight: bold; color: #888;">НАДІСЛАТИ ВІДГУК</div>
         </div>
 
         <div id="description" class="tab-content active" style="padding: 15px; display: block;">
@@ -42,37 +43,96 @@
         <div id="composition" class="tab-content" style="padding: 15px; display: none;">
             <p>{{ product.composition }}</p>
         </div>
+
+<!--        <div id="reviews" class="tab-content" style="padding: 15px; display: none;">-->
+<!--    <div class="comments-container" style="max-width: 1000px; margin: 0 auto;">-->
+<!--        <div class="comments-scroll" style="max-height: 300px; overflow-y: auto; padding-right: 10px;">-->
+<!--            {% for comment in comments %}-->
+<!--                <div class="comment-box {% if forloop.counter > 1 %}hidden{% endif %}" style="width: 100%; display: flex; align-items: center; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 10px;">-->
+<!--                    <div style="flex-shrink: 0; padding-right: 15px;">-->
+<!--                        <strong>{{ comment.user.username }}</strong>-->
+<!--                        <br>-->
+<!--                        <span style="color: gold; font-size: 16px;">{{ comment.rating }}★</span>-->
+<!--                        <br>-->
+<!--                        <small style="color: gray;">{{ comment.created_at|date:"d F Y, H:i" }}</small>-->
+<!--                    </div>-->
+<!--                    <div style="flex-grow: 1; border-left: 1px solid #ddd; padding-left: 15px;">-->
+<!--                        <p style="margin: 0; color: #333;">{{ comment.text }}</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            {% empty %}-->
+<!--                <p style="text-align: center; color: gray;">Коментарів ще немає.</p>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        <div style="text-align: center;">-->
+<!--            <button id="load-more" class="more-btn" style="margin: 20px auto; border: none; font-family: 'Waltograph'; cursor: pointer;">Більше</button>-->
+<!--            <button id="hide-comments" class="more-btn" style="margin: 20px auto; border: none; font-family: 'Waltograph'; cursor: pointer; display: none;">Приховати</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
         <div id="reviews" class="tab-content" style="padding: 15px; display: none;">
-            <p>Відгуки користувачів будуть тут.</p>
+            <div class="comments-container" style="max-width: 1314px; margin: 0 auto;">
+                <div class="comments-scroll" style="max-height: 230px; overflow-y: auto; padding-right: 10px;">
+                    <div class="row" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                        {% for comment in comments %}
+                        <div class="comment-row" style="width: 100%; display: flex; align-items: center; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 10px; ">
+                            <div style="flex-shrink: 0; padding-right: 15px;">
+                                <strong>{{ comment.user.username }}</strong>
+                                <br>
+                                <span style="color: gold; font-size: 16px;">{{ comment.rating }}★</span>
+                                <br>
+                                <small style="color: gray;">{{ comment.created_at|date:"d F Y, H:i" }}</small>
+                            </div>
+                            <div style="flex-grow: 1; border-left: 1px solid #ddd; padding-left: 15px;">
+                                <p style="margin: 0; color: #333;">{{ comment.text }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="send_reviews" class="tab-content" style="padding: 15px; display: none;">
             {% if user.is_authenticated %}
                 {% if has_purchased %}
-                    <div id="review-form-{{ product.id }}" class="review-form">
-                        <form method="post" onsubmit="submitReview(event, {{ order.id }})">
-
+                    <div id="review-form-{{ product.id }}" class="review-form"
+                         style="max-width: 550px; max-height: 230px; margin: 0 auto; border-radius: 10px; background: #f9f9f9; padding: 15px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <form method="post" onsubmit="submitReview(event, {{ order.id }})" style="width: 100%;">
                             {% csrf_token %}
                             <input type="hidden" name="product_id" value="{{ product.id }}">
 
-                            <label for="rating">Оцінка:</label>
-                            <div class="star-rating" data-product-id="{{ product.id }}">
-                                <span class="star" data-value="5">★</span>
-                                <span class="star" data-value="4">★</span>
-                                <span class="star" data-value="3">★</span>
-                                <span class="star" data-value="2">★</span>
-                                <span class="star" data-value="1">★</span>
+                            <!-- Рейтинг -->
+                            <div class="star-rating" data-product-id="{{ product.id }}" style="display: flex; justify-content: flex-end; gap: 5px; margin-bottom: 10px;">
+                                <span class="star" data-value="5" style="font-size: 24px; cursor: pointer;">★</span>
+                                <span class="star" data-value="4" style="font-size: 24px; cursor: pointer;">★</span>
+                                <span class="star" data-value="3" style="font-size: 24px; cursor: pointer;">★</span>
+                                <span class="star" data-value="2" style="font-size: 24px; cursor: pointer;">★</span>
+                                <span class="star" data-value="1" style="font-size: 24px; cursor: pointer;">★</span>
                             </div>
                             <input type="hidden" name="rating" id="rating-input-{{ product.id }}" required>
 
-                            <label for="text">Коментар:</label>
-                            <textarea name="text" required></textarea>
-
-                            <button type="submit">Надіслати</button>
+                            <!-- Поле для коментаря + кнопка -->
+                            <div style="display: flex; align-items: center; width: 100%; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; background: #fff;">
+                                <textarea name="text" required
+                                          placeholder="Ваш відгук..."
+                                          style="width: 100%; height: 50px; padding: 10px; font-size: 14px; border: none; resize: none; outline: none;"></textarea>
+                                <button type="submit" class="btn-submit">
+                                    ➤
+                                </button>
+                            </div>
                         </form>
                     </div>
                 {% else %}
-                    <p>Ви можете залишити відгук лише після покупки цього товару.</p>
+                    <div style="max-width: 400px; margin: 0 auto; text-align: center; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <p style="color: #666;">Ви можете залишити відгук лише після покупки цього товару.</p>
+                    </div>
                 {% endif %}
             {% else %}
-                <p>Будь ласка, <a href="{% url 'login' %}">увійдіть</a>, щоб залишити відгук.</p>
+                <div style="max-width: 400px; margin: 0 auto; text-align: center; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <p style="color: #666;">Будь ласка, <a href="{% url 'login' %}" style="color: #007bff; text-decoration: none;">увійдіть</a>, щоб залишити відгук.</p>
+                </div>
             {% endif %}
         </div>
     </div>
@@ -128,6 +188,10 @@
         </div>
     </div>
 <style>
+
+    .comments-scroll::-webkit-scrollbar {
+                    display: none;
+                }
 
 /* Стилі для зірочок */
 .star-rating {
@@ -292,53 +356,96 @@
 }
 </style>
 <script>
-    function submitReview(event, orderId) {
-    event.preventDefault();  // Запобігає перезавантаженню сторінки одразу
+document.addEventListener("DOMContentLoaded", function() {
+    const textArea = document.querySelector("textarea[name='text']");
+    const submitButton = document.querySelector(".btn-submit");
 
-    let form = event.target;
-    let formData = new FormData(form);
-    let csrfToken = form.querySelector("[name=csrfmiddlewaretoken]").value;
-
-    fetch("{% url 'add_comment_for_product' %}", {
-        method: "POST",
-        body: formData,
-        headers: {
-            "X-CSRFToken": csrfToken
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            location.reload();  // 🔄 Оновлюємо сторінку після успішного збереження
+    textArea.addEventListener("input", function() {
+        if (this.value.length > 50) {
+            this.style.border = "1px solid red";
+            if (!document.querySelector("#error-msg")) {
+                const errorMsg = document.createElement("p");
+                errorMsg.id = "error-msg";
+                errorMsg.style.color = "red";
+                errorMsg.style.fontSize = "14px";
+                errorMsg.textContent = "Максимум 50 символів!";
+                this.parentNode.appendChild(errorMsg);
+            }
+            submitButton.disabled = true;
         } else {
-            alert("Помилка: " + data.error);
+            this.style.border = "1px solid #ccc";
+            const errorMsg = document.querySelector("#error-msg");
+            if (errorMsg) errorMsg.remove();
+            submitButton.disabled = false;
         }
-    })
-    .catch(error => console.error("Помилка:", error));
-}
+    });
+});
+
+    function toggleFAQ(index) {
+         const answers = document.querySelectorAll(".space-y-4 > div > div");
+         answers[index].classList.toggle("hidden");
+    }
+
+
+    function submitReview(event, orderId) {
+        event.preventDefault();  // Запобігає перезавантаженню сторінки одразу
+
+        let form = event.target;
+        let formData = new FormData(form);
+        let csrfToken = form.querySelector("[name=csrfmiddlewaretoken]").value;
+
+        fetch("{% url 'add_comment_for_product' %}", {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-CSRFToken": csrfToken
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();  // 🔄 Оновлюємо сторінку після успішного збереження
+            } else {
+                alert("Помилка: " + data.error);
+            }
+        })
+        .catch(error => console.error("Помилка:", error));
+    }
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".star-rating").forEach(ratingContainer => {
-        let stars = Array.from(ratingContainer.querySelectorAll(".star")).reverse(); // Реверсуємо порядок зірок
+    document.querySelectorAll(".star-rating").forEach(rating => {
+        const stars = rating.querySelectorAll(".star");
+        const ratingInput = document.getElementById(`rating-input-${rating.dataset.productId}`);
 
         stars.forEach(star => {
             star.addEventListener("click", function () {
-                let productId = this.parentElement.getAttribute("data-product-id"); // Змінено на productId
-                let ratingInput = document.getElementById(`rating-input-${productId}`);
-                let selectedValue = parseInt(this.getAttribute("data-value"));
+                const value = parseInt(this.dataset.value);
 
-                // Встановлюємо значення рейтингу в приховане поле
-                ratingInput.value = selectedValue;
-
-                // Очищаємо підсвічення всіх зірок
+                // Очищуємо попередній вибір
                 stars.forEach(s => s.classList.remove("selected"));
 
-                // Додаємо клас "selected" для вибраної зірки і всіх перед нею
+                // Додаємо клас "selected" для всіх зірок до вибраної включно
                 stars.forEach(s => {
-                    if (parseInt(s.getAttribute("data-value")) >= selectedValue) {
+                    if (parseInt(s.dataset.value) <= value) {
                         s.classList.add("selected");
                     }
                 });
+
+                // Записуємо значення в приховане поле
+                ratingInput.value = value;
+            });
+        });
+
+        // Очищення підсвічених зірок при зміні оцінки
+        rating.addEventListener("mouseleave", function () {
+            const currentValue = parseInt(ratingInput.value) || 0;
+            stars.forEach(star => star.classList.remove("selected"));
+
+            // Підсвічуємо збережену оцінку
+            stars.forEach(star => {
+                if (parseInt(star.dataset.value) <= currentValue) {
+                    star.classList.add("selected");
+                }
             });
         });
     });

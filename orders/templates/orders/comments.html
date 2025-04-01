@@ -76,6 +76,39 @@
         </div>
     </section>
 
+<!--    <div class="comments-container" style="max-width: 1314px; margin: 0 auto;">-->
+<!--                <h2 style="text-align: center;">Коментарі</h2>-->
+<!--                <div class="comments-scroll" style="max-height: 300px; overflow-y: auto; padding-right: 10px;">-->
+<!--                    <div class="row" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">-->
+<!--                        {% for comment in comments %}-->
+<!--                        <div class="comment-row {% if forloop.counter > 2 %}hidden{% endif %}" style="width: calc(50% - 10px);">-->
+<!--                            <div class="comment-box" style="width: 100%; box-sizing: border-box; padding: 15px; border: 1px solid #ddd; border-radius: 8px; display: flex; flex-direction: column; justify-content: space-between;">-->
+<!--                                <div>-->
+<!--                                    <strong>{{ comment.order.user.username }}</strong>-->
+<!--                                    <span style="color: gold;">{{ comment.rating }}★</span><br>-->
+<!--                                    <small style="color: gray;">{{ comment.created_at|date:"d F Y, H:i" }}</small>-->
+<!--                                    <p>{{ comment.text }}</p>-->
+<!--                                    <small class="products-title">Товари:</small>-->
+<!--                                    <ul class="products-list">-->
+<!--                                        {% for item in comment.order.items.all %}-->
+<!--                                            <li>{{ item.quantity }} x {{ item.product.name }}</li>-->
+<!--                                        {% endfor %}-->
+<!--                                    </ul>-->
+<!--                                    <br>-->
+<!--                                    <small>Сума: {{ comment.order.total_price }} грн</small><br>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        {% endfor %}-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div style="text-align: center;">-->
+<!--                    <button id="load-more" class="more-btn" style="margin: 20px auto; border: none; font-family: 'Waltograph'; cursor: pointer;">Більше</button>-->
+<!--                    <button id="hide-comments" class="more-btn" style="margin: 20px auto; border: none; font-family: 'Waltograph'; cursor: pointer; display: none;">Приховати</button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
 
     <div class="comments-container" style="max-width: 1314px; margin: 0 auto;">
         <h2 style="text-align: center;">Коментарі</h2>
@@ -84,16 +117,20 @@
                 {% for comment in comments %}
                 <div class="comment-row {% if forloop.counter > 4 %}hidden{% endif %}">
                     <div class="comment-box" style="width: calc(25% - 10px); min-width: 300px; box-sizing: border-box; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
-                        <strong>{{ comment.order.user.username }}</strong> - {{ comment.rating }}★<br>
-                        <p>{{ comment.text }}</p>
-                        <small class="products-title">Товари:</small>
-                        <ul class="products-list">
-                            {% for item in comment.order.items.all %}
-                                <li>{{ item.quantity }} x {{ item.product.name }}</li>
-                            {% endfor %}
-                        </ul>
-                        <br>
-                        <small>Сума: {{ comment.order.total_price }} грн</small><br>
+                        <div>
+                                    <strong>{{ comment.order.user.username }}</strong>
+                                    <span style="color: gold;">{{ comment.rating }}★</span><br>
+                                    <small style="color: gray;">{{ comment.created_at|date:"d F Y, H:i" }}</small>
+                                    <p>{{ comment.text }}</p>
+                                    <small class="products-title" style="font-size: 14px;" >Товари:</small>
+                                    <ul class="products-list">
+                                        {% for item in comment.order.items.all %}
+                                            <li>{{ item.quantity }} x {{ item.product.name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <br>
+                                    <small>Сума: {{ comment.order.total_price }} грн</small><br>
+                                </div>
                     </div>
                 </div>
                 {% endfor %}

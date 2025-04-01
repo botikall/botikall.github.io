@@ -14,13 +14,15 @@ from django.urls import reverse
 from django.db.models import Sum
 
 def product_detail(request, product_id):
+
     product = get_object_or_404(Product, id=product_id)
+    comments = CommentForProduct.objects.filter(product=product).order_by("-created_at")  # Сортуємо за датою
     products = Product.objects.annotate(total_sold=Sum('orderitem__quantity')) \
         .order_by('-total_sold')
     # Додаємо поле з продажами після сортування, щоб не втрачати його
     has_purchased = OrderItem.objects.filter(order__user=request.user, product=product, status='completed').exists()
 
-    return render(request, 'orders/product_detail.html', {'product': product,'products': products, 'has_purchased': has_purchased})
+    return render(request, 'orders/product_detail.html', {'product': product,'products': products, 'has_purchased': has_purchased,"comments": comments})
 
 def navbar_data(request):
     types = Type.objects.all()
@@ -82,6 +84,8 @@ def get_notifications(request):
     print("Сповіщень знайдено:", len(notifications_list))  # Додаємо логування
 
     return JsonResponse({'notifications': notifications_list})
+
+
 
 @login_required
 def add_comment(request):
@@ -413,11 +417,17 @@ def add_comment_for_product(request):
         rating = request.POST.get("rating")
         text = request.POST.get("text")
 
-        product = Product.objects.get(id=product_id)
-        CommentForProduct.objects.create(
-            product=product, rating=rating, text=text
-        )
+        if len(text) > 50:
+            return JsonResponse({"success": False, "error": "Коментар не може містити більше ніж 50 символів."}, status=400)
 
-        return JsonResponse({"success": True})
+        try:
+            product = Product.objects.get(id=product_id)
+            CommentForProduct.objects.create(
+                user=user,
+                product=product, rating=rating, text=text
+            )
+            return JsonResponse({"success": True})
+        except Product.DoesNotExist:
+            return JsonResponse({"success": False, "error": "Продукт не знайдено"}, status=404)
 
     return JsonResponse({"success": False, "error": "Invalid request"}, status=400)

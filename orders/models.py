@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 import uuid
 from django.utils.timezone import now
 from django.contrib.auth.models import AbstractUser
@@ -184,9 +185,15 @@ class Comment(models.Model):
 
 class CommentForProduct(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="comments", verbose_name="Продукт")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='CommentForProduct',
+                             verbose_name="Користувач",default=1)
     rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)], default=5)
     text = models.TextField(verbose_name="Текст коментаря")
     created_at = models.DateTimeField(default=now, verbose_name="Дата додавання")
 
+    def clean(self):
+        if len(self.text) > 50:
+            raise ValidationError("Коментар не може містити більше ніж 50 символів.")
+
     def __str__(self):
-        return f'Comment for {self.product.name} - {self.rating}★'
+        return f'Comment by {self.user.username} - {self.rating}★'
