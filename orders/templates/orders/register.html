@@ -25,8 +25,7 @@
             z-index: 0;
         }
         .auth-form {
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
+            background-color: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -63,20 +62,9 @@
             font-size: 14px;
             margin-top: 5px;
         }
-        .btn-submit {
-            background: #f6cece;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .btn-submit:hover {
-            background: #f3a5a5;
-        }
     </style>
 
-    <div class="auth-container">
+    <div class="auth-container" style="margin-top: 80px;">
         <img src="{% static 'orders/images/log.jpg' %}" class="floating-image" alt="Floating Image">
         <div class="auth-form">
             <h2>Реєстрація</h2>
@@ -99,7 +87,7 @@
                 <div class="form-group">
                     <label for="username">Ім'я користувача:</label>
                     {{ form.username }}
-                    <small>Не більше 150 символів. Лише літери, цифри та @/./+/-/_.</small>
+                    <small>Не більше 15 символів. Лише літери, цифри та @/./+/-/_.</small>
                 </div>
 
                 <div class="form-group">
@@ -133,11 +121,11 @@
                 <div class="form-group">
                     <label for="phone_number">Номер телефону:</label>
                     {{ form.phone_number }}
-                    <small>Введіть свій номер телефону у форматі +380123456789.</small>
+                    <small>Введіть свій номер телефону у форматі +380XXXXXXXXX.</small>
                 </div>
 
                 <button type="submit" class="btn-submit">Зареєструватися</button>
-                <a href="{% url 'index' %}" class="btn btn-secondary" style="display: block; margin-top: 10px;">До головної</a>
+                <a href="{% url 'login' %}" class="btn btn-secondary" style="display: block; margin-top: 10px; margin-bottom: 0px; font-size: 18px; color:black">До входу</a>
             </form>
         </div>
     </div>

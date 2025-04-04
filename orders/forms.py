@@ -2,6 +2,9 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser
 from .models import Comment,ContactMessage
 from django import forms
+from django.core.exceptions import ValidationError
+import re
+
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -33,12 +36,26 @@ class CommentForm(forms.ModelForm):
 class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True, help_text="Введіть ваше ім'я.")
     last_name = forms.CharField(max_length=30, required=True, help_text="Введіть ваше прізвище.")
-    phone_number = forms.CharField(max_length=15, required=True, help_text='Введіть ваш номер телефону.')
+    phone_number = forms.CharField(
+        max_length=15,
+        required=True,
+        help_text='Введіть ваш номер телефону.',
+    )
     email = forms.EmailField(required=True, help_text="Введіть вашу електронну пошту.")
+    username = forms.CharField(
+        max_length=15,
+        required=True,
+        help_text="Не більше 15 символів. Лише літери, цифри та @/./+/-/_.")
 
     class Meta:
         model = CustomUser
         fields = ('username', 'first_name', 'last_name', 'email', 'phone_number', 'password1', 'password2')
+
+    def clean_phone_number(self):
+        phone = self.cleaned_data.get('phone_number')
+        if not re.match(r'^\+380\d{9}$', phone):
+            raise ValidationError("Номер телефону має бути у форматі +380XXXXXXXXX.")
+        return phone
 
 
 class EditProfileForm(forms.ModelForm):

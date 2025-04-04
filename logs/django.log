@@ -13934,3 +13934,911 @@ WARNING 2025-04-01 22:06:03,410 basehttp "GET /get-notifications/login/?next=/ge
 INFO 2025-04-01 22:06:05,404 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
 WARNING 2025-04-01 22:06:05,409 log Not Found: /get-notifications/login/
 WARNING 2025-04-01 22:06:05,410 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-01 22:06:15,396 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-01 22:06:15,408 log Not Found: /get-notifications/login/
+WARNING 2025-04-01 22:06:15,408 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-01 22:06:25,401 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-01 22:06:25,407 log Not Found: /get-notifications/login/
+WARNING 2025-04-01 22:06:25,407 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 09:20:55,120 autoreload Watching for file changes with StatReloader
+INFO 2025-04-04 09:20:56,831 basehttp "GET / HTTP/1.1" 200 48434
+INFO 2025-04-04 09:20:56,868 basehttp "GET /static/orders/style.css HTTP/1.1" 304 0
+INFO 2025-04-04 09:20:56,882 basehttp "GET /static/orders/images/419958.jpg HTTP/1.1" 304 0
+INFO 2025-04-04 09:20:56,882 basehttp "GET /static/orders/images/1278413.jpg HTTP/1.1" 304 0
+INFO 2025-04-04 09:20:56,908 basehttp "GET /static/orders/images/408920.jpg HTTP/1.1" 304 0
+INFO 2025-04-04 09:20:56,924 basehttp "GET /static/orders/images/%D1%81oll_mac.png HTTP/1.1" 304 0
+INFO 2025-04-04 09:20:56,931 basehttp "GET /products/408920.jpg HTTP/1.1" 304 0
+INFO 2025-04-04 09:20:56,935 basehttp "GET /products/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_89_FYYBZb1.png HTTP/1.1" 304 0
+INFO 2025-04-04 09:20:56,975 basehttp "GET /products/1385486.png HTTP/1.1" 304 0
+INFO 2025-04-04 09:20:56,975 basehttp "GET /products/maxresdefault_TEhkQs7.jpg HTTP/1.1" 304 0
+INFO 2025-04-04 09:20:56,977 basehttp "GET /products/1612886109-7683_IcgEkTI.jpg HTTP/1.1" 304 0
+INFO 2025-04-04 09:20:57,041 basehttp "GET /static/orders/images/background_green.png HTTP/1.1" 304 0
+INFO 2025-04-04 09:20:57,046 basehttp "GET /static/orders/images/nav.png HTTP/1.1" 304 0
+WARNING 2025-04-04 09:20:57,047 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 09:20:57,075 basehttp "GET /static/orders/images/parallax.JFIF HTTP/1.1" 304 0
+WARNING 2025-04-04 09:20:57,143 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 09:20:57,410 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 09:20:57,423 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 09:20:57,423 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+WARNING 2025-04-04 09:20:57,571 log Not Found: /favicon.ico
+WARNING 2025-04-04 09:20:57,572 basehttp "GET /favicon.ico HTTP/1.1" 404 7700
+INFO 2025-04-04 09:21:00,129 basehttp "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-04-04 09:21:00,155 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4160
+INFO 2025-04-04 09:21:00,173 basehttp "GET /static/admin/css/base.css HTTP/1.1" 200 22092
+INFO 2025-04-04 09:21:00,173 basehttp "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+INFO 2025-04-04 09:21:00,173 basehttp "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2025-04-04 09:21:00,201 basehttp "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-04-04 09:21:00,202 basehttp "GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+INFO 2025-04-04 09:21:00,202 basehttp "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2025-04-04 09:21:00,208 basehttp "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+WARNING 2025-04-04 09:21:07,128 log Not Found: /about/
+WARNING 2025-04-04 09:21:07,129 basehttp "GET /about/ HTTP/1.1" 404 7679
+WARNING 2025-04-04 09:21:10,515 log Not Found: /about
+WARNING 2025-04-04 09:21:10,515 basehttp "GET /about HTTP/1.1" 404 7676
+WARNING 2025-04-04 09:22:29,293 log Not Found: /about
+WARNING 2025-04-04 09:22:29,293 basehttp "GET /about HTTP/1.1" 404 7676
+WARNING 2025-04-04 09:22:35,045 log Not Found: /card
+WARNING 2025-04-04 09:22:35,046 basehttp "GET /card HTTP/1.1" 404 7672
+WARNING 2025-04-04 09:22:38,999 log Not Found: /card/
+WARNING 2025-04-04 09:22:38,999 basehttp "GET /card/ HTTP/1.1" 404 7675
+INFO 2025-04-04 09:22:51,282 basehttp "GET /cart/ HTTP/1.1" 302 0
+INFO 2025-04-04 09:22:51,296 basehttp "GET /login/?next=/cart/ HTTP/1.1" 200 11697
+INFO 2025-04-04 09:22:51,321 basehttp "GET /static/orders/images/log.jpg HTTP/1.1" 304 0
+WARNING 2025-04-04 09:22:51,380 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 09:22:51,474 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 09:22:51,492 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 09:22:51,493 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 09:23:01,401 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 09:23:01,422 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 09:23:01,423 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 09:23:02,274 basehttp "POST /login/?next=/cart/ HTTP/1.1" 302 0
+INFO 2025-04-04 09:23:02,285 basehttp "GET /cart/ HTTP/1.1" 200 10942
+INFO 2025-04-04 09:23:05,492 basehttp "GET /cart/ HTTP/1.1" 200 10942
+INFO 2025-04-04 09:23:07,462 basehttp "GET /cart/ HTTP/1.1" 200 10942
+INFO 2025-04-04 09:23:37,985 basehttp "GET /cart/ HTTP/1.1" 200 10942
+INFO 2025-04-04 09:23:38,580 basehttp "GET /login/?next=/cart/ HTTP/1.1" 200 12236
+INFO 2025-04-04 09:23:38,768 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:23:45,977 basehttp "GET /catalog/ HTTP/1.1" 200 23479
+INFO 2025-04-04 09:23:45,999 basehttp "GET /static/orders/images/exit.png HTTP/1.1" 304 0
+INFO 2025-04-04 09:23:46,169 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:23:47,533 basehttp "GET /profile/ HTTP/1.1" 200 65813
+INFO 2025-04-04 09:23:47,729 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:23:49,541 basehttp "GET /profile/change-password/ HTTP/1.1" 200 12878
+INFO 2025-04-04 09:23:49,661 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:23:57,631 basehttp "GET / HTTP/1.1" 200 51792
+INFO 2025-04-04 09:23:58,083 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:24:08,557 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:24:18,553 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:24:28,560 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:24:38,550 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:24:48,553 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:24:58,564 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:25:57,566 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:26:57,564 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:27:57,565 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:28:57,555 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:29:57,560 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:30:57,562 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:31:57,572 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:32:57,572 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:33:57,562 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:34:57,555 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:35:57,558 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:36:57,549 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:37:57,565 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:38:57,564 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:39:57,563 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:40:57,557 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:41:57,567 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:42:57,564 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:43:57,563 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:44:57,563 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:45:57,563 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:48:40,022 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:49:40,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:50:40,021 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:51:40,019 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:52:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:53:40,026 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:54:40,027 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:55:40,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:56:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:57:40,023 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:58:40,021 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 09:59:40,038 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:00:40,035 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:01:40,044 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:02:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:03:40,038 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:04:40,036 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:05:40,023 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:06:40,033 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:07:40,036 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:08:40,036 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:09:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:10:40,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:11:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:12:40,039 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:13:40,035 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:14:40,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:15:40,033 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:16:40,026 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:17:40,022 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:18:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:19:40,037 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:20:40,026 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:21:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:22:40,031 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:23:40,041 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:24:40,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:25:40,020 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:26:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:27:40,023 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:28:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:29:40,040 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:30:40,024 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:31:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:32:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:33:40,039 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:34:40,044 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:35:40,045 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:36:40,031 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:37:40,039 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:38:40,033 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:39:40,025 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:40:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:41:40,042 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:42:40,033 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:43:40,033 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:44:40,018 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:45:40,027 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:46:40,037 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:47:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:48:40,027 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:49:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:50:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:51:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:52:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:53:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:54:40,044 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:55:17,101 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:55:21,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:55:31,025 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:55:41,015 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:55:51,033 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:56:01,022 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:56:11,023 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:56:40,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:57:40,025 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:58:07,140 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:58:11,015 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:58:21,033 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:58:30,534 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:58:41,048 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:58:51,021 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:59:01,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:59:11,019 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:59:21,025 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 10:59:40,038 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:00:40,041 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:01:40,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:02:40,021 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:03:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:04:38,853 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:04:41,017 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:04:51,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:05:01,017 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:05:11,027 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:05:21,036 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:05:31,037 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:06:39,027 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:07:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:08:40,039 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:08:52,691 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:09:01,036 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:09:11,017 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:09:21,035 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:09:31,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:09:41,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:09:51,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:10:23,962 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:10:31,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:10:41,024 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:10:51,033 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:11:01,014 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:11:11,021 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:11:21,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:11:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:12:40,023 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:13:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:14:40,026 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:15:21,392 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:15:31,014 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:15:41,023 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:15:51,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:16:01,018 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:16:10,460 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:16:21,023 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:16:31,021 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:16:41,031 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:16:51,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:17:01,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:17:11,024 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:17:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:18:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:19:40,027 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:20:40,017 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:21:40,025 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:22:40,040 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:23:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:24:40,028 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:25:40,039 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:26:32,742 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:26:41,026 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:26:51,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:27:01,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:27:11,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:27:21,018 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:27:31,021 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:28:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:29:40,053 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:30:40,037 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:31:40,039 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:32:40,036 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:33:40,038 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:34:40,028 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:35:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:36:40,027 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:37:40,042 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:38:40,027 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:39:40,033 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:40:40,043 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:41:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:42:40,036 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:43:40,037 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:44:40,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:45:40,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:46:40,027 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:47:40,033 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:48:40,041 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:49:40,017 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:50:40,042 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:51:40,026 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:52:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:53:40,040 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:54:40,022 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:55:40,035 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:56:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:57:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:58:40,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 11:59:40,021 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:00:40,036 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:01:40,040 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:02:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:03:40,035 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:04:40,035 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:05:40,040 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:06:40,041 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:07:40,038 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:08:40,040 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:09:40,035 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:10:40,028 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:11:40,033 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:12:40,035 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:13:40,044 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:14:40,041 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:15:40,036 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:16:40,036 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:17:40,036 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:18:40,020 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:19:40,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:20:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:21:40,042 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:22:40,025 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:23:40,039 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:24:40,044 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:25:40,045 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:26:40,027 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:27:40,035 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:28:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:29:40,025 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:30:40,037 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:31:40,039 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:32:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:33:40,023 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:34:40,042 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:34:47,052 basehttp "GET / HTTP/1.1" 200 51792
+WARNING 2025-04-04 12:34:47,239 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+WARNING 2025-04-04 12:34:47,341 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:34:47,584 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:34:48,784 basehttp "GET /catalog/ HTTP/1.1" 200 23479
+WARNING 2025-04-04 12:34:48,891 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:34:49,042 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:34:51,996 basehttp "POST /cart/add/3/ HTTP/1.1" 302 0
+INFO 2025-04-04 12:34:52,017 basehttp "GET /order/ HTTP/1.1" 200 30312
+INFO 2025-04-04 12:34:52,251 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:34:53,959 basehttp "GET /order/ HTTP/1.1" 200 30312
+INFO 2025-04-04 12:34:54,168 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:34:55,072 basehttp "GET /comments/ HTTP/1.1" 200 109100
+INFO 2025-04-04 12:34:55,097 basehttp "GET /static/orders/images/cafe.jpg HTTP/1.1" 304 0
+WARNING 2025-04-04 12:34:55,237 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:34:55,240 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:02,798 basehttp "GET /order/ HTTP/1.1" 200 30312
+WARNING 2025-04-04 12:35:02,880 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:35:02,999 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:04,154 basehttp "GET /profile/ HTTP/1.1" 200 65813
+INFO 2025-04-04 12:35:04,302 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:06,295 basehttp "GET /comments/ HTTP/1.1" 200 109100
+WARNING 2025-04-04 12:35:06,461 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:35:06,606 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:06,658 basehttp "GET /order/ HTTP/1.1" 200 30312
+WARNING 2025-04-04 12:35:06,778 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:35:06,948 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:07,076 basehttp "GET /catalog/ HTTP/1.1" 200 23479
+INFO 2025-04-04 12:35:07,191 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:08,438 basehttp "GET /product/2/ HTTP/1.1" 200 54082
+INFO 2025-04-04 12:35:08,645 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+WARNING 2025-04-04 12:35:09,688 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:35:14,885 basehttp "GET /product/4/ HTTP/1.1" 200 36590
+WARNING 2025-04-04 12:35:14,966 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:35:15,140 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+WARNING 2025-04-04 12:35:15,974 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:35:19,773 basehttp "GET /profile/ HTTP/1.1" 200 65813
+WARNING 2025-04-04 12:35:19,885 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:35:20,041 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:20,911 basehttp "GET /comments/ HTTP/1.1" 200 109100
+WARNING 2025-04-04 12:35:21,056 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:35:21,060 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:22,892 basehttp "GET /profile/ HTTP/1.1" 200 65813
+WARNING 2025-04-04 12:35:22,999 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:35:23,154 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:33,061 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:34,106 basehttp "GET /product/3/ HTTP/1.1" 200 36403
+WARNING 2025-04-04 12:35:34,220 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:35:34,361 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:36,654 basehttp "GET /order/ HTTP/1.1" 200 30312
+INFO 2025-04-04 12:35:36,943 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:39,647 basehttp "GET /catalog/ HTTP/1.1" 200 23479
+INFO 2025-04-04 12:35:39,864 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:44,084 basehttp "GET / HTTP/1.1" 200 51792
+WARNING 2025-04-04 12:35:44,266 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:35:44,541 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:54,283 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:35:57,284 basehttp "GET /profile/ HTTP/1.1" 200 65813
+WARNING 2025-04-04 12:35:57,399 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:35:57,562 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:36:06,805 basehttp "GET /profile/change-password/ HTTP/1.1" 200 12878
+INFO 2025-04-04 12:36:07,004 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:36:08,524 basehttp "GET /profile/ HTTP/1.1" 200 65813
+INFO 2025-04-04 12:36:08,782 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:36:12,191 basehttp "POST /logout/ HTTP/1.1" 302 0
+INFO 2025-04-04 12:36:12,215 basehttp "GET / HTTP/1.1" 200 48434
+WARNING 2025-04-04 12:36:12,327 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:36:12,383 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:36:12,624 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:36:12,624 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:36:13,861 basehttp "GET /login/ HTTP/1.1" 200 11697
+WARNING 2025-04-04 12:36:13,961 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:36:14,027 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:36:14,093 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:36:14,093 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:36:14,956 basehttp "GET /register/ HTTP/1.1" 200 14730
+INFO 2025-04-04 12:36:15,098 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:36:15,155 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:36:15,155 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:36:25,049 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:36:25,054 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:36:25,055 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:36:35,058 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:36:35,063 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:36:35,064 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:36:45,055 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:36:45,076 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:36:45,076 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:36:45,756 basehttp "GET /register/ HTTP/1.1" 200 14689
+WARNING 2025-04-04 12:36:45,864 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:36:45,924 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:36:45,941 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:36:45,942 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:36:56,024 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:36:56,030 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:36:56,031 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:37:06,013 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:37:06,018 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:37:06,018 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:37:12,910 basehttp "GET /register/ HTTP/1.1" 200 14676
+WARNING 2025-04-04 12:37:12,999 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:37:13,060 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:37:13,081 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:37:13,081 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:37:24,029 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:37:24,044 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:37:24,045 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:37:34,015 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:37:34,023 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:37:34,023 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:37:44,021 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:37:44,027 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:37:44,027 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:37:53,069 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:37:53,076 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:37:53,076 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:37:54,040 basehttp "GET /register/ HTTP/1.1" 200 14702
+INFO 2025-04-04 12:37:54,205 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:37:54,252 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:37:54,253 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:38:05,025 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:38:05,031 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:38:05,031 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:38:08,661 basehttp "GET /register/ HTTP/1.1" 200 14702
+WARNING 2025-04-04 12:38:08,752 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:38:08,840 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:38:08,858 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:38:08,859 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:38:18,769 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:38:18,775 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:38:18,775 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:38:25,657 basehttp "GET /register/ HTTP/1.1" 200 14406
+INFO 2025-04-04 12:38:25,800 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:38:25,823 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:38:25,824 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:38:36,014 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:38:36,019 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:38:36,020 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:38:46,018 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:38:46,026 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:38:46,026 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:38:56,020 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:38:56,033 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:38:56,033 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:39:06,018 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:39:06,026 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:39:06,027 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:39:16,023 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:39:16,030 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:39:16,031 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:39:26,021 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:39:26,026 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:39:26,026 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:39:28,184 basehttp "GET /register/ HTTP/1.1" 200 14423
+INFO 2025-04-04 12:39:28,339 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:39:28,359 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:39:28,359 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:39:39,023 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:39:39,036 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:39:39,036 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:39:44,531 basehttp "GET /register/ HTTP/1.1" 200 14435
+WARNING 2025-04-04 12:39:44,623 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:39:44,690 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:39:44,721 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:39:44,722 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:39:55,018 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:39:55,023 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:39:55,023 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:40:05,019 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:40:05,029 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:40:05,030 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:40:15,020 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:40:15,025 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:40:15,026 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:40:24,084 basehttp "GET /register/ HTTP/1.1" 200 14457
+INFO 2025-04-04 12:40:24,229 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:40:24,248 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:40:24,248 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:40:34,187 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:40:34,192 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:40:34,193 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:40:39,586 basehttp "GET /register/ HTTP/1.1" 200 14463
+WARNING 2025-04-04 12:40:39,671 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:40:39,768 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:40:39,787 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:40:39,787 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:40:44,819 basehttp "GET /register/ HTTP/1.1" 200 14458
+INFO 2025-04-04 12:40:44,941 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:40:44,962 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:40:44,963 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:40:52,766 basehttp "GET /register/ HTTP/1.1" 200 14457
+INFO 2025-04-04 12:40:52,885 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:40:52,908 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:40:52,908 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:40:59,822 basehttp "GET /register/ HTTP/1.1" 200 14455
+INFO 2025-04-04 12:40:59,935 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:40:59,953 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:40:59,953 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:41:09,891 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:41:09,896 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:41:09,896 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:41:20,016 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:41:20,021 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:41:20,022 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:41:27,832 basehttp "GET /register/ HTTP/1.1" 200 14455
+INFO 2025-04-04 12:41:27,951 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:41:27,970 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:41:27,971 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:41:33,102 basehttp "GET /register/ HTTP/1.1" 200 14454
+INFO 2025-04-04 12:41:33,208 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:41:33,226 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:41:33,227 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:41:44,018 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:41:44,024 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:41:44,024 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:41:46,877 basehttp "GET /register/ HTTP/1.1" 200 14455
+INFO 2025-04-04 12:41:46,989 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:41:47,007 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:41:47,007 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:41:55,918 basehttp "GET /register/ HTTP/1.1" 200 14455
+INFO 2025-04-04 12:41:56,026 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:41:56,039 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:41:56,040 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:42:02,819 basehttp "GET /register/ HTTP/1.1" 200 14455
+INFO 2025-04-04 12:42:02,945 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:42:02,964 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:42:02,964 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:42:13,016 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:42:13,022 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:42:13,022 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:42:18,289 basehttp "GET /register/ HTTP/1.1" 200 14456
+INFO 2025-04-04 12:42:18,435 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:42:18,453 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:42:18,455 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:42:23,957 basehttp "GET /register/ HTTP/1.1" 200 14455
+INFO 2025-04-04 12:42:24,064 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:42:24,081 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:42:24,082 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:42:29,025 basehttp "GET /login/ HTTP/1.1" 200 11697
+INFO 2025-04-04 12:42:29,190 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:42:29,259 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:42:29,259 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:42:31,174 basehttp "GET /register/ HTTP/1.1" 200 14455
+INFO 2025-04-04 12:42:31,333 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:42:31,401 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:42:31,401 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:42:32,987 basehttp "GET / HTTP/1.1" 200 48434
+WARNING 2025-04-04 12:42:33,202 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:42:33,442 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:42:33,466 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:42:33,466 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:42:41,278 basehttp "GET / HTTP/1.1" 200 48434
+WARNING 2025-04-04 12:42:41,394 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+WARNING 2025-04-04 12:42:41,442 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:42:41,686 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:42:41,699 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:42:41,700 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:42:42,675 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:42:42,689 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:42:42,690 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:42:51,297 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:42:51,302 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:42:51,303 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:42:51,863 basehttp "GET /login/ HTTP/1.1" 200 11697
+WARNING 2025-04-04 12:42:51,971 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:42:52,093 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:42:52,112 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:42:52,115 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:03,018 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:03,024 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:03,024 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:13,026 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:13,031 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:13,031 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:23,027 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:23,032 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:23,033 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:25,817 basehttp "GET /login/ HTTP/1.1" 200 11697
+WARNING 2025-04-04 12:43:25,926 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:43:26,022 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:26,039 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:26,040 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:27,155 basehttp "GET /register/ HTTP/1.1" 200 14455
+WARNING 2025-04-04 12:43:27,248 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:43:27,349 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:27,373 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:27,374 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:28,494 basehttp "GET /login/ HTTP/1.1" 200 11697
+INFO 2025-04-04 12:43:28,615 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:28,683 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:28,684 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:29,798 basehttp "GET /register/ HTTP/1.1" 200 14455
+INFO 2025-04-04 12:43:29,960 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:30,024 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:30,024 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:30,974 basehttp "GET /login/ HTTP/1.1" 200 11697
+INFO 2025-04-04 12:43:31,076 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:31,105 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:31,105 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:32,584 basehttp "GET /register/ HTTP/1.1" 200 14455
+INFO 2025-04-04 12:43:32,684 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:32,709 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:32,710 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:34,046 basehttp "GET /login/ HTTP/1.1" 200 11697
+INFO 2025-04-04 12:43:34,205 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:34,270 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:34,271 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:34,892 basehttp "GET /register/ HTTP/1.1" 200 14455
+INFO 2025-04-04 12:43:35,088 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:35,145 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:35,145 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:38,527 basehttp "GET /login/ HTTP/1.1" 200 11697
+INFO 2025-04-04 12:43:38,628 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:38,661 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:38,662 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:40,498 basehttp "GET /register/ HTTP/1.1" 200 14455
+INFO 2025-04-04 12:43:40,731 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:40,751 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:40,752 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:45,784 basehttp "GET / HTTP/1.1" 200 48434
+WARNING 2025-04-04 12:43:45,989 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:43:46,309 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:46,352 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:46,353 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:43:56,023 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:43:56,030 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:43:56,030 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:44:06,016 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:44:06,023 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:44:06,024 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:44:16,016 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:44:16,023 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:44:16,024 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:44:26,023 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:44:26,029 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:44:26,030 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:44:36,016 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:44:36,023 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:44:36,023 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:44:46,032 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:44:46,037 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:44:46,038 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:45:40,027 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:45:40,035 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:45:40,035 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:46:40,031 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:46:40,048 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:46:40,049 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:47:20,364 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:47:20,399 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:47:20,400 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:47:25,996 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:47:26,001 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:47:26,002 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:47:27,808 basehttp "GET / HTTP/1.1" 200 48434
+WARNING 2025-04-04 12:47:28,000 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+WARNING 2025-04-04 12:47:28,084 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:47:28,327 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:47:28,378 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:47:28,379 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:47:32,579 basehttp "GET /order/ HTTP/1.1" 302 0
+INFO 2025-04-04 12:47:32,588 basehttp "GET /login/?next=/order/ HTTP/1.1" 200 11697
+WARNING 2025-04-04 12:47:32,682 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:47:32,721 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:47:32,779 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:47:32,780 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:47:33,713 basehttp "GET /comments/ HTTP/1.1" 200 108895
+WARNING 2025-04-04 12:47:33,834 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:47:33,882 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:47:34,035 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:47:34,035 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:47:35,679 basehttp "GET /order/ HTTP/1.1" 302 0
+INFO 2025-04-04 12:47:35,688 basehttp "GET /login/?next=/order/ HTTP/1.1" 200 11697
+WARNING 2025-04-04 12:47:35,749 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:47:35,797 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:47:35,864 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:47:35,865 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:47:40,711 basehttp "GET /register/ HTTP/1.1" 200 14455
+INFO 2025-04-04 12:47:40,831 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:47:40,907 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:47:40,908 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:47:50,810 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:47:50,825 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:47:50,826 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:48:00,816 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:48:00,822 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:48:00,823 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:48:10,812 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:48:10,817 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:48:10,817 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:48:20,802 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:48:20,808 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:48:20,808 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:48:30,809 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:48:30,819 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:48:30,819 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:48:40,803 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 12:48:40,813 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 12:48:40,813 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 12:48:46,615 basehttp "POST /register/ HTTP/1.1" 302 0
+INFO 2025-04-04 12:48:46,639 basehttp "GET / HTTP/1.1" 200 51792
+WARNING 2025-04-04 12:48:46,862 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 12:48:47,097 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:48:57,060 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:49:02,693 basehttp "GET /profile/ HTTP/1.1" 200 35068
+WARNING 2025-04-04 12:49:02,800 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 12:49:02,940 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:49:12,849 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:49:23,018 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:49:33,026 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:49:43,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:49:53,038 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:50:03,020 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:50:13,026 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:50:40,029 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:51:40,031 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:52:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:53:40,037 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:54:40,031 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:55:40,042 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:56:40,024 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:57:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:58:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 12:59:40,053 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:00:40,039 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:01:40,023 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:02:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:03:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:04:40,022 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:05:40,056 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:06:40,034 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:07:40,038 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:08:40,035 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:09:40,033 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:10:40,052 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:11:40,028 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:12:00,368 autoreload D:\website\bakery_order_system\orders\forms.py changed, reloading.
+INFO 2025-04-04 13:12:01,248 autoreload Watching for file changes with StatReloader
+INFO 2025-04-04 13:12:12,423 autoreload D:\website\bakery_order_system\orders\forms.py changed, reloading.
+INFO 2025-04-04 13:12:12,912 autoreload Watching for file changes with StatReloader
+INFO 2025-04-04 13:12:20,889 autoreload D:\website\bakery_order_system\orders\forms.py changed, reloading.
+INFO 2025-04-04 13:12:21,477 autoreload Watching for file changes with StatReloader
+INFO 2025-04-04 13:12:21,961 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:12:22,849 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:12:23,331 basehttp "GET /profile/ HTTP/1.1" 200 35068
+WARNING 2025-04-04 13:12:23,493 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 13:12:23,628 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:12:25,477 basehttp "GET /profile/ HTTP/1.1" 200 35068
+WARNING 2025-04-04 13:12:25,566 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 13:12:25,676 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:12:29,346 basehttp "POST /logout/ HTTP/1.1" 302 0
+INFO 2025-04-04 13:12:29,368 basehttp "GET / HTTP/1.1" 200 48434
+WARNING 2025-04-04 13:12:29,515 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 13:12:29,569 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:12:29,827 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:12:29,827 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:12:30,671 basehttp "GET /login/ HTTP/1.1" 200 11697
+WARNING 2025-04-04 13:12:30,753 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 13:12:30,856 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:12:30,879 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:12:30,879 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:12:32,964 basehttp "GET /register/ HTTP/1.1" 200 14454
+INFO 2025-04-04 13:12:33,084 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:12:33,153 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:12:33,154 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:12:35,892 basehttp "GET /register/ HTTP/1.1" 200 14454
+INFO 2025-04-04 13:12:36,017 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:12:36,044 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:12:36,045 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:12:45,979 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:12:45,986 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:12:45,986 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:12:55,972 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:12:55,977 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:12:55,977 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:13:06,027 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:13:06,034 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:13:06,034 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:13:16,014 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:13:16,020 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:13:16,020 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:13:17,712 basehttp "GET /register/ HTTP/1.1" 200 14453
+INFO 2025-04-04 13:13:17,883 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:13:17,931 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:13:17,931 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:13:27,836 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:13:27,850 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:13:27,850 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:13:37,830 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:13:37,840 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:13:37,840 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:13:46,624 basehttp "POST /register/ HTTP/1.1" 200 15470
+WARNING 2025-04-04 13:13:46,726 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 13:13:46,851 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:13:46,873 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:13:46,873 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:13:56,735 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:13:56,740 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:13:56,741 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:13:59,680 basehttp "GET /register/ HTTP/1.1" 200 14453
+INFO 2025-04-04 13:14:03,432 basehttp "GET / HTTP/1.1" 200 48434
+WARNING 2025-04-04 13:14:03,647 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 13:14:03,896 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:14:03,909 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:14:03,910 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:14:14,013 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:14:14,019 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:14:14,019 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:14:24,019 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:14:24,025 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:14:24,026 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:14:26,555 basehttp "GET / HTTP/1.1" 200 48434
+WARNING 2025-04-04 13:14:26,623 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+WARNING 2025-04-04 13:14:26,669 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 13:14:26,925 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:14:26,952 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:14:26,952 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:14:27,231 basehttp "GET /login/ HTTP/1.1" 200 11697
+WARNING 2025-04-04 13:14:27,313 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 13:14:27,459 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:14:27,479 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:14:27,479 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:14:28,566 basehttp "GET /register/ HTTP/1.1" 200 14453
+INFO 2025-04-04 13:14:28,726 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:14:28,798 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:14:28,798 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:14:39,014 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:14:39,020 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:14:39,020 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:14:49,014 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:14:49,020 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:14:49,021 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:14:59,020 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:14:59,029 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:14:59,030 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:15:09,025 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:15:09,031 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:15:09,031 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:15:19,032 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:15:19,039 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:15:19,040 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:15:29,063 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:15:29,070 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:15:29,070 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:15:40,027 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:15:40,039 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:15:40,040 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:16:40,030 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:16:40,043 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:16:40,044 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:17:11,155 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:17:11,169 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:17:11,170 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:17:13,907 basehttp "GET /login/ HTTP/1.1" 200 11697
+WARNING 2025-04-04 13:17:14,094 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 13:17:14,194 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:17:14,212 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:17:14,212 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:17:16,312 basehttp "GET /order/ HTTP/1.1" 302 0
+INFO 2025-04-04 13:17:16,318 basehttp "GET /login/?next=/order/ HTTP/1.1" 200 11697
+WARNING 2025-04-04 13:17:16,405 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 13:17:16,450 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:17:16,511 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:17:16,512 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:17:16,999 basehttp "GET /catalog/ HTTP/1.1" 200 20040
+INFO 2025-04-04 13:17:17,128 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:17:17,147 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:17:17,148 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:17:18,760 basehttp "GET / HTTP/1.1" 200 48434
+WARNING 2025-04-04 13:17:18,885 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 13:17:19,191 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:17:19,212 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:17:19,216 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:17:24,727 basehttp "GET /login/ HTTP/1.1" 200 11697
+WARNING 2025-04-04 13:17:24,789 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 13:17:24,841 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-04 13:17:24,908 log Not Found: /get-notifications/login/
+WARNING 2025-04-04 13:17:24,910 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-04 13:17:33,041 basehttp "POST /login/ HTTP/1.1" 302 0
+INFO 2025-04-04 13:17:33,061 basehttp "GET / HTTP/1.1" 200 51792
+WARNING 2025-04-04 13:17:33,274 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-04 13:17:33,368 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:17:43,279 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:17:53,279 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:18:03,276 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:18:13,285 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:18:23,277 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:18:33,295 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:18:43,373 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:18:49,864 basehttp "GET /profile/ HTTP/1.1" 200 65813
+WARNING 2025-04-04 13:18:49,999 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-04 13:18:50,149 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:19:00,057 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:19:10,065 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-04 13:19:20,077 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
