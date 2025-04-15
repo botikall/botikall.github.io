@@ -36,19 +36,23 @@
    git clone   https://github.com/botikall/botikall.github.io
    cd botikall.github.io
 2. Встановіть віртуальне середовище та активуйте його:
+   ```bash
    python -m venv venv
    venv\Scripts\activate 
-3. Встановіть залешності:
+4. Встановіть залешності:
+   ```bash
    pip install -r requirements.txt
 
-4. Виконайте міграції:
+6. Виконайте міграції:
+   ```bash
    python manage.py migrate
-5. Запустіть сервер:
+8. Запустіть сервер:
+   ```bash
    python manage.py runserver
-6. Перейдіть у браузері за адресою http://127.0.0.1:8000/
+10. Перейдіть у браузері за адресою http://127.0.0.1:8000/
 
 ## Як розгорнути проєкт не локально
-1. Перейдіть у браузері за адресою:https://amoremio/
+1. Перейдіть у браузері за адресою https://amoremio/
    
     
    
