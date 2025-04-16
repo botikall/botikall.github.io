@@ -39,17 +39,17 @@
    ```bash
    python -m venv venv
    venv\Scripts\activate 
-4. Встановіть залешності:
+3. Встановіть залешності:
    ```bash
    pip install -r requirements.txt
 
-6. Виконайте міграції:
+4. Виконайте міграції:
    ```bash
    python manage.py migrate
-8. Запустіть сервер:
+5. Запустіть сервер:
    ```bash
    python manage.py runserver
-10. Перейдіть у браузері за адресою http://127.0.0.1:8000/
+6. Перейдіть у браузері за адресою http://127.0.0.1:8000/
 
 ## Як розгорнути проєкт не локально
 1. Перейдіть у браузері за адресою https://amoremio/
