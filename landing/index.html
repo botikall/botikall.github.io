@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Вебсистема оформлення замовлень кондитерських виробів</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 
   <!-- SEO -->
   <meta name="description" content="Інформаційна система для автоматизації замовлень у сфері кондитерських виробів. Django, PostgreSQL, Stripe, REST API." />
@@ -24,7 +26,13 @@
 
   <header role="banner" class="bg-pink-300 shadow p-6" aria-label="Заголовок сайту">
     <div class="max-w-5xl mx-auto flex items-center space-x-4">
-      <img src="images/logo.png" alt="Логотип університету" class="h-16" />
+      <img
+        src="images/logo.png"
+        srcset="images/logo.png 1x, images/logo@2x.png 2x"
+        sizes="(max-width: 600px) 100px, 150px"
+        alt="Логотип університету"
+        class="h-16"
+      />
       <div>
         <h1 class="text-3xl font-bold">Вебсистема оформлення замовлень кондитерських виробів</h1>
         <h2 class="text-xl">Web-based Confectionery Ordering System</h2>
@@ -35,7 +43,13 @@
 
   <main role="main" class="max-w-5xl mx-auto py-10 px-4">
     <section class="mb-10">
-      <img src="images/object.png" alt="Інтерфейс вебсистеми оформлення замовлень" class="rounded shadow mb-4" />
+      <img
+        src="images/object.png"
+        srcset="images/object-small.jpg 600w, images/object.jpg 1200w"
+        sizes="(max-width: 768px) 100vw, 700px"
+        alt="Інтерфейс вебсистеми оформлення замовлень"
+        class="rounded shadow mb-4"
+      />
       <p class="text-lg font-medium">Короткий опис:</p>
       <p class="mb-4">Інформаційна вебсистема, що дозволяє автоматизувати процес оформлення замовлень у сфері кондитерських виробів. Реалізовано клієнтську та адміністративну частини з інтеграцією онлайн-оплати та REST API.</p>
     </section>
