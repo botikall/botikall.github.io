@@ -15018,3 +15018,50 @@ INFO 2025-04-04 14:35:40,041 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
 INFO 2025-04-04 14:36:40,032 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
 INFO 2025-04-04 14:37:40,044 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
 INFO 2025-04-04 14:38:40,035 basehttp "GET /get-notifications/ HTTP/1.1" 200 21
+INFO 2025-04-16 13:39:13,199 autoreload Watching for file changes with StatReloader
+INFO 2025-04-16 13:39:14,718 basehttp "GET / HTTP/1.1" 200 48434
+INFO 2025-04-16 13:39:14,837 basehttp "GET /static/orders/style.css HTTP/1.1" 200 11586
+INFO 2025-04-16 13:39:14,842 basehttp "GET /static/orders/images/logo_brand.png HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,844 basehttp "GET /static/orders/images/instagram.png HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,848 basehttp "GET /static/orders/images/facebook.png HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,849 basehttp "GET /static/orders/images/419958.jpg HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,852 basehttp "GET /static/orders/images/1278413.jpg HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,887 basehttp "GET /static/orders/images/408920.jpg HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,901 basehttp "GET /static/orders/images/%D1%81oll_mac.png HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,937 basehttp "GET /products/408920.jpg HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,942 basehttp "GET /products/1385486.png HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,943 basehttp "GET /products/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_89_FYYBZb1.png HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,944 basehttp "GET /products/maxresdefault_TEhkQs7.jpg HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,945 basehttp "GET /products/1612886109-7683_IcgEkTI.jpg HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,946 basehttp "GET /static/orders/images/product1.jpg HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,951 basehttp "GET /static/orders/images/product2.jpg HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:14,952 basehttp "GET /static/orders/images/product3.jpg HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:15,027 basehttp "GET /static/orders/images/background_green.png HTTP/1.1" 304 0
+WARNING 2025-04-16 13:39:15,032 basehttp "GET /static/orders/%7B%%20static%20%22orders/images/background_green.png%22%20%%7D HTTP/1.1" 404 2133
+INFO 2025-04-16 13:39:15,032 basehttp "GET /static/orders/images/nav.png HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:15,033 basehttp "GET /static/orders/fonts/Adventure.ttf HTTP/1.1" 304 0
+INFO 2025-04-16 13:39:15,060 basehttp "GET /static/orders/images/parallax.JFIF HTTP/1.1" 304 0
+WARNING 2025-04-16 13:39:15,174 basehttp "GET /static/orders/%7B%%20static%20%22orders/fonts/Adventure.ttf%22%20%%7D HTTP/1.1" 404 2109
+INFO 2025-04-16 13:39:15,506 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-16 13:39:15,610 log Not Found: /get-notifications/login/
+WARNING 2025-04-16 13:39:15,613 log Not Found: /favicon.ico
+WARNING 2025-04-16 13:39:15,613 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+WARNING 2025-04-16 13:39:15,614 basehttp "GET /favicon.ico HTTP/1.1" 404 7700
+INFO 2025-04-16 13:39:25,346 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-16 13:39:25,362 log Not Found: /get-notifications/login/
+WARNING 2025-04-16 13:39:25,363 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-16 13:39:35,350 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-16 13:39:35,368 log Not Found: /get-notifications/login/
+WARNING 2025-04-16 13:39:35,369 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-16 13:39:45,335 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-16 13:39:45,353 log Not Found: /get-notifications/login/
+WARNING 2025-04-16 13:39:45,354 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-16 13:39:55,343 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-16 13:39:55,348 log Not Found: /get-notifications/login/
+WARNING 2025-04-16 13:39:55,349 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-16 13:40:05,339 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-16 13:40:05,354 log Not Found: /get-notifications/login/
+WARNING 2025-04-16 13:40:05,355 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
+INFO 2025-04-16 13:40:15,334 basehttp "GET /get-notifications/ HTTP/1.1" 302 0
+WARNING 2025-04-16 13:40:15,339 log Not Found: /get-notifications/login/
+WARNING 2025-04-16 13:40:15,339 basehttp "GET /get-notifications/login/?next=/get-notifications/ HTTP/1.1" 404 7776
