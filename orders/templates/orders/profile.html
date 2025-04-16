@@ -27,8 +27,8 @@
                     {% csrf_token %}
                     {{ form.as_p }}
                     <div class="form-buttons">
-                        <button type="submit" id="save-button" class="btn-submit disabled" disabled>Зберегти</button>
-                        <a href="{% url 'change_password' %}" class="btn-submit">Змінити пароль</a>
+                        <button type="submit" id="save-button" class="btn-submit disabled" disabled style="font-size: 14px;">Зберегти</button>
+                        <a href="{% url 'change_password' %}" class="btn-submit" style="font-size: 14px;">Змінити пароль</a>
                     </div>
                 </form>
             </div>
@@ -260,7 +260,7 @@
 }
 
 .profile-container {
-    width: 35%;
+    width: 30%;
     padding: 25px;
     background: #f8f9fa;
     border-radius: 10px;
@@ -350,7 +350,7 @@
 }
 
 .orders-container {
-    width: 60%;
+    width: 65%;
     max-height: 700px;
     overflow-y: auto;
     overflow-x: hidden;

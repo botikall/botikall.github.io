@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="uk" itemscope itemtype="https://schema.org/WebPage">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Вебсистема оформлення замовлень кондитерських виробів</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- SEO -->
+  <meta name="description" content="Інформаційна система для автоматизації замовлень у сфері кондитерських виробів. Django, PostgreSQL, Stripe, REST API." />
+  <meta name="keywords" content="вебсистема, кондитерські вироби, Django, автоматизація, онлайн-замовлення, бакалаврська робота" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Вебсистема оформлення замовлень кондитерських виробів" />
+  <meta property="og:description" content="Автоматизована система замовлення кондитерських виробів — проєкт бакалаврської роботи." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://amoremio/" />
+  <meta property="og:image" content="https://amoremio/images/object.png" />
+  <meta property="og:locale" content="uk_UA" />
+
+  <!-- CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-pink-50 text-gray-800">
+
+  <header role="banner" class="bg-pink-300 shadow p-6" aria-label="Заголовок сайту">
+    <div class="max-w-5xl mx-auto flex items-center space-x-4">
+      <img
+        src="images/logo.png"
+        srcset="images/logo.png 1x, images/logo@2x.png 2x"
+        sizes="(max-width: 600px) 100px, 150px"
+        alt="Логотип університету"
+        class="h-16"
+      />
+      <div>
+        <h1 class="text-3xl font-bold">Вебсистема оформлення замовлень кондитерських виробів</h1>
+        <h2 class="text-xl">Web-based Confectionery Ordering System</h2>
+        <p class="text-lg">Бакалаврська робота — Танченко Артем</p>
+      </div>
+    </div>
+  </header>
+
+  <main role="main" class="max-w-5xl mx-auto py-10 px-4">
+    <section class="mb-10">
+      <img
+        src="images/object.png"
+        srcset="images/object-small.jpg 600w, images/object.jpg 1200w"
+        sizes="(max-width: 768px) 100vw, 700px"
+        alt="Інтерфейс вебсистеми оформлення замовлень"
+        class="rounded shadow mb-4"
+      />
+      <p class="text-lg font-medium">Короткий опис:</p>
+      <p class="mb-4">Інформаційна вебсистема, що дозволяє автоматизувати процес оформлення замовлень у сфері кондитерських виробів. Реалізовано клієнтську та адміністративну частини з інтеграцією онлайн-оплати та REST API.</p>
+    </section>
+
+    <section class="mb-10" aria-labelledby="goal">
+      <h2 id="goal" class="text-2xl font-semibold mb-2">Мета дослідження</h2>
+      <p>Розробка інформаційної вебсистеми, яка автоматизує процес прийому, обробки та адміністрування замовлень кондитерської продукції.</p>
+    </section>
+
+    <section class="mb-10" aria-labelledby="tasks">
+      <h2 id="tasks" class="text-2xl font-semibold mb-2">Завдання</h2>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Проаналізувати потреби користувачів та підприємств у сфері замовлень</li>
+        <li>Спроєктувати структуру та логіку вебзастосунку</li>
+        <li>Реалізувати клієнтський і адміністративний функціонал</li>
+        <li>Інтегрувати платіжні системи та API</li>
+        <li>Забезпечити безпеку, масштабованість і доступність</li>
+      </ul>
+    </section>
+
+    <section class="mb-10" aria-labelledby="results">
+      <h2 id="results" class="text-2xl font-semibold mb-2">Очікувані результати</h2>
+      <p>Функціональна вебсистема, яка дозволяє замовникам зручно здійснювати замовлення, а адміністраторам — ефективно керувати товарами, замовленнями та користувачами.</p>
+    </section>
+
+    <section class="mb-10" aria-labelledby="methodology">
+      <h2 id="methodology" class="text-2xl font-semibold mb-2">Методологія</h2>
+      <p>Методи: аналіз предметної області, прототипування, реалізація з використанням Django, REST API, тестування функціоналу та безпеки, ітераційна розробка.</p>
+    </section>
+
+    <section class="mb-10" aria-labelledby="contact">
+      <h2 id="contact" class="text-2xl font-semibold mb-2">Контакти</h2>
+      <p>Автор: <span itemprop="name">Танченко Артем</span></p>
+      <p>Email: <a href="mailto:tankachfeed@gmail.com" class="text-pink-600 underline" itemprop="email">tankachfeed@gmail.com</a></p>
+      <p>GitHub: <a href="https://github.com/botikall" class="text-pink-600 underline">github.com/botikall</a></p>
+    </section>
+
+    <section class="mb-10" aria-labelledby="full-text">
+      <h2 id="full-text" class="text-2xl font-semibold mb-2">Повний текст роботи</h2>
+      <p>Ознайомитися з повною версією бакалаврської можна за посиланням:
+        <a href="https://amoremio/fulltext.pdf" class="text-pink-600 underline" target="_blank">Завантажити PDF</a>
+      </p>
+    </section>
+
+    <footer role="contentinfo" class="text-sm text-gray-500 border-t pt-4">
+      <p>Ліцензія: MIT License</p>
+    </footer>
+  </main>
+</body>
+</html>
