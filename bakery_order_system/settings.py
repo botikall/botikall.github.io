@@ -186,3 +186,6 @@ import os
 
 MEDIA_URL = ''
 MEDIA_ROOT = os.path.join(BASE_DIR, '')
+
+if not os.path.exists(os.path.join(BASE_DIR, 'docs', 'source', 'logs')):
+    LOGGING = {}  # Вимикаємо логування
