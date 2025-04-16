@@ -94,6 +94,10 @@ class CartItem(models.Model):
 
 # Модель замовлення
 class Order(models.Model):
+    """
+        Модель замовлення, яка зберігає дані про замовника, оплату та товари.
+    """
+
     STATUS_CHOICES = [
         ('new', 'Нове'),
         ('processing', 'В обробці'),
@@ -118,10 +122,17 @@ class Order(models.Model):
     longitude = models.FloatField(null=True, blank=True, verbose_name="Довгота")
 
     def __str__(self):
+        """
+        Повертає рядкове представлення замовлення.
+        """
+
         return f"Замовлення {self.id} - {self.user.username} - {self.status}"
 
     def update_status(self):
-        """Оновлює статус замовлення залежно від статусів OrderItem."""
+        """
+        Оновлює статус замовлення залежно від статусів OrderItem.
+        """
+
         items = self.items.all()
 
         if items.exists():
@@ -135,7 +146,10 @@ class Order(models.Model):
             self.save()
 
     def save(self, *args, **kwargs):
-        """Оновлює статус усіх OrderItem, якщо замовлення стало 'completed'."""
+        """
+        Оновлює статус усіх OrderItem, якщо замовлення стало 'completed'.
+        """
+
         super().save(*args, **kwargs)
 
         if self.status == 'completed':
@@ -143,7 +157,10 @@ class Order(models.Model):
 
 @receiver(post_save, sender=Order)
 def create_notification(sender, instance, **kwargs):
-    """Створює сповіщення, коли замовлення завершується."""
+    """
+    Створює сповіщення, коли замовлення завершується.
+    """
+
     if instance.status == 'completed':
         Notification.objects.create(
             user=instance.user,
