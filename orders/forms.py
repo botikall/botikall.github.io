@@ -26,6 +26,7 @@ class ContactForm(forms.ModelForm):
             self.fields.pop("email")
             self.fields.pop("phone")
 
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
@@ -33,6 +34,7 @@ class CommentForm(forms.ModelForm):
         widgets = {
             "rating": forms.RadioSelect(choices=[(i, f"{i}★") for i in range(1, 6)]),
         }
+
 
 class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(
