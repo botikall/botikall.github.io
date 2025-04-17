@@ -24,14 +24,20 @@ from .models import (
 )
 
 
+import logging
+logger = logging.getLogger("django")
+
 def product_detail(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    comments = CommentForProduct.objects.filter(product=product).order_by(
-        "-created_at"
-    )  # Сортуємо за датою
-    products = Product.objects.annotate(total_sold=Sum("orderitem__quantity")).order_by(
-        "-total_sold"
+    logger.info(
+        "Запит користувача %s (%s) до %s",
+        request.user if request.user.is_authenticated else "Anonymous",
+        request.META.get("REMOTE_ADDR", "Unknown IP"),
+        request.path,
     )
+
+    product = get_object_or_404(Product, id=product_id)
+    comments = CommentForProduct.objects.filter(product=product).order_by("-created_at")
+    products = Product.objects.annotate(total_sold=Sum("orderitem__quantity")).order_by("-total_sold")
 
     has_purchased = False
     if request.user.is_authenticated:
