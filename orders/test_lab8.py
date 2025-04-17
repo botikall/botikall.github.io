@@ -1,8 +1,10 @@
 import pytest
 from django.contrib.auth import get_user_model
-from django.urls import reverse
 from django.core.exceptions import ValidationError
-from orders.models import Order, Cart, CartItem, Product
+from django.urls import reverse
+
+from orders.models import Cart, CartItem, Order, Product
+
 
 @pytest.mark.django_db
 def test_order_form_creates_order(client):
@@ -17,7 +19,7 @@ def test_order_form_creates_order(client):
     CartItem.objects.create(cart=cart, product=product, quantity=2)
 
     # Надсилаємо POST-запит для створення замовлення
-    response = client.post(reverse('checkout'))
+    response = client.post(reverse("checkout"))
     assert response.status_code == 302  # Перевірка перенаправлення
 
     # Перевірка створення замовлення в базі даних
@@ -44,11 +46,10 @@ def test_order_invalid_total_price():
     assert "Сума замовлення має бути більшою за 0." in str(exc_info.value)
 
 
-
 @pytest.mark.django_db
 def test_mock_order_save(client, mocker):
     # Mock для збереження моделі Order
-    mock_save = mocker.patch('orders.models.Order.save', autospec=True)
+    mock_save = mocker.patch("orders.models.Order.save", autospec=True)
 
     # Створення тестового користувача
     user_model = get_user_model()
@@ -61,7 +62,7 @@ def test_mock_order_save(client, mocker):
     CartItem.objects.create(cart=cart, product=product, quantity=2)
 
     # Виклик функції для оформлення замовлення
-    client.post(reverse('checkout'))
+    client.post(reverse("checkout"))
 
     # Перевірка виклику mock_save
     assert mock_save.called

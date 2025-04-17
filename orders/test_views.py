@@ -1,7 +1,9 @@
 import pytest
-from django.urls import reverse
-from orders.models import Order, Cart, CartItem, Product
 from django.contrib.auth import get_user_model
+from django.urls import reverse
+
+from orders.models import Cart, CartItem, Order, Product
+
 
 @pytest.mark.django_db
 def test_order_form_view(client):
@@ -13,7 +15,7 @@ def test_order_form_view(client):
     cart = Cart.objects.create(user=user)
     CartItem.objects.create(cart=cart, product=product, quantity=2)
 
-    response = client.post(reverse('checkout'))
+    response = client.post(reverse("checkout"))
     assert response.status_code == 302  # Перевірка перенаправлення
 
     order = Order.objects.get(user=user)

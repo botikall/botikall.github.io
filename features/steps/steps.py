@@ -1,11 +1,12 @@
-from behave import given, when, then
+import time
+
+from behave import given, then, when
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-import time
 
 
-@given('Користувач знаходиться на сторінці авторизації')
+@given("Користувач знаходиться на сторінці авторизації")
 def open_login_page(context):
     context.driver = webdriver.Chrome()
     context.driver.get("http://localhost:8000/login/")  # Змінити URL на відповідний
@@ -30,7 +31,7 @@ def verify_welcome_message(context, message):
     context.driver.quit()
 
 
-@given('Користувач авторизований і знаходиться на сторінці продукції')
+@given("Користувач авторизований і знаходиться на сторінці продукції")
 def go_to_products_page(context):
     open_login_page(context)
     enter_credentials(context, "testuser", "password123")
@@ -45,13 +46,13 @@ def add_to_cart(context, product):
     cart_button.click()
 
 
-@when('Переходить до оформлення замовлення')
+@when("Переходить до оформлення замовлення")
 def go_to_checkout(context):
     context.driver.get("http://localhost:8000/cart/")  # URL кошика
     context.driver.find_element(By.CSS_SELECTOR, ".btn-checkout").click()
 
 
-@when('Підтверджує замовлення')
+@when("Підтверджує замовлення")
 def confirm_order(context):
     context.driver.find_element(By.CSS_SELECTOR, ".btn-confirm").click()
 
@@ -62,7 +63,7 @@ def verify_order_confirmation(context, confirmation_message):
     context.driver.quit()
 
 
-@given('Користувач авторизований і знаходиться у профілі')
+@given("Користувач авторизований і знаходиться у профілі")
 def go_to_profile(context):
     open_login_page(context)
     enter_credentials(context, "testuser", "password123")
@@ -75,7 +76,7 @@ def open_order_history(context):
     context.driver.find_element(By.LINK_TEXT, "Історія замовлень").click()
 
 
-@then('Користувач бачить список попередніх замовлень із датами та сумами')
+@then("Користувач бачить список попередніх замовлень із датами та сумами")
 def verify_order_history(context):
     orders_table = context.driver.find_element(By.ID, "order-history")
     assert orders_table.is_displayed()
