@@ -3,7 +3,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LogoutView
-from django.urls import path
+from django.urls import path, include
+import debug_toolbar
 
 from orders import views  # Імпортуємо всі представлення з модуля orders
 from orders.views import (
@@ -24,6 +25,7 @@ from orders.views import (
 )
 
 urlpatterns = [
+    path('__debug__/', include(debug_toolbar.urls)),
     path("product/<int:product_id>/", product_detail, name="product_detail"),
     path("catalog/", product_catalog, name="product_catalog"),
     path("catalog/<str:type_name>/", product_catalog, name="product_by_type"),
