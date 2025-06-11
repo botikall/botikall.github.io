@@ -4,7 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Вебсистема оформлення замовлень кондитерських виробів</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
 
   <!-- SEO -->
@@ -18,52 +22,51 @@
   <meta property="og:url" content="https://amoremio/" />
   <meta property="og:image" content="https://amoremio/images/object.png" />
   <meta property="og:locale" content="uk_UA" />
-
-  <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-[#f6cece] text-gray-800 font-sans">
 
-  <header role="banner" class="bg-[#f6cece] shadow p-6" aria-label="Заголовок сайту">
-    <div class="max-w-5xl mx-auto flex items-center space-x-4">
+<body style="background-color: #f6cece;">
+
+  <header role="banner" style="background-color: #f6cece; padding: 1.5rem;" aria-label="Заголовок сайту">
+    <div class="flex" style="max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 1rem;">
       <img
         src="images/logo.png"
         srcset="images/logo.png 1x, images/logo@2x.png 2x"
         sizes="(max-width: 600px) 100px, 150px"
         alt="Логотип університету"
-        class="h-16"
+        class="logo"
+        style="height: 64px;"
       />
       <div>
-        <h1 class="text-3xl font-bold">Вебсистема оформлення замовлень кондитерських виробів</h1>
-        <p class="text-lg">Бакалаврська робота — Танченко Артем</p>
+        <h1 style="font-size: 1.875rem; font-weight: 700;">Вебсистема оформлення замовлень кондитерських виробів</h1>
+        <p style="font-size: 1.125rem;">Бакалаврська робота — Танченко Артем</p>
       </div>
     </div>
   </header>
 
-  <main role="main" class="max-w-5xl mx-auto py-10 px-4">
-    <section class="mb-10">
+  <main style="max-width: 960px; margin: 0 auto; padding: 2rem 1rem;">
+    <section style="margin-bottom: 2rem;">
       <img
         src="images/image.png"
         srcset="images/image.png 1x, images/image@2x.png 2x"
         sizes="(max-width: 600px) 100px, 150px"
         alt="Інтерфейс вебсистеми оформлення замовлень"
-        class="rounded shadow mb-4"
+        style="border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 1rem;"
       />
-      <h2 class="text-2xl font-semibold mb-2">Опис проєкту</h2>
-      <p class="mb-4">Сучасний ринок кондитерських виробів стає дедалі більш конкурентним, а клієнти — вимогливішими до якості, швидкості обслуговування та зручності оформлення замовлень. У зв’язку з цим виникає потреба у створенні інструментів, що автоматизують процес оформлення замовлень та внутрішнє управління для кондитерських підприємств.</p>
-      <p class="mb-4">Цей проєкт присвячений розробці інформаційної вебсистеми, яка забезпечує зручний і ефективний механізм замовлення кондитерських виробів для клієнтів та адміністрування замовлень для працівників. Вебдодаток створено з використанням Python та Django, що забезпечує швидку, безпечну та масштабовану роботу системи. В якості бази даних використовується SQLITE.</p>
+      <h2 style="font-size: 1.5rem; font-weight: 700;">Опис проєкту</h2>
+      <p>Сучасний ринок кондитерських виробів стає дедалі більш конкурентним, а клієнти — вимогливішими до якості, швидкості обслуговування та зручності оформлення замовлень. У зв’язку з цим виникає потреба у створенні інструментів, що автоматизують процес оформлення замовлень та внутрішнє управління для кондитерських підприємств.</p>
+      <p>Цей проєкт присвячений розробці інформаційної вебсистеми, яка забезпечує зручний і ефективний механізм замовлення кондитерських виробів для клієнтів та адміністрування замовлень для працівників. Вебдодаток створено з використанням Python та Django, що забезпечує швидку, безпечну та масштабовану роботу системи. В якості бази даних використовується SQLITE.</p>
     </section>
 
-    <section class="mb-10" aria-labelledby="features">
-      <h2 id="features" class="text-2xl font-semibold mb-2">Основний функціонал</h2>
-      <ul class="list-disc list-inside space-y-1">
+    <section style="margin-bottom: 2rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700;">Основний функціонал</h2>
+      <ul style="list-style-type: disc; padding-left: 1.5rem;">
         <li>Перегляд каталогу продукції (з фото, описами, категоріями)</li>
         <li>Оформлення індивідуального замовлення з додатковими опціями (декор, побажання)</li>
         <li>Розрахунок вартості замовлення</li>
         <li>Відстеження статусу замовлення</li>
         <li>Особистий кабінет користувача</li>
         <li>Панель адміністратора:
-          <ul class="list-disc list-inside ml-5">
+          <ul style="list-style-type: circle; padding-left: 1.5rem;">
             <li>Управління товарами, категоріями, цінами</li>
             <li>Аналітика продажів</li>
             <li>Управління користувачами та замовленнями</li>
@@ -72,9 +75,9 @@
       </ul>
     </section>
 
-    <section class="mb-10" aria-labelledby="tech">
-      <h2 id="tech" class="text-2xl font-semibold mb-2">Технології</h2>
-      <ul class="list-disc list-inside space-y-1">
+    <section style="margin-bottom: 2rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700;">Технології</h2>
+      <ul style="list-style-type: disc; padding-left: 1.5rem;">
         <li>Мова програмування: Python</li>
         <li>Фреймворк: Django</li>
         <li>База даних: SQLite</li>
@@ -84,21 +87,22 @@
       </ul>
     </section>
 
-    <section class="mb-10" aria-labelledby="contact">
-      <h2 id="contact" class="text-2xl font-semibold mb-2">Контакти</h2>
+    <section style="margin-bottom: 2rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700;">Контакти</h2>
       <p>Автор: <span itemprop="name">Танченко Артем</span></p>
-      <p>Email: <a href="mailto:tankachfeed@gmail.com" class="text-pink-600 underline" itemprop="email">tankachfeed@gmail.com</a></p>
-      <p>GitHub: <a href="https://github.com/botikall" class="text-pink-600 underline">github.com/botikall</a></p>
+      <p>Email: <a href="mailto:tankachfeed@gmail.com" class="text-link" itemprop="email">tankachfeed@gmail.com</a></p>
+      <p>GitHub: <a href="https://github.com/botikall" class="text-link">github.com/botikall</a></p>
     </section>
 
-    <section class="mb-10" aria-labelledby="full-text">
-      <h2 id="full-text" class="text-2xl font-semibold mb-2">Повний текст роботи</h2>
-      <p>Ознайомитися з повною версією бакалаврської можна за посиланням:
-        <a href="https://amoremio/fulltext.pdf" class="text-pink-600 underline" target="_blank">Завантажити PDF</a>
+    <section>
+      <h2 style="font-size: 1.5rem; font-weight: 700;">Повний текст роботи</h2>
+      <p>
+        Ознайомитися з повною версією бакалаврської можна за посиланням:  
+        <a href="https://amoremio/fulltext.pdf" target="_blank" class="text-link">Завантажити PDF</a>
       </p>
     </section>
 
-    <footer role="contentinfo" class="text-sm text-gray-600 border-t pt-4">
+    <footer role="contentinfo" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ccc; font-size: 0.875rem; color: #555;">
       <p>Ліцензія: MIT License</p>
     </footer>
   </main>
