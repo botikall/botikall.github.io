@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
 
   <!-- SEO -->
-  <meta name="description" content="Інформаційна система для автоматизації замовлень у сфері кондитерських виробів. Django, PostgreSQL, Stripe, REST API." />
+  <meta name="description" content="Інформаційна система для автоматизації замовлень у сфері кондитерських виробів. Django, SQLite, REST API." />
   <meta name="keywords" content="вебсистема, кондитерські вироби, Django, автоматизація, онлайн-замовлення, бакалаврська робота" />
 
   <!-- Open Graph -->
@@ -19,12 +19,12 @@
   <meta property="og:image" content="https://amoremio/images/object.png" />
   <meta property="og:locale" content="uk_UA" />
 
-  <!-- CSS -->
+  <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-blue-50 text-gray-800">
+<body class="bg-[#f6cece] text-gray-800 font-sans">
 
-  <header role="banner" class="bg-blue-300 shadow p-6" aria-label="Заголовок сайту">
+  <header role="banner" class="bg-[#f6cece] shadow p-6" aria-label="Заголовок сайту">
     <div class="max-w-5xl mx-auto flex items-center space-x-4">
       <img
         src="images/logo.png"
@@ -35,7 +35,6 @@
       />
       <div>
         <h1 class="text-3xl font-bold">Вебсистема оформлення замовлень кондитерських виробів</h1>
-        <h2 class="text-xl">Web-based Confectionery Ordering System</h2>
         <p class="text-lg">Бакалаврська робота — Танченко Артем</p>
       </div>
     </div>
@@ -50,34 +49,39 @@
         alt="Інтерфейс вебсистеми оформлення замовлень"
         class="rounded shadow mb-4"
       />
-      <p class="text-lg font-medium">Короткий опис:</p>
-      <p class="mb-4">Інформаційна вебсистема, що дозволяє автоматизувати процес оформлення замовлень у сфері кондитерських виробів. Реалізовано клієнтську та адміністративну частини з інтеграцією онлайн-оплати та REST API.</p>
+      <h2 class="text-2xl font-semibold mb-2">Опис проєкту</h2>
+      <p class="mb-4">Сучасний ринок кондитерських виробів стає дедалі більш конкурентним, а клієнти — вимогливішими до якості, швидкості обслуговування та зручності оформлення замовлень. У зв’язку з цим виникає потреба у створенні інструментів, що автоматизують процес оформлення замовлень та внутрішнє управління для кондитерських підприємств.</p>
+      <p class="mb-4">Цей проєкт присвячений розробці інформаційної вебсистеми, яка забезпечує зручний і ефективний механізм замовлення кондитерських виробів для клієнтів та адміністрування замовлень для працівників. Вебдодаток створено з використанням Python та Django, що забезпечує швидку, безпечну та масштабовану роботу системи. В якості бази даних використовується SQLITE.</p>
     </section>
 
-    <section class="mb-10" aria-labelledby="goal">
-      <h2 id="goal" class="text-2xl font-semibold mb-2">Мета дослідження</h2>
-      <p>Розробка інформаційної вебсистеми, яка автоматизує процес прийому, обробки та адміністрування замовлень кондитерської продукції.</p>
-    </section>
-
-    <section class="mb-10" aria-labelledby="tasks">
-      <h2 id="tasks" class="text-2xl font-semibold mb-2">Завдання</h2>
+    <section class="mb-10" aria-labelledby="features">
+      <h2 id="features" class="text-2xl font-semibold mb-2">Основний функціонал</h2>
       <ul class="list-disc list-inside space-y-1">
-        <li>Проаналізувати потреби користувачів та підприємств у сфері замовлень</li>
-        <li>Спроєктувати структуру та логіку вебзастосунку</li>
-        <li>Реалізувати клієнтський і адміністративний функціонал</li>
-        <li>Інтегрувати платіжні системи та API</li>
-        <li>Забезпечити безпеку, масштабованість і доступність</li>
+        <li>Перегляд каталогу продукції (з фото, описами, категоріями)</li>
+        <li>Оформлення індивідуального замовлення з додатковими опціями (декор, побажання)</li>
+        <li>Розрахунок вартості замовлення</li>
+        <li>Відстеження статусу замовлення</li>
+        <li>Особистий кабінет користувача</li>
+        <li>Панель адміністратора:
+          <ul class="list-disc list-inside ml-5">
+            <li>Управління товарами, категоріями, цінами</li>
+            <li>Аналітика продажів</li>
+            <li>Управління користувачами та замовленнями</li>
+          </ul>
+        </li>
       </ul>
     </section>
 
-    <section class="mb-10" aria-labelledby="results">
-      <h2 id="results" class="text-2xl font-semibold mb-2">Очікувані результати</h2>
-      <p>Функціональна вебсистема, яка дозволяє замовникам зручно здійснювати замовлення, а адміністраторам — ефективно керувати товарами, замовленнями та користувачами.</p>
-    </section>
-
-    <section class="mb-10" aria-labelledby="methodology">
-      <h2 id="methodology" class="text-2xl font-semibold mb-2">Методологія</h2>
-      <p>Методи: аналіз предметної області, прототипування, реалізація з використанням Django, REST API, тестування функціоналу та безпеки, ітераційна розробка.</p>
+    <section class="mb-10" aria-labelledby="tech">
+      <h2 id="tech" class="text-2xl font-semibold mb-2">Технології</h2>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Мова програмування: Python</li>
+        <li>Фреймворк: Django</li>
+        <li>База даних: SQLite</li>
+        <li>Front-end: HTML/CSS/JavaScript (Django templates)</li>
+        <li>JWT авторизація: для API</li>
+        <li>REST API: Django REST Framework</li>
+      </ul>
     </section>
 
     <section class="mb-10" aria-labelledby="contact">
@@ -94,7 +98,7 @@
       </p>
     </section>
 
-    <footer role="contentinfo" class="text-sm text-gray-500 border-t pt-4">
+    <footer role="contentinfo" class="text-sm text-gray-600 border-t pt-4">
       <p>Ліцензія: MIT License</p>
     </footer>
   </main>
