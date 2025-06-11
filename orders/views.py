@@ -1,12 +1,15 @@
 from django.contrib import messages
+from functools import wraps
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
+from django.utils.decorators import method_decorator
 from django.db.models import Sum
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
+from .forms import UkrainianPasswordChangeForm
 
 from .forms import CommentForm, ContactForm, CustomUserCreationForm, EditProfileForm
 from .models import (
@@ -23,18 +26,81 @@ from .models import (
     Type,
 )
 
+from .logging import log_action
 
+from .anomaly_detector import detect_last_log_anomaly
 import logging
+from .models import AnomalyEvent
+from django.contrib.auth.views import LoginView
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+
+class ProtectedDataView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({"message": f"Привіт, {request.user.username}! Це захищені дані."})
+
 logger = logging.getLogger("django")
 
-def product_detail(request, product_id):
-    logger.info(
-        "Запит користувача %s (%s) до %s",
-        request.user if request.user.is_authenticated else "Anonymous",
-        request.META.get("REMOTE_ADDR", "Unknown IP"),
-        request.path,
-    )
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    return x_forwarded_for.split(',')[0] if x_forwarded_for else request.META.get('REMOTE_ADDR')
 
+# def login_required_with_temp_notification(view_func):
+#     @wraps(view_func)
+#     def _wrapped_view(request, *args, **kwargs):
+#         if not request.user.is_authenticated:
+#             if not request.session.session_key:
+#                 request.session.save()
+#
+#             Notification.objects.create(
+#                 session_key=request.session.session_key,
+#                 message="Спочатку авторизуйтесь."
+#             )
+#
+#             login_url = reverse("login")
+#             return redirect(f"{login_url}?next={request.path}")
+#
+#         return view_func(request, *args, **kwargs)
+#
+#     return _wrapped_view
+
+def anomaly_graph_view(request):
+    events = AnomalyEvent.objects.order_by('detected_at')
+    labels = [e.detected_at.strftime("%Y-%m-%d %H:%M:%S") for e in events]
+    scores = [e.score for e in events]
+    colors = ['red' if e.is_anomaly else 'green' for e in events]
+
+    context = {
+        'labels': labels,
+        'scores': scores,
+        'colors': colors
+    }
+    return render(request, 'admin/graph.html', context)
+
+def anomaly_check_view(request):
+    result = detect_last_log_anomaly()
+    return JsonResponse(result)
+
+class CustomLoginView(LoginView):
+    template_name = "orders/login.html"
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        session_key = self.request.session.session_key
+        log_action(self.request, "login", "Успішний вхід користувача")
+        if session_key:
+            Notification.objects.filter(
+                session_key=session_key,
+                user__isnull=True
+            ).update(user=self.request.user, session_key=None)
+
+        return self.get_redirect_url() or reverse("index")
+
+def product_detail(request, product_id):
+    log_action(request, "view", "Product", object_id=product_id, description="Перегляд продукту")
     product = get_object_or_404(Product, id=product_id)
     comments = CommentForProduct.objects.filter(product=product).order_by("-created_at")
     products = Product.objects.annotate(total_sold=Sum("orderitem__quantity")).order_by("-total_sold")
@@ -63,6 +129,14 @@ def navbar_data(request):
 
 
 def product_catalog(request, type_name=None):
+    log_action(request, "view", "Product", object_id=type_name, description="Перегляд каталогу")
+    cart = None
+    total_price = 0
+
+    if request.user.is_authenticated:
+        cart, created = Cart.objects.get_or_create(user=request.user)
+        total_price = cart.get_total_price()
+
     sort_by = request.GET.get("sort", "default")
 
     if type_name:
@@ -71,15 +145,13 @@ def product_catalog(request, type_name=None):
     else:
         products = Product.objects.all()
 
-    # Сортування
     if sort_by == "price_asc":
         products = products.order_by("price")
     elif sort_by == "price_desc":
         products = products.order_by("-price")
     elif sort_by == "newest":
-        products = products.order_by("-created_at")  # Сортуємо по новизні
+        products = products.order_by("-created_at")
 
-    # Додаємо поле з продажами після сортування, щоб не втрачати його
     for product in products:
         product.sales_count = product.get_sales_count()
 
@@ -89,6 +161,8 @@ def product_catalog(request, type_name=None):
         request,
         "orders/catalog.html",
         {
+            "cart": cart,
+            "total_price": total_price,
             "products": products,
             "types": types,
             "selected_type": type_name,
@@ -98,15 +172,17 @@ def product_catalog(request, type_name=None):
 
 
 def check_join_status(request):
+    log_action(request, "view", description="Перевірка статусу приєднання")
     if not request.user.is_authenticated:
         return JsonResponse(
             {"redirect_url": "/login/"}
-        )  # Перенаправлення на сторінку входу
+        )
     return JsonResponse({"message": "Ви вже приєдналися до нашої спільноти!"})
 
 
 @csrf_exempt
 def mark_notification_read(request, notification_id):
+    log_action(request, "view", "Notification", object_id=notification_id, description="Переглянуте сповіщення")
     if request.method == "POST":
         notification = get_object_or_404(
             Notification, id=notification_id, user=request.user
@@ -117,11 +193,21 @@ def mark_notification_read(request, notification_id):
     return JsonResponse({"status": "error"}, status=400)
 
 
-@login_required
 def get_notifications(request):
-    notifications = Notification.objects.filter(
-        user=request.user, is_read=False
-    ).order_by("-created_at")
+    # log_action(request, "get","Notification", description="Отримання сповіщення")
+    if request.user.is_authenticated:
+        notifications = Notification.objects.filter(
+            user=request.user, is_read=False
+        )
+    else:
+        if not request.session.session_key:
+            request.session.save()
+
+        notifications = Notification.objects.filter(
+            session_key=request.session.session_key, is_read=False
+        )
+
+    notifications = notifications.order_by("-created_at")
 
     notifications_list = [
         {
@@ -132,13 +218,13 @@ def get_notifications(request):
         for n in notifications
     ]
 
-    print("Сповіщень знайдено:", len(notifications_list))  # Додаємо логування
+    print("Сповіщень знайдено:", len(notifications_list))
 
     return JsonResponse({"notifications": notifications_list})
 
-
 @login_required
 def add_comment(request):
+    log_action(request, "add","Comment", description="Додавання коментаря")
     if request.method == "POST":
         order_id = request.POST.get("order_id")
 
@@ -147,7 +233,7 @@ def add_comment(request):
         except Order.DoesNotExist:
             return JsonResponse({"success": False, "error": "Замовлення не знайдено."})
 
-        # Перевіряємо, чи вже є коментар для цього замовлення
+
         if Comment.objects.filter(order=order).exists():
             return JsonResponse(
                 {"success": False, "error": "Ви вже оцінювали це замовлення."}
@@ -170,6 +256,7 @@ def add_comment(request):
 
 
 def view_comment(request):
+    log_action(request, "view","Comment", description="Перегляд коментаря")
     if request.method == "POST":
         form = ContactForm(
             request.POST, user=request.user if request.user.is_authenticated else None
@@ -190,6 +277,7 @@ def view_comment(request):
 
 
 def notifications_view(request):
+    log_action(request, "view","Notification", description="Перегляд сповіщень")
     if request.user.is_authenticated:
         notifications = Notification.objects.filter(
             user=request.user, is_read=False
@@ -199,16 +287,10 @@ def notifications_view(request):
     return {"notifications": notifications}
 
 
-def admin_order_list(request):
-    messages = ContactMessage.objects.all().order_by("-created_at")
-    orders = Order.objects.all()
-    return render(
-        request, "orders/admin_form.html", {"orders": orders, "messages": messages}
-    )
-
 
 @csrf_exempt
 def update_order_status(request, order_id, new_status):
+    log_action(request, "update", "Notification", object_id=order_id, description="Оновлення статусу")
     if request.method == "POST":
         order = get_object_or_404(Order, id=order_id)
         order.status = new_status
@@ -225,12 +307,14 @@ def update_order_status(request, order_id, new_status):
 
 
 def get_text(request):
+    log_action(request, "get","text", description="Отримання тексту")
     data = {"message": "Додайте хоч елемент один в кошик."}
     return JsonResponse(data)
 
 
 @csrf_exempt
 def cancel_order(request, order_id):
+    log_action(request, "cancel", "Order", object_id=order_id, description="Відмова від замовлення")
     if request.method == "POST":
         order = get_object_or_404(Order, id=order_id, user=request.user)
         if order.status not in [
@@ -247,9 +331,8 @@ def cancel_order(request, order_id):
         {"success": False, "error": "Невірний метод запиту."}, status=400
     )
 
-
-# Головна сторінка
 def index(request):
+    log_action(request, "view", "Form", description="Перегляд головної сторінки")
     if request.method == "POST":
         form = ContactForm(
             request.POST, user=request.user if request.user.is_authenticated else None
@@ -292,18 +375,19 @@ def index(request):
 
 @login_required
 def comments_view(request):
+    log_action(request, "view","Comment", description="Перегляд коментарів")
     comments = Comment.objects.all().order_by("-id")
     return render(request, "orders/comments.html", {"comments": comments})
 
 
-# Відображення списку продуктів
 def product_list(request):
+    log_action(request, "view","Product", description="Перегляд продукції")
     products = Product.objects.all()
     return render(request, "orders/product_list.html", {"products": products})
 
 
-# Реєстрація користувача
 def register(request):
+    log_action(request, "register","Form", description="Реєстрація користувача")
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -318,11 +402,11 @@ def register(request):
     return render(request, "orders/register.html", {"form": form})
 
 
-# Перегляд профілю користувача
 @login_required(login_url="login")
 def user_profile(request):
+    log_action(request, "view","Form", description="Перегляд профілю")
     if request.user.is_superuser:
-        return redirect("admin_form")  # Перенаправлення для суперкористувача
+        return redirect(reverse("admin:index")) # Перенаправлення для суперкористувача
 
     user = request.user
     orders = Order.objects.filter(user=user).order_by("-created_at")
@@ -347,15 +431,10 @@ def user_profile(request):
         {"products": products, "form": form, "orders": orders},
     )
 
-
-@login_required
-def admin_form(request):
-    return render(request, "orders/admin_form.html")
-
-
 # Редагування профілю користувача
 @login_required
 def edit_profile(request):
+    log_action(request, "update","Form", description="Зміна данних профілю")
     if request.method == "POST":
         form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
@@ -370,8 +449,9 @@ def edit_profile(request):
 # Зміна пароля
 @login_required
 def change_password(request):
+    log_action(request, "update","Form", description="Зміна паролю")
     if request.method == "POST":
-        form = PasswordChangeForm(user=request.user, data=request.POST)
+        form = UkrainianPasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
@@ -380,13 +460,14 @@ def change_password(request):
         else:
             messages.error(request, "Будь ласка, виправте помилки.")
     else:
-        form = PasswordChangeForm(user=request.user)
+        form = UkrainianPasswordChangeForm(user=request.user)
 
     return render(request, "orders/change_password.html", {"form": form})
 
 
 @login_required
 def add_to_cart(request, product_id):
+    log_action(request, "add","Product",object_id=product_id, description="Додавання елементів до кошика")
     product = get_object_or_404(Product, id=product_id)
     cart, created = Cart.objects.get_or_create(user=request.user)
 
@@ -420,21 +501,28 @@ def add_to_cart(request, product_id):
             }
         )
 
-    return redirect("order_form")
+    return redirect("product_catalog")
 
 
-# Видалення елемента з кошика
 @login_required
 def remove_from_cart(request, item_id):
+    log_action(request, "delete", "CartItem", object_id=item_id, description="Видалення елемента з кошика")
     cart_item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
     cart_item.delete()
     messages.success(request, "Елемент видалено з кошика.")
-    return redirect("order_form")
+    return redirect(request.META.get('HTTP_REFERER', 'order_form'))
+
+@login_required
+def clear_cart(request):
+    log_action(request, "clear","CartItem", description="Повне очищення кошика")
+    request.user.cart.items.all().delete()
+    messages.success(request, "Кошик очищено.")
+    return redirect(request.META.get('HTTP_REFERER', 'order_form'))
 
 
-# Оновлення кількості елементів у кошику
 @login_required
 def update_cart_item(request, item_id):
+    log_action(request, "update","CartItem", object_id=item_id, description="Змінення кількості продукції")
     cart_item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
     if request.method == "POST":
         new_quantity = request.POST.get("quantity", 1)
@@ -444,30 +532,24 @@ def update_cart_item(request, item_id):
     return redirect("order_form")
 
 
-# Відображення кошика
-@login_required(login_url="login")
-def cart_view(request):
-    cart, created = Cart.objects.get_or_create(user=request.user)
-
-    cart_items = cart.items.all()
-    total_price = cart.get_total_price()
-
-    return render(
-        request,
-        "orders/cart.html",
-        {"cart": cart, "cart_items": cart_items, "total_price": total_price},
-    )
-
-
-# Оформлення замовлення
 @login_required(login_url="login")
 def order_form(request):
+    log_action(request, "create","Cart", description="Створення замовлення")
     cart, created = Cart.objects.get_or_create(user=request.user)
-    if not cart.items.exists():
-        messages.error(request, "Ваш кошик порожній.")
-        return redirect("product_catalog")
 
     if request.method == "POST":
+        if not cart.items.exists():
+            return render(
+                request,
+                "orders/order_form.html",
+                {
+                    "cart": cart,
+                    "total_price": 0,
+                    "products": [],
+                    "error": "Кошик порожній. Додайте товари, щоб оформити замовлення."
+                },
+            )
+
         delivery_type = request.POST.get("delivery_type")
         delivery_address = (
             request.POST.get("delivery_address") if delivery_type == "courier" else None
@@ -495,8 +577,12 @@ def order_form(request):
             )
 
         cart.items.all().delete()
-        messages.success(request, "Замовлення успішно оформлено!")
-        return redirect("order_success")
+        messages.success(request, "Замовлення успішно створено!")
+        Notification.objects.create(
+            user=request.user,
+            message="Замовлення успішно створено!"
+        )
+        return redirect("order_form")
 
     products = Product.objects.annotate(total_sold=Sum("orderitem__quantity")).order_by(
         "-total_sold"
@@ -509,14 +595,19 @@ def order_form(request):
     )
 
 
-# Сторінка успішного замовлення
-@login_required
-def order_success(request):
-    return render(request, "orders/order_success.html")
+# # Сторінка успішного замовлення
+# @login_required
+# def order_success(request):
+#     Notification.objects.create(
+#         user=request.user,
+#         message="Замовлення успішно створено."
+#     )
+#     return render(request, "orders/order_form.html")
 
 
 @login_required
 def add_comment_for_product(request):
+    log_action(request, "add","Comment", description="Додавання коментаря")
     if request.method == "POST":
         user = request.user
         product_id = request.POST.get("product_id")

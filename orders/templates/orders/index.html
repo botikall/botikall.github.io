@@ -28,27 +28,31 @@
 
     <div class="order-button-container">
         {% if request.user.is_authenticated %}
-            <a href="{% url 'product_list' %}" class="btn-submit" style="font-size: 28px; padding: 24px 36px; text-transform: uppercase;">Замовити</a>
+            <a href="{% url 'product_catalog' %}" class="btn-submit" style="font-size: 28px; padding: 24px 36px; text-transform: uppercase;">Замовити</a>
         {% else %}
             <a href="{% url 'login' %}" class="btn-submit" style="font-size: 28px; padding: 24px 36px; text-transform: uppercase;">Замовити</a>
         {% endif %}
     </div>
 
-    <div class="macaron-container" >
-        <img src="{% static 'orders/images/сoll_mac.png' %}" alt="Макарони" usemap="#macaronmap" class="macaron-img">
+    <div class="macaron-container">
+        <img src="{% static 'orders/images/сoll_mac.png' %}"
+             alt="Макарони"
+             usemap="#macaronmap"
+             id="macaron-img"
+             class="macaron-img">
         <div id="macaron-info" class="macaron-info"></div>
     </div>
 
-    <map name="macaronmap">
-        <area shape="circle" coords="100,150,100" href="#" class="macaron" data-id="1" data-name="Рожевий макарон" data-description="Полуничний смак">
-        <area shape="circle" coords="280,150,80" href="#" class="macaron" data-id="2" data-name="Жовтий макарон" data-description="Лимонний смак">
-        <area shape="circle" coords="435,150,75" href="#" class="macaron" data-id="3" data-name="Зелений макарон" data-description="Фісташковий смак">
-        <area shape="circle" coords="585,150,75" href="#" class="macaron" data-id="4" data-name="Фіолетовий макарон" data-description="Лавандовий смак">
-        <area shape="circle" coords="730,150,70" href="#" class="macaron" data-id="5" data-name="Блакитний макарон" data-description="Ванільний смак">
-        <area shape="circle" coords="875,150,75" href="#" class="macaron" data-id="6" data-name="Коричневий макарон" data-description="Шоколадний смак">
+    <map name="macaronmap" id="macaronmap">
+        <area shape="circle" data-original-coords="100,150,100" href="#" class="macaron" data-id="1" data-name="Рожевий макарон" data-description="Полуничний смак">
+        <area shape="circle" data-original-coords="280,150,80" href="#" class="macaron" data-id="2" data-name="Жовтий макарон" data-description="Лимонний смак">
+        <area shape="circle" data-original-coords="435,150,75" href="#" class="macaron" data-id="3" data-name="Зелений макарон" data-description="Фісташковий смак">
+        <area shape="circle" data-original-coords="585,150,75" href="#" class="macaron" data-id="4" data-name="Фіолетовий макарон" data-description="Лавандовий смак">
+        <area shape="circle" data-original-coords="730,150,70" href="#" class="macaron" data-id="5" data-name="Блакитний макарон" data-description="Ванільний смак">
+        <area shape="circle" data-original-coords="875,150,75" href="#" class="macaron" data-id="6" data-name="Коричневий макарон" data-description="Шоколадний смак">
     </map>
 
-    <div class="container" style="margin-top: -250px;">
+    <div class="container" style="margin-top: -80px;">
         <h2 style="text-align: center;">Топ продукція</h2>
 
         <div class="swiper-wrapper-container">
@@ -79,7 +83,7 @@
                                         <button type="submit" class="btn-submit">Додати до кошика</button>
                                     </form>
                                 {% else %}
-                                    <a href="{% url 'login' %}?next={% url 'cart' %}" class="btn-submit">Додати в кошик</a>
+                                    <a href="{% url 'login_special' %}?next={% url 'add_to_cart' product.id %}" class="btn-submit">Додати в кошик</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -93,7 +97,7 @@
         </div>
 
         <div class="more-comments" style="margin-top: 0px;">
-            <a href="{% url 'product_list' %}" class="more-btn">Більше продукції</a>
+            <a href="{% url 'product_catalog' %}" class="more-btn">Більше продукції</a>
         </div>
     </div>
 
@@ -163,7 +167,7 @@
         <section id="about-us" style="display: flex; align-items: flex-start; gap: 20px; padding: 50px; center/cover no-repeat; color: black; max-width: 1200px; margin: 0 auto;">
             <div style="flex: 1; display: flex; flex-direction: column;">
                 <h2 style="margin-bottom: 20px;">Про нас</h2>
-                <p>Ласкаво просимо до <strong>[Назва закладу]</strong>! Ми пропонуємо найкращі [тип послуг або товарів], щоб задовольнити всі ваші потреби. Наш заклад знаходиться у самому серці міста, і ми завжди раді новим гостям!</p>
+                <p>Ласкаво просимо до <strong>AmoreMio</strong>! Ми пропонуємо найкращі десерти, щоб задовольнити смакові рецептори. Наш заклад знаходиться у самому серці міста, і ми завжди раді новим гостям!</p>
             </div>
 
             <div style="flex: 1; display: flex; flex-direction: column;">
@@ -201,86 +205,67 @@
             {% endfor %}
         </div>
         <div class="more-comments">
-            <a href="{% url 'comments' %}" class="more-btn">Більше коментарів</a>
+            <a href="{% url 'comments' %}#target-block" class="more-btn">Більше коментарів</a>
         </div>
     </div>
 
     <section id="backpink" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background: url('{% static "orders/images/nav.png" %}')">
-        <div class="selection" style="max-width: 900px;">
-            <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <div class="selection1" style="max-width: 900px;">
+            <h2 class="text-2xl font-bold mb-6">Часто поставлені питання</h2>
             <div class="space-y-4">
                 <div class="rounded-lg overflow-hidden shadow-none border-none">
-                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(0)">What are macarons made of?</button>
-                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Macarons are made from almond flour, egg whites, and sugar, filled with ganache, buttercream, or jam.</div>
+                    <button class="text-base font-bold w-full text-left p-4 bg-white hover:bg-gray-100 border-none shadow-none" style="font-family: 'Waltograph';" onclick="toggleFAQ(0)">З чого зроблені макарони?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Макарони готують з мигдалевого борошна, яєчних білків та цукру, наповнюють ганашем, вершковим кремом або джемом.</div>
                 </div>
                 <div class="rounded-lg overflow-hidden shadow-none border-none">
-                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(1)">Do you offer custom designs?</button>
-                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Yes! We can create custom designs for special occasions.</div>
+                    <button class="text-base font-bold w-full text-left p-4  bg-white hover:bg-gray-100 border-none shadow-none" style="font-family: 'Waltograph';" onclick="toggleFAQ(1)">Ви пропонуєте індивідуальні дизайни?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Так! Ми можемо створювати індивідуальні дизайни для особливих випадків.</div>
                 </div>
                 <div class="rounded-lg overflow-hidden shadow-none border-none">
-                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(2)">How should I store macarons?</button>
-                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Macarons should be stored in an airtight container in the refrigerator and consumed within a week.</div>
+                    <button class="text-base font-bold w-full text-left p-4  bg-white hover:bg-gray-100 border-none shadow-none" style="font-family: 'Waltograph';" onclick="toggleFAQ(2)">Як слід зберігати макарони?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Макарони слід зберігати в герметичному контейнері в холодильнику та спожити протягом тижня.</div>
                 </div>
                 <div class="rounded-lg overflow-hidden shadow-none border-none">
-                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(3)">Are your desserts gluten-free?</button>
-                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Most of our desserts are gluten-free, but we recommend checking with us for specific products.</div>
+                    <button class="text-base font-bold w-full text-left p-4  bg-white hover:bg-gray-100 border-none shadow-none" style="font-family: 'Waltograph';" onclick="toggleFAQ(3)">Ваші десерти без глютену?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Більшість наших десертів не містять глютену, але ми рекомендуємо уточнювати у нас інформацію про конкретні продукти.</div>
                 </div>
                 <div class="rounded-lg overflow-hidden shadow-none border-none">
-                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(4)">Can I order online?</button>
-                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Yes! You can place your orders online through our website.</div>
+                    <button class="text-base font-bold w-full text-left p-4  bg-white hover:bg-gray-100 border-none shadow-none" style="font-family: 'Waltograph';" onclick="toggleFAQ(4)">Чи можу я замовити онлайн?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Так! Ви можете розмістити свої замовлення онлайн через наш вебсайт.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="selection">
-        <h2>Get in Touch</h2>
-        <form method="post" class="contact-form">
-            {% csrf_token %}
-            {% if request.user.is_authenticated %}
-                <textarea name="message" placeholder="Message" required>{{ form.message.value|default_if_none:'' }}</textarea>
-                <button type="submit" class="btn-submit">Send It!</button>
-            {% else %}
-                <div class="input-row">
-                    <input type="text" name="name" placeholder="Name" value="{{ form.name.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
-                    <input type="email" name="email" placeholder="Email" value="{{ form.email.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
-                </div>
-                <input type="text" name="phone" placeholder="Phone" value="{{ form.phone.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
-                <textarea name="message" placeholder="Message" required>{{ form.message.value|default_if_none:'' }}</textarea>
-                <button type="submit" class="btn-submit">Send It!</button>
-            {% endif %}
-        </form>
-    </div>
+    <div class="contact-container">
+        <div class="selection">
+            <h2>Зв'язок в один дотик</h2>
+            <form method="post" class="contact-form">
+                {% csrf_token %}
+                {% if request.user.is_authenticated %}
+                    <textarea name="message" placeholder="Message" required>{{ form.message.value|default_if_none:'' }}</textarea>
+                    <button type="submit" class="btn-submit">Відправити!</button>
+                {% else %}
+                    <div class="input-row">
+                        <input type="text" name="name" placeholder="Name" value="{{ form.name.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
+                        <input type="email" name="email" placeholder="Email" value="{{ form.email.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
+                    </div>
+                    <input type="text" name="phone" placeholder="Phone" value="{{ form.phone.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
+                    <textarea name="message" placeholder="Message" required>{{ form.message.value|default_if_none:'' }}</textarea>
+                    <button type="submit" class="btn-submit">Send It!</button>
+                {% endif %}
+            </form>
+        </div>
 
-    <section class="gallery" style="position: relative; left: -250px;">
-            <img src="{% static 'orders/images/product1.jpg' %}" alt="Macarons on a wooden surface">
-            <img src="{% static 'orders/images/product2.jpg' %}" alt="Plate of pink macarons">
-            <img src="{% static 'orders/images/product3.jpg' %}" alt="Macaron tower">
-            <img src="{% static 'orders/images/product1.jpg' %}" alt="Macarons on a wooden surface">
-            <img src="{% static 'orders/images/product1.jpg' %}" alt="Macarons on a wooden surface">
-        </section>
-        <section class="gallery" style="position: relative; left: +250px;">
-            <img src="{% static 'orders/images/product1.jpg' %}" alt="Macarons on a wooden surface">
-            <img src="{% static 'orders/images/product2.jpg' %}" alt="Plate of pink macarons">
-            <img src="{% static 'orders/images/product3.jpg' %}" alt="Macaron tower">
-            <img src="{% static 'orders/images/product1.jpg' %}" alt="Macarons on a wooden surface">
-            <img src="{% static 'orders/images/product1.jpg' %}" alt="Macarons on a wooden surface">
-        </section>
+        <div class="selection contact-details" style="margin-top: 10px;">
+            <h2>Зв'яжіться з нами</h2>
 
-    <div class="selection" style="max-width: 500px;">
-        <h2>Contact Us</h2>
-        <p>Feel free to reach out to us!</p>
-
-        <div style="margin-top: 20px; text-align: left;">
-            <p><strong>📍 Address:</strong> 123 Main Street, Kyiv, Ukraine</p>
-            <p><strong>📞 Phone:</strong> <a href="tel:+380971234567">+380 97 123 4567</a></p>
-            <p><strong>✉️ Email:</strong> <a href="mailto:info@example.com">info@example.com</a></p>
-            <p><strong>🕒 Working Hours:</strong> Mon-Fri, 9:00 AM - 6:00 PM</p>
-
-            <div style="margin-top: 20px;">
-                <strong>Follow us:</strong>
-                <a href="https://www.facebook.com" target="_blank">Facebook</a> |
-                <a href="https://www.instagram.com" target="_blank">Instagram</a>
+            <div style="margin-top: -20px; text-align: left;">
+                <p><strong>📍 Адреса:</strong> 123 Main Street, Kyiv, Ukraine</p>
+                <p><strong>📞 Телефон:</strong> <a href="tel:+380971234567">+380 97 123 4567</a></p>
+                <p><strong>✉️ Почта:</strong> <a href="mailto:info@example.com">info@example.com</a></p>
+                <p><strong>🕒 Робочі часи:</strong> Mon-Fri, 9:00 AM - 6:00 PM</p>
+                <p><strong>🕒 Робочі часи:</strong> Sat-Sun, 10:00 AM - 4:00 PM</p>
             </div>
         </div>
     </div>
@@ -357,14 +342,41 @@
     }
 }
 
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 1200px;
+}
 
-
-.selection {
+.selection1 {
+    flex: 1 1 500px;
     max-width: 600px;
     margin: auto;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+}
+
+.selection {
+    flex: 1 1 500px;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.selection textarea,
+.selection input,
+.selection .btn-submit {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .contact-form {
@@ -565,18 +577,27 @@ textarea {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100vw;
-        height: 70vh;
+        width: 100%;
+        padding: 40px 0;
         position: relative;
-        margin-bottom: -200px;
-        margin-top: -160px;
         z-index: 1;
     }
 
     .macaron-img {
-        max-width: 80%;
+        width: 90%;
+        max-width: 1000px;
         height: auto;
         display: block;
+    }
+
+    @media (max-width: 768px) {
+        .macaron-container {
+            padding: 20px 0;
+        }
+
+        .macaron-img {
+            width: 95%;
+        }
     }
 
     .macaron-info {
@@ -719,6 +740,23 @@ textarea {
 </style>
 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 <script>
+    function resizeMapAreas() {
+        const img = document.getElementById('macaron-img');
+        const areas = document.querySelectorAll('area');
+
+        const originalWidth = 1000; // Це ширина оригінального зображення в px (встанови свою)
+        const scale = img.clientWidth / originalWidth;
+
+        areas.forEach(area => {
+            const originalCoords = area.dataset.originalCoords.split(',').map(Number);
+            const scaledCoords = originalCoords.map(coord => Math.round(coord * scale));
+            area.coords = scaledCoords.join(',');
+        });
+    }
+
+    window.addEventListener('resize', resizeMapAreas);
+    window.addEventListener('load', resizeMapAreas);
+
      var swiper = new Swiper(".swiper-container", {
         slidesPerView: 4, // Відображаємо 4 продукти одночасно
         spaceBetween: 20, // Відстань між слайдами

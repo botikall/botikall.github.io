@@ -7,60 +7,67 @@
     <div class="container" style="margin-top: 80px;">
         <h1>Оформлення замовлення</h1>
 
-        <table class="cart-table">
-            <tr>
-                <th>Товар</th>
-                <th>Кількість</th>
-                <th>Ціна за одиницю</th>
-                <th>Сума</th>
-                <th>Дії</th>
-            </tr>
-            {% for item in cart.items.all %}
-            <tr>
-                <td>{{ item.product.name }}</td>
-                <td>
-                    <form method="POST" action="{% url 'update_cart_item' item.id %}">
-                        {% csrf_token %}
-                        <input type="number" name="quantity" min="1" value="{{ item.quantity }}">
-                        <button type="submit" class="btn-submit">Оновити</button>
-                    </form>
-                </td>
-                <td>{{ item.product.price }} грн</td>
-                <td>{{ item.get_total_price }} грн</td>
-                <td>
-                    <form method="POST" action="{% url 'remove_from_cart' item.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn-submit">Видалити</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+        {% if cart.items.all %}
+            <table class="cart-table">
+                <tr>
+                    <th>Товар</th>
+                    <th>Кількість</th>
+                    <th>Ціна за одиницю</th>
+                    <th>Сума</th>
+                    <th>Дії</th>
+                </tr>
+                {% for item in cart.items.all %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>
+                        <form method="POST" action="{% url 'update_cart_item' item.id %}">
+                            {% csrf_token %}
+                            <input type="number" name="quantity" min="1" value="{{ item.quantity }}">
+                            <button type="submit" class="btn-submit">Оновити</button>
+                        </form>
+                    </td>
+                    <td>{{ item.product.price }} грн</td>
+                    <td>{{ item.get_total_price }} грн</td>
+                    <td>
+                        <form method="POST" action="{% url 'remove_from_cart' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-submit">Видалити</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
 
-        <h2>Загальна сума: {{ total_price }} грн</h2>
-        <form method="POST" action="{% url 'checkout' %}">
-            {% csrf_token %}
-            <label for="delivery_type" style="font-size: 18px;">Виберіть спосіб доставки:</label>
-            <select id="delivery_type" name="delivery_type" onchange="toggleAddress()">
-                <option value="pickup">Самовивіз</option>
-                <option value="courier">Доставка кур'єром</option>
-            </select>
+            <h2>Загальна сума: {{ total_price }} грн</h2>
+            <form method="POST" action="{% url 'checkout' %}">
+                {% csrf_token %}
+                <label for="delivery_type" style="font-size: 18px;">Виберіть спосіб доставки:</label>
+                <select id="delivery_type" name="delivery_type" onchange="toggleAddress()">
+                    <option value="pickup">Самовивіз</option>
+                    <option value="courier">Доставка кур'єром</option>
+                </select>
 
-            <div id="address_container" style="display: none;">
-                <label for="delivery_address">Введіть адресу доставки:</label>
-                <input type="text" id="delivery_address" name="delivery_address">
-                <button type="button" onclick="searchAddress()">Знайти</button>
+                <div id="address_container" style="display: none;">
+                    <label for="delivery_address">Введіть адресу доставки:</label>
+                    <input type="text" id="delivery_address" name="delivery_address">
+                    <button type="button" onclick="searchAddress()">Знайти</button>
 
-                <div id="map" style="height: 400px; width: 100%;"></div>
-                <input type="hidden" id="latitude" name="latitude">
-                <input type="hidden" id="longitude" name="longitude">
+                    <div id="map" style="height: 400px; width: 100%;"></div>
+                    <input type="hidden" id="latitude" name="latitude">
+                    <input type="hidden" id="longitude" name="longitude">
+                </div>
+
+                <button type="submit" class="btn-submit" style="margin-top: 20px;">Оформити замовлення</button>
+            </form>
+        {% else %}
+            <div style="text-align: center; padding: 10px;">
+                <h2>Ваш кошик порожній</h2>
+                <a href="{% url 'product_catalog' %}" class="btn-submit">До продукції</a>
             </div>
-
-            <button type="submit" class="btn-submit" style="margin-top: 20px;">Оформити замовлення</button>
-        </form>
+        {% endif %}
     </div>
 
-<div class="container" style="margin-top: 20;">
+    <div class="container" style="margin-top: 20;">
         <h2 style="text-align: center;">Топ продукція</h2>
 
         <div class="swiper-wrapper-container">
@@ -105,7 +112,7 @@
         </div>
 
         <div class="more-comments" style="margin-top: 0px;">
-            <a href="{% url 'product_list' %}" class="more-btn">Більше продукції</a>
+            <a href="{% url 'product_catalog' %}" class="more-btn">Більше продукції</a>
         </div>
     </div>
 

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Аномалії ActionLog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            padding: 40px;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #f5f5f5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card {
+            background: #2b2b2b;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 960px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        canvas {
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 12px 25px;
+            background-color: #3c873a;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #2e6e2d;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            color: #aaaaaa;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Аномалії ActionLog (Isolation Forest)</h2>
+        <canvas id="anomalyChart" height="200"></canvas>
+        <a href="/admin/" class="back-link">← Назад до адмін-панелі</a>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('anomalyChart').getContext('2d');
+        const anomalyChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ labels|safe }},
+                datasets: [{
+                    label: 'Anomaly Score',
+                    data: {{ scores|safe }},
+                    backgroundColor: {{ colors|safe }}
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        ticks: {
+                            maxRotation: 90,
+                            minRotation: 45,
+                            color: '#ccc'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Час',
+                            color: '#ccc'
+                        },
+                        grid: {
+                            color: '#444'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Оцінка аномалії',
+                            color: '#ccc'
+                        },
+                        ticks: {
+                            color: '#ccc'
+                        },
+                        grid: {
+                            color: '#444'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Результати моделі виявлення аномалій',
+                        color: '#fff',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    legend: {
+                        labels: {
+                            color: '#ccc'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

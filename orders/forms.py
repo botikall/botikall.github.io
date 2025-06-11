@@ -3,8 +3,34 @@ import re
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import PasswordChangeForm
+from django.utils.translation import gettext_lazy as _
 
 from .models import Comment, ContactMessage, CustomUser
+
+
+class UkrainianPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        label=_("Старий пароль"),
+        widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'autofocus': True})
+    )
+    new_password1 = forms.CharField(
+        label=_("Новий пароль"),
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+        help_text=_(
+            "<ul>"
+            "<li>Пароль не має бути надто схожим на особисту інформацію.</li>"
+            "<li>Пароль має містити щонайменше 8 символів.</li>"
+            "<li>Пароль не має бути загальновживаним.</li>"
+            "<li>Пароль не може складатися лише з цифр.</li>"
+            "</ul>"
+        )
+    )
+    new_password2 = forms.CharField(
+        label=_("Підтвердження пароля"),
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+        help_text=_("<li>Введіть той самий пароль ще раз для перевірки.</li>")
+    )
 
 
 class ContactForm(forms.ModelForm):

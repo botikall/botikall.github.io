@@ -12,7 +12,7 @@
         <section id="about-us" style="display: flex; align-items: flex-start; gap: 20px; padding: 50px; center/cover no-repeat; color: black; max-width: 1200px; margin: 0 auto;">
             <div style="flex: 1; display: flex; flex-direction: column;">
                 <h2 style="margin-bottom: 20px;">Про нас</h2>
-                <p>Ласкаво просимо до <strong>[Назва закладу]</strong>! Ми пропонуємо найкращі [тип послуг або товарів], щоб задовольнити всі ваші потреби. Наш заклад знаходиться у самому серці міста, і ми завжди раді новим гостям!</p>
+                <p>Ласкаво просимо до <strong>AmoreMio</strong>! Ми пропонуємо найкращі десерти, щоб задовольнити смакові рецептори. Наш заклад знаходиться у самому серці міста, і ми завжди раді новим гостям!</p>
             </div>
 
             <div style="flex: 1; display: flex; flex-direction: column;">
@@ -31,12 +31,12 @@
         </section>
     </section>
      <div class="selection">
-        <h2>Get in Touch</h2>
+        <h2>Зв'язок в один дотик</h2>
         <form method="post" class="contact-form">
             {% csrf_token %}
             {% if request.user.is_authenticated %}
                 <textarea name="message" placeholder="Message" required>{{ form.message.value|default_if_none:'' }}</textarea>
-                <button type="submit" class="btn-submit">Send It!</button>
+                <button type="submit" class="btn-submit">Відправити!</button>
             {% else %}
                 <div class="input-row">
                     <input type="text" name="name" placeholder="Name" value="{{ form.name.value|default_if_none:'' }}" {% if user.is_authenticated %}readonly{% endif %} required>
@@ -50,27 +50,27 @@
     </div>
     <section id="backpink" style="margin-top: 20px;width: 100vw;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background: url('{% static "orders/images/nav.png" %}')">
         <div class="selection" style="max-width: 900px;">
-            <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+            <h2 class="text-2xl font-bold mb-6">Часто поставлені питання</h2>
             <div class="space-y-4">
                 <div class="rounded-lg overflow-hidden shadow-none border-none">
-                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(0)">What are macarons made of?</button>
-                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Macarons are made from almond flour, egg whites, and sugar, filled with ganache, buttercream, or jam.</div>
+                    <button class="text-base font-bold w-full text-left p-4 bg-white hover:bg-gray-100 border-none shadow-none" style="font-family: 'Waltograph';" onclick="toggleFAQ(0)">З чого зроблені макарони?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Макарони готують з мигдалевого борошна, яєчних білків та цукру, наповнюють ганашем, вершковим кремом або джемом.</div>
                 </div>
                 <div class="rounded-lg overflow-hidden shadow-none border-none">
-                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(1)">Do you offer custom designs?</button>
-                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Yes! We can create custom designs for special occasions.</div>
+                    <button class="text-base font-bold w-full text-left p-4  bg-white hover:bg-gray-100 border-none shadow-none" style="font-family: 'Waltograph';" onclick="toggleFAQ(1)">Ви пропонуєте індивідуальні дизайни?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Так! Ми можемо створювати індивідуальні дизайни для особливих випадків.</div>
                 </div>
                 <div class="rounded-lg overflow-hidden shadow-none border-none">
-                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(2)">How should I store macarons?</button>
-                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Macarons should be stored in an airtight container in the refrigerator and consumed within a week.</div>
+                    <button class="text-base font-bold w-full text-left p-4  bg-white hover:bg-gray-100 border-none shadow-none" style="font-family: 'Waltograph';" onclick="toggleFAQ(2)">Як слід зберігати макарони?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Макарони слід зберігати в герметичному контейнері в холодильнику та спожити протягом тижня.</div>
                 </div>
                 <div class="rounded-lg overflow-hidden shadow-none border-none">
-                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(3)">Are your desserts gluten-free?</button>
-                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Most of our desserts are gluten-free, but we recommend checking with us for specific products.</div>
+                    <button class="text-base font-bold w-full text-left p-4  bg-white hover:bg-gray-100 border-none shadow-none" style="font-family: 'Waltograph';" onclick="toggleFAQ(3)">Ваші десерти без глютену?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Більшість наших десертів не містять глютену, але ми рекомендуємо уточнювати у нас інформацію про конкретні продукти.</div>
                 </div>
                 <div class="rounded-lg overflow-hidden shadow-none border-none">
-                    <button class="w-full text-left p-4 font-semibold bg-white hover:bg-gray-100 border-none shadow-none" onclick="toggleFAQ(4)">Can I order online?</button>
-                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Yes! You can place your orders online through our website.</div>
+                    <button class="text-base font-bold w-full text-left p-4  bg-white hover:bg-gray-100 border-none shadow-none" style="font-family: 'Waltograph';" onclick="toggleFAQ(4)">Чи можу я замовити онлайн?</button>
+                    <div class="text-left p-4 hidden bg-white border-none shadow-none">Так! Ви можете розмістити свої замовлення онлайн через наш вебсайт.</div>
                 </div>
             </div>
         </div>
@@ -109,38 +109,39 @@
 <!--            </div>-->
 
 
-
-    <div class="comments-container" style="max-width: 1314px; margin: 0 auto;">
-        <h2 style="text-align: center;">Коментарі</h2>
-        <div class="comments-scroll" style="max-height: 300px; overflow-y: auto; padding-right: 10px;">
-            <div class="row" style="display: flex; flex-wrap: wrap; gap: 10px;">
-                {% for comment in comments %}
-                <div class="comment-row {% if forloop.counter > 4 %}hidden{% endif %}">
-                    <div class="comment-box" style="width: calc(25% - 10px); min-width: 300px; box-sizing: border-box; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
-                        <div>
-                                    <strong>{{ comment.order.user.username }}</strong>
-                                    <span style="color: gold;">{{ comment.rating }}★</span><br>
-                                    <small style="color: gray;">{{ comment.created_at|date:"d F Y, H:i" }}</small>
-                                    <p>{{ comment.text }}</p>
-                                    <small class="products-title" style="font-size: 14px;" >Товари:</small>
-                                    <ul class="products-list">
-                                        {% for item in comment.order.items.all %}
-                                            <li>{{ item.quantity }} x {{ item.product.name }}</li>
-                                        {% endfor %}
-                                    </ul>
-                                    <br>
-                                    <small>Сума: {{ comment.order.total_price }} грн</small><br>
-                                </div>
+    <section id="target-block">
+        <div class="comments-container" style="max-width: 1314px; margin: 0 auto;">
+            <h2 style="text-align: center;">Коментарі</h2>
+            <div class="comments-scroll" style="max-height: 300px; overflow-y: auto; padding-right: 10px;">
+                <div class="row" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    {% for comment in comments %}
+                    <div class="comment-row {% if forloop.counter > 4 %}hidden{% endif %}">
+                        <div class="comment-box" style="width: calc(25% - 10px); min-width: 300px; box-sizing: border-box; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                            <div>
+                                        <strong>{{ comment.order.user.username }}</strong>
+                                        <span style="color: gold;">{{ comment.rating }}★</span><br>
+                                        <small style="color: gray;">{{ comment.created_at|date:"d F Y, H:i" }}</small>
+                                        <p>{{ comment.text }}</p>
+                                        <small class="products-title" style="font-size: 14px;" >Товари:</small>
+                                        <ul class="products-list">
+                                            {% for item in comment.order.items.all %}
+                                                <li>{{ item.quantity }} x {{ item.product.name }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                        <br>
+                                        <small>Сума: {{ comment.order.total_price }} грн</small><br>
+                                    </div>
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+            </div>
+            <div style="text-align: center;">
+                <button id="load-more" class="more-btn" style="margin: 20px auto; border: none; font-family: 'Waltograph'; cursor: pointer;">Більше</button>
+                <button id="hide-comments" class="more-btn" style="margin: 20px auto; border: none; font-family: 'Waltograph'; cursor: pointer; display: none;">Приховати</button>
             </div>
         </div>
-        <div style="text-align: center;">
-            <button id="load-more" class="more-btn" style="margin: 20px auto; border: none; font-family: 'Waltograph'; cursor: pointer;">Більше</button>
-            <button id="hide-comments" class="more-btn" style="margin: 20px auto; border: none; font-family: 'Waltograph'; cursor: pointer; display: none;">Приховати</button>
-        </div>
-    </div>
+    </section>
 <style>
 
 .comments-container .row {
@@ -196,10 +197,17 @@
 
 .selection {
     max-width: 600px;
-    margin: auto;
+    margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+}
+.selection textarea,
+.selection input,
+.selection .btn-submit {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .contact-form {

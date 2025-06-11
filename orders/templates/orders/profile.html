@@ -96,7 +96,9 @@
                             </td>
                             <td>
                                 {% if order.status != 'canceled' and order.status != 'completed' %}
-                                    <button class="btn-submit" onclick="cancelOrder({{ order.id }})">Відмовити замовлення</button>
+                                    <button id="cancel-btn-{{ order.id }}" class="btn-submit" onclick="cancelOrder({{ order.id }})">
+                                        Відмовити замовлення
+                                    </button>
                                 {% endif %}
                             </td>
                         </tr>
@@ -260,7 +262,7 @@
 }
 
 .profile-container {
-    width: 35%;
+    width: 31%;
     padding: 25px;
     background: #f8f9fa;
     border-radius: 10px;
@@ -350,10 +352,10 @@
 }
 
 .orders-container {
-    width: 60%;
+    width: 66%;
     max-height: 700px;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -391,7 +393,8 @@ td {
 .cart-table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: auto; /* Дозволяє стовпцям підлаштовуватися */
+    table-layout: auto;
+    min-width: 800px;/* Дозволяє стовпцям підлаштовуватися */
 }
 
 .cart-table thead {
@@ -419,6 +422,20 @@ td {
 /* Поліпшення вигляду при наведенні */
 .cart-table tbody tr:hover {
     background: #f5f5f5;
+}
+
+@media (max-width: 1300px) {
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .profile-container,
+  .orders-container {
+    width: 100%;
+    max-height: none; /* прибирає обмеження по висоті */
+  }
 }
 
 </style>
@@ -477,7 +494,7 @@ td {
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".star-rating").forEach(rating => {
         const stars = rating.querySelectorAll(".star");
-        const ratingInput = document.getElementById(`rating-input-${rating.dataset.productId}`);
+        const ratingInput = document.getElementById(`rating-input-${rating.dataset.orderId}`);
 
         stars.forEach(star => {
             star.addEventListener("click", function () {

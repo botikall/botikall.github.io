@@ -10,6 +10,92 @@ from django.dispatch import receiver
 from django.utils.timezone import now
 
 
+class MonthlyProductSales(models.Model):
+    product_name = models.CharField(max_length=255)
+    total_quantity = models.PositiveIntegerField()
+    month = models.DateField()  # Наприклад, 2025-06-01 для червня
+
+    class Meta:
+        unique_together = ('product_name', 'month')
+        ordering = ['-month']
+
+    def __str__(self):
+        return f"{self.product_name} – {self.month.strftime('%B %Y')}"
+
+
+class ProductSalesReport(models.Model):
+    last_graf = models.DateTimeField()
+
+    def __str__(self):
+        return f"Оновлення: {self.last_graf}"
+
+class AnomalyModelTraining(models.Model):
+    last_trained = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Останнє тренування: {self.last_trained.strftime('%Y-%m-%d %H:%M:%S')}"
+
+    class Meta:
+        verbose_name = "Модель аномалії"
+        verbose_name_plural = "Модель аномалії"
+
+class ActionLog(models.Model):
+    ACTION_CHOICES = [
+        ('create', 'Створення'),
+        ('update', 'Оновлення'),
+        ('delete', 'Видалення'),
+        ('login', 'Вхід'),
+        ('logout', 'Вихід'),
+        ('get', 'Отримання'),
+        ('add', 'Додавання'),
+        ('view', 'Перегляд'),
+        ('custom', 'Інше'),
+        ('cancel', 'Відмова'),
+    ]
+
+    ACTION_CODE_MAP = {
+        'create': 1, 'update': 2, 'delete': 3,
+        'login': 4, 'logout': 5, 'get': 6,
+        'add': 7, 'view': 8, 'custom': 9,'cancel': 10,
+    }
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+    action = models.CharField(max_length=20, choices=ACTION_CHOICES)
+    action_code = models.PositiveSmallIntegerField(default=0)
+    model_name = models.CharField(max_length=100)
+    object_id = models.CharField(max_length=50, blank=True, null=True)
+    description = models.TextField(blank=True)
+    ip_address = models.GenericIPAddressField(blank=True, null=True)
+    ip_country = models.CharField(max_length=5, blank=True, null=True)
+    user_agent = models.CharField(max_length=255, blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        self.action_code = self.ACTION_CODE_MAP.get(self.action, 0)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.timestamp:%Y-%m-%d %H:%M} | {self.user} | {self.action} | {self.model_name}({self.object_id})"
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["user"]),
+            models.Index(fields=["ip_address"]),
+            models.Index(fields=["timestamp"]),
+            models.Index(fields=["action"]),
+        ]
+
+class AnomalyEvent(models.Model):
+    action_log = models.OneToOneField(ActionLog, on_delete=models.CASCADE, null=True)
+    detected_at = models.DateTimeField(auto_now_add=True)
+    is_anomaly = models.BooleanField()
+    score = models.FloatField()
+    notes = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"Anomaly: {self.action_log} | Score: {self.score:.4f}"
+
+
 class ContactMessage(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True
@@ -26,14 +112,20 @@ class ContactMessage(models.Model):
 
 class Notification(models.Model):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="notifications"
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="notifications", null=True, blank=True
     )
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
+    session_key = models.CharField(max_length=40, null=True, blank=True)
 
     def __str__(self):
-        return f"Сповіщення для {self.user.username} - {self.message}"
+        if self.user:
+            return f"Сповіщення для {self.user.username} - {self.message}"
+        elif self.session_key:
+            return f"Сповіщення для сесії {self.session_key} - {self.message}"
+        else:
+            return f"Сповіщення (невідомий користувач) - {self.message}"
 
 
 # Модель користувача

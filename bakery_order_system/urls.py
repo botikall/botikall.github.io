@@ -5,13 +5,16 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 import debug_toolbar
+from orders.views import CustomLoginView
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 from orders import views  # Імпортуємо всі представлення з модуля orders
 from orders.views import (
     add_comment,
     add_comment_for_product,
-    admin_form,
-    admin_order_list,
     cancel_order,
     check_join_status,
     edit_profile,
@@ -23,8 +26,13 @@ from orders.views import (
     user_profile,
     view_comment,
 )
+from orders.views import ProtectedDataView
 
 urlpatterns = [
+    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/protected/", ProtectedDataView.as_view(), name="protected_data"),
+    path('anomalies/graph/', views.anomaly_graph_view, name='anomaly_graph'),
     path('__debug__/', include(debug_toolbar.urls)),
     path("product/<int:product_id>/", product_detail, name="product_detail"),
     path("catalog/", product_catalog, name="product_catalog"),
@@ -49,16 +57,16 @@ urlpatterns = [
         update_order_status,
         name="update_order_status",
     ),
-    path("admin-form/", admin_order_list, name="admin_form"),
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
     path("products/", views.product_list, name="product_list"),
-    path("cart/", views.cart_view, name="cart"),
     path("cart/add/<int:product_id>/", views.add_to_cart, name="add_to_cart"),
     path("cart/remove/<int:item_id>/", views.remove_from_cart, name="remove_from_cart"),
     path("cart/update/<int:item_id>/", views.update_cart_item, name="update_cart_item"),
-    path("order/success/", views.order_success, name="order_success"),
+    path('cart/clear/', views.clear_cart, name='clear_cart'),
+    # path("order/success/", views.order_success, name="order_success"),
     path("order/", views.order_form, name="order_form"),
+    path("login/special", CustomLoginView.as_view(template_name="orders/login.html", redirect_authenticated_user=True), name="login_special"),
     path(
         "login/",
         auth_views.LoginView.as_view(template_name="orders/login.html"),
